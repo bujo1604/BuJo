@@ -18,9 +18,11 @@ const Task = db.define('task', {
         }
     },
      status: {
-        type: Sequelize.ENUM('available', 'unavailable')
+        type: Sequelize.ENUM('Completed', 'In Progress')
     },
 });
 
 module.exports = Task;
 
+//mb other table for status
+// mb no useId in task
