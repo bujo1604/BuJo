@@ -10,15 +10,8 @@ const Task = db.define('task', {
             notEmpty: true
         }
     },
-    description: {
-       type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-        }
-    },
      status: {
-        type: Sequelize.ENUM('Completed', 'In Progress')
+        type: Sequelize.ENUM('complete', 'incomplete')
     },
 });
 
