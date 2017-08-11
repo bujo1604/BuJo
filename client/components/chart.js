@@ -22,7 +22,7 @@ const mapState = (state) => {
   }
 }
 
-export default connect(mapState)(Chart)
+export default connect(mapState)(Chart);
 
 
 
