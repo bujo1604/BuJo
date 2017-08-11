@@ -1,12 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import d3 from 'd3';
+import * as d3 from 'd3';
 
-const styles = {
-  width   : 500,
-  height  : 300,
-  padding : 30,
-};
+console.log(d3)
+
+//set scale
+
+var yScale = d3.scaleTime().range([0,800])
+
 
 const tasks = [
   {name: 'laundry',
