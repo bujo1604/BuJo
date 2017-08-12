@@ -2,62 +2,82 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as d3 from 'd3';
 
-//set scale
-
-// var yScale = d3.scaleTime().range([0, 800])
-
-
-const tasks = [
+const myTasks = [
   {
     name: 'laundry',
     categorory: 'home',
-    color: '#E91E63'
+    color: '#E91E63',
+    day: 1
   },
   {
     name: 'dishes',
     categorory: 'home',
-    color: '#E91E63'
+    color: '#E91E63',
+    day: 1
   },
   {
     name: 'run',
     categorory: 'exercise',
-    color: '#7C4DFF'
+    color: '#7C4DFF',
+    day: 2
   },
   {
     name: 'dinner',
     categorory: 'social',
-    color: '#E57373'
+    color: '#E57373',
+    day: 2
   },
   {
     name: 'redux',
     categorory: 'learning',
-    color: '#2196F3'
+    color: '#2196F3',
+    day: 3
   }
 ];
+
+function giveCountToTasks(tasks) {
+  let count = 1
+  tasks.forEach((task, i) => {
+    if (i > 0 && task.day === tasks[i - 1].day) {
+      count++
+      task.count = count
+    }
+    else {
+      count = 1
+      task.count = count
+    }
+  })
+}
+
+giveCountToTasks(myTasks)
+
 
 //COMPONENT
 
 export class Scatter extends Component {
   constructor(props) {
     super(props)
-    // this.thickenCircles = this.thickenCircles.bind(this)
+    this.xMax = (tasks) => d3.max(tasks, task => task.day)
+    this.yScale = d3.scaleTime().range([0, 800])
 
   }
 
-  componentDidMount() {
-
-    var circles = d3.selectAll('circle').attr('r', '50')
-  }
 
   render() {
+    let count = 1
     return (
       <div>
         <svg width="800px" height="800px">
-          {tasks.map((task, i) => (
+          {myTasks.map((task, i) => (
             <g key={i}>
-              <circle onClick={this.thickenCircles} title={task.name} r="10" cx={String((i + 5) * 50)} cy={String((i + 5) * 50)} fill={task.color} >{task.name}</circle>
-            </g>
-          ))}
+              <circle
+                r="10"
+                cx={String(task.day * 100)}
+                cy={task.count * 50}
+                fill={task.color}
+              />
+            </g>)
+          )}
         </svg>
       </div>
     )
@@ -73,4 +93,6 @@ const mapState = (state) => {
 }
 
 export default connect(mapState)(Scatter);
+
+
 
