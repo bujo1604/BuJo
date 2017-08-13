@@ -24,4 +24,9 @@ body {
     font-family: 'Rock Salt', cursive;
   }
 
+.flexbox-container {
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+}
   //ways of writing css?

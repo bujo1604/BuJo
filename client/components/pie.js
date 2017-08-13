@@ -40,8 +40,8 @@ const tasks = [
 export class Pie extends Component {
   constructor(props) {
     super(props)
-    this.height = 400
-    this.width = 400
+    this.height = 300
+    this.width = 300
     this.pie = d3.pie().value(d => d.value)
     this.arc = d3.arc().innerRadius(130).outerRadius(150)
   }

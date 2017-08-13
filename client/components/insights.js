@@ -12,8 +12,10 @@ export const Insights = (props) => {
     <div>
       <h3>Hi, {email}</h3>
       <p> Here are your insights </p>
-      <Pie />
-      <Scatter />
+      <div className='flexbox-container'>
+        <Pie />
+        <Scatter />
+      </div>
     </div>
   )
 }
