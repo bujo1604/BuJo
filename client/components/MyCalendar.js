@@ -11,15 +11,17 @@ BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
 const MyCalendar = (props) => {
 
     return (
-<FlexParent>
+
+<div >
 
     <BigCalendar
       events={[]}
       startAccessor='2017 08 01'
       endAccessor='2017 08 31'
     />
+    </div>
 
-</FlexParent>
+
 
     )
 };
