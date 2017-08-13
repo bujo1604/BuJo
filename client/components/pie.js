@@ -40,6 +40,8 @@ const tasks = [
 export class Pie extends Component {
   constructor(props) {
     super(props)
+    this.height = 400
+    this.width = 400
     this.pie = d3.pie().value(d => d.value)
     this.arc = d3.arc().innerRadius(130).outerRadius(150)
   }
@@ -47,8 +49,8 @@ export class Pie extends Component {
   render() {
     let pie = this.pie(tasks)
     return (
-      <svg width="800px" height="800px">
-        <g transform="translate(300, 300)">
+      <svg width={this.width} height={this.height}>
+        <g transform={`translate(${this.width / 2}, ${this.height / 2})`}>
           <text textAnchor="middle" x="0" y="0">You have completed {tasks.length} tasks</text>
           {pie.map((d, i) => (
             <path

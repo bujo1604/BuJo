@@ -16,6 +16,18 @@ const myTasks = [
     day: 1
   },
   {
+    name: 'dishes',
+    categorory: 'home',
+    color: '#E91E63',
+    day: 1
+  },
+  {
+    name: 'dishes',
+    categorory: 'home',
+    color: '#E91E63',
+    day: 1
+  },
+  {
     name: 'run',
     categorory: 'exercise',
     color: '#7C4DFF',
@@ -57,27 +69,39 @@ giveCountToTasks(myTasks)
 export class Scatter extends Component {
   constructor(props) {
     super(props)
+    this.height = 400
+    this.width = 400
     this.xMax = (tasks) => d3.max(tasks, task => task.day)
-    this.yScale = d3.scaleTime().range([0, 800])
+    this.yMax = (tasks) => d3.max(tasks, task => task.count)
+    this.xScale = d3.scaleLinear().domain([0, this.xMax(myTasks)]).range([20, this.width-20])
+    this.yScale = d3.scaleLinear().domain([0, this.yMax(myTasks)]).range([this.height-20, 20])
+    this.xAxis = d3.axisBottom(this.xScale).ticks(3)
+    this.yAxis = d3.axisLeft(this.yScale).ticks(3)
+  }
 
+  componentDidMount(){
+    d3.selectAll('.xAxis').call(this.xAxis)
+    d3.selectAll('.yAxis').call(this.yAxis)
   }
 
 
   render() {
-    let count = 1
+
     return (
       <div>
-        <svg width="800px" height="800px">
+        <svg width={this.width} height={this.height}>
           {myTasks.map((task, i) => (
             <g key={i}>
               <circle
                 r="10"
-                cx={String(task.day * 100)}
-                cy={task.count * 50}
+                cx={this.xScale(task.day)}
+                cy={this.yScale(task.count)}
                 fill={task.color}
               />
             </g>)
           )}
+          <g className="xAxis" transform={`translate(0, ${this.height-20})`}></g>
+          <g className="yAxis" transform={`translate(20, 0)`}></g>
         </svg>
       </div>
     )
