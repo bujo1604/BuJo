@@ -10,3 +10,5 @@ export {default as Insights} from './insights'
 export {default as SingleDay} from './singleday'
 export {default as MyCalendar} from './MyCalendar';
 
+export {default as Week} from './Week';
+export {default as Month} from './Month';
