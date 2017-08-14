@@ -13,7 +13,7 @@ BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
 const MyCalendar = (props) => {
 
     return (
-        <div> HI
+        <div>
         <div>
     {/* <BigCalendar
       events={[]}

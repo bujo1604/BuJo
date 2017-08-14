@@ -27,8 +27,8 @@ export default class Week extends React.Component {
         array.push(day);
     }
     this.setState({days: array})
-    
-    
+
+
     //this.setState({days: array})
 
 
@@ -53,26 +53,35 @@ export default class Week extends React.Component {
     //console.log(this.state.days, "this.state.days")
   return (
       <div>
-       
-      
+
+
       {/*<button onClick={this.nextWeek}>Next Week</button> */}
-       
-       
+
+
        <div>
-       <div>{this.state.days.map((elem)=>{
-           
+       <div>
+       <table className='table'>
+        <tbody>
+       {this.state.days.map((elem)=>{
+
            return (
-               <div>
-                    <p>{moment(elem).format("D")}</p>
-                    <p>{moment(elem).format("dd")}</p>
+               <tr>
+
+                    <td>{moment(elem).format("D")}</td>
+                    <td>{moment(elem).format("dd")}</td>
+                    <td> task and event</td>
                     {/* <Task date={elem} /> */}
-                </div>
+                </tr>
             )
-       })}</div>
+       })}
+           </tbody>
+      </table></div>
+
+        <hr />
         </div>
         </div>
-     
-    
+
+
   )
   }
 

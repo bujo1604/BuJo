@@ -45,3 +45,11 @@ export const MonthSty = styled.div`
  max-width: 560px;
  margin: 20px auto;
 `
+export const TableH = styled.th`
+
+ background-color: green;
+ border: 1px solid black;
+`
+
+
+

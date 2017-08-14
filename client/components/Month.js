@@ -3,6 +3,7 @@ import moment from 'moment'
 import Week from './Week'
 // add task component import later...
 // add styled components import later ...
+import { TableH } from './component-style'
 
 
 
@@ -20,7 +21,7 @@ export default class Month extends React.Component {
     };
     this.nextMonth = this.nextMonth.bind(this);
     this.prevMonth = this.prevMonth.bind(this);
-   
+
   }
 
 
@@ -32,7 +33,7 @@ export default class Month extends React.Component {
     var weekStartDate = new Date(moment(this.state.date));
     var lastWeekOfViewDate = new Date(moment(new Date()).endOf("month").startOf("week").startOf("day"))
     let weekCount = 0;
-    
+
 
      for(let i = 0; i < 5; i++){
          var currentWeekDate = new Date(moment(this.state.date).add(i,"week").startOf("day"));
@@ -67,7 +68,7 @@ export default class Month extends React.Component {
              array.push(currentWeekStr);
          }
      }
-        
+
     this.setState({weeks: array})
     }
 
@@ -92,7 +93,7 @@ export default class Month extends React.Component {
              array.push(currentWeekStr);
          }
      }
-        
+
     this.setState({weeks: array})
     }
   render (){
@@ -101,26 +102,37 @@ export default class Month extends React.Component {
   return (
       <div>
        <h1>{this.state.month}</h1>
-      
+
       {/*<button onClick={this.nextWeek}>Next Week</button> */}
        <button onClick={this.prevMonth}>Previous Month</button>
        <button onClick={this.nextMonth}>Next Month</button>
-       
+
        <div>
-       
+        <table className='table'>
+        <thead>
+          <tr>
+            <TableH>Date</TableH>
+            <TableH>Event</TableH>
+            <TableH>Task</TableH>
+          </tr>
+          </thead>
+       <tbody>
+
        <div key={this.state.weeks[0]}>{this.state.weeks.map((elem)=>{
-           
+
            return (
                <div key={elem}>
                    <Week date={elem} />
-                    
+
                 </div>
             )
-       })} </div> 
+       })} </div>
+          </tbody>
+      </table>
         </div>
         </div>
-     
-    
+
+
   )
   }
 
