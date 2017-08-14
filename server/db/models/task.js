@@ -15,6 +15,10 @@ const Task = db.define('task', {
     },
     date: {
         type: Sequelize.STRING
+    }, 
+    value: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1
     }
 });
 
