@@ -5,9 +5,13 @@ const {Task} = require('../db/models');
 
 module.exports = router;
 
-
-router.get('/', function (req, res, next) {
-    Task.findAll()
+//retreive all tasks for user and add .category and .color property to task
+router.get('/:userId', function (req, res, next) {
+    let userId = req.params.userId
+    Task.findAll({
+        where: {userId},
+        include: [{ all: true, nested: true }]
+    })
     .then(task => res.json(task))
     .catch(next);
 

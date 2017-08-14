@@ -25,9 +25,9 @@ const getSingleTask = (singleTask) => ({type: GET_SINGLE_TASK, singleTask});
  * THUNK CREATORS
  */
 
-export function fetchTaskList () {
+export function fetchTaskList (userId) {
     return function thunk (dispatch){
-        return axios.get('/api/tasks')
+        return axios.get(`/api/tasks/${userId}`)
         .then(res => dispatch(getTaskList(res.data)))
         .catch(error => { console.log(error) });
     };

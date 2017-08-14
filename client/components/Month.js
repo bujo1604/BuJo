@@ -14,7 +14,7 @@ export default class Month extends React.Component {
     this.state = {
       date: moment(new Date()).startOf("month").startOf("week").toString(),
       firstOfTheMonth: moment(new Date()).startOf("month").toString(),
-      month: moment(new Date()).format("MMMM"),
+      month: moment(new Date()).format("MMMM YYYY"),
       weeks: [],
       daysWithTasks: [],
       tasks: [{title: "Feed the pups", category: "Chore", date: moment("2017 08 15").startOf("day").toString()},{title: "Visit Rebecca", category: "social", date: moment("2017 08 16").startOf("day").toString() }]
@@ -50,11 +50,11 @@ export default class Month extends React.Component {
   nextMonth () {
       var FirstMonth = moment(this.state.firstOfTheMonth).add(1,"month").startOf("month").toString();
       var newDay = moment(FirstMonth).startOf("week").toString();
-      console.log(newDay, "NewDay")
-      console.log(FirstMonth, "firstOfTheMonth")
+    //   console.log(newDay, "NewDay")
+    //   console.log(FirstMonth, "firstOfTheMonth")
         this.setState({date: newDay, firstOfTheMonth: FirstMonth});
 
-    this.setState({month: moment(FirstMonth).format("MMMM")});
+    this.setState({month: moment(FirstMonth).format("MMMM YYYY")});
     var array = [];
     var lastWeekOfView = moment(FirstMonth).endOf("month").startOf("week").startOf("day");
     var weekStartDate = new Date(moment(newDay));
@@ -75,11 +75,11 @@ export default class Month extends React.Component {
     prevMonth () {
       var FirstMonth = moment(this.state.firstOfTheMonth).subtract(1,"month").startOf("month").toString();
       var newDay = moment(FirstMonth).startOf("week").toString();
-      console.log(newDay, "NewDay")
-      console.log(FirstMonth, "firstOfTheMonth")
+    //   console.log(newDay, "NewDay")
+    //   console.log(FirstMonth, "firstOfTheMonth")
         this.setState({date: newDay, firstOfTheMonth: FirstMonth});
 
-    this.setState({month: moment(FirstMonth).format("MMMM")});
+    this.setState({month: moment(FirstMonth).format("MMMM YYYY")});
     var array = [];
     var lastWeekOfView = moment(FirstMonth).endOf("month").startOf("week").startOf("day");
     var weekStartDate = new Date(moment(newDay));
@@ -98,7 +98,7 @@ export default class Month extends React.Component {
     }
   render (){
     //console.log(this.state.days, "this.state.days")\
-    console.log(this.state.weeks, "weeks array")
+    // console.log(this.state.weeks, "weeks array")
   return (
       <div>
        <h1>{this.state.month}</h1>
