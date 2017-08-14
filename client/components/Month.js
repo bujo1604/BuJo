@@ -4,17 +4,23 @@ import Week from './Week'
 // add task component import later...
 // add styled components import later ...
 
+
+
 export default class Month extends React.Component {
 
     constructor () {
     super();
     this.state = {
       date: moment(new Date()).startOf("month").startOf("week").toString(),
+      firstOfTheMonth: moment(new Date()).startOf("month").toString(),
+      month: moment(new Date()).format("MMMM"),
       weeks: [],
       daysWithTasks: [],
       tasks: [{title: "Feed the pups", category: "Chore", date: moment("2017 08 15").startOf("day").toString()},{title: "Visit Rebecca", category: "social", date: moment("2017 08 16").startOf("day").toString() }]
     };
-    
+    this.nextMonth = this.nextMonth.bind(this);
+    this.prevMonth = this.prevMonth.bind(this);
+   
   }
 
 
@@ -27,11 +33,6 @@ export default class Month extends React.Component {
     var lastWeekOfViewDate = new Date(moment(new Date()).endOf("month").startOf("week").startOf("day"))
     let weekCount = 0;
     
-    console.log("Last week of view", lastWeekOfView)
-    console.log(lastWeekOfViewDate, "last Week of View Date")
-    console.log(weekStartDate, "week start date")
-    console.log(lastWeekOfViewDate - weekStartDate, "difference");
-     console.log(lastWeekOfViewDate >= weekStartDate, "bool");
 
      for(let i = 0; i < 5; i++){
          var currentWeekDate = new Date(moment(this.state.date).add(i,"week").startOf("day"));
@@ -40,60 +41,77 @@ export default class Month extends React.Component {
              array.push(currentWeekStr);
          }
      }
-    
-    /*for (var week = weekStart; week <= lastWeekOfView; week = week.add("week")){
-
-
-        var weekInside = moment(this.state.date).add(weekCount,"week").startOf("day").toString();
-        weekCount += 1;
-        array.push(weekInside);
-       
-    }
-    */
-    /*
-    for(let i = 0; i < 4; i++){
-        var week = moment(this.state.date).add(i,"week").startOf("day").toString();
-        array.push(week);
-    }
-    */
     this.setState({weeks: array})
-    
-    
-    //this.setState({days: array})
 
 
 }
 
-  nextWeek () {
-      /*
-      console.log("inside of Change week")
-      var updatedDate = moment(this.state.date).add(1,'week').startOf('week').toString();
-      console.log("inside of change week - updatedDate", updatedDate)
-      this.setState({date: updatedDate})
-        var array = [];
-    for(let i = 0; i < 7; i++){
-        var day = moment(updatedDate).add(i,"day").toString();
-        array.push(day)
-    }
-    this.setState({days: array})
-    */
+  nextMonth () {
+      var FirstMonth = moment(this.state.firstOfTheMonth).add(1,"month").startOf("month").toString();
+      var newDay = moment(FirstMonth).startOf("week").toString();
+      console.log(newDay, "NewDay")
+      console.log(FirstMonth, "firstOfTheMonth")
+        this.setState({date: newDay, firstOfTheMonth: FirstMonth});
+
+    this.setState({month: moment(FirstMonth).format("MMMM")});
+    var array = [];
+    var lastWeekOfView = moment(FirstMonth).endOf("month").startOf("week").startOf("day");
+    var weekStartDate = new Date(moment(newDay));
+    var lastWeekOfViewDate = new Date(moment(FirstMonth).endOf("month").startOf("week").startOf("day"))
+    let weekCount = 0;
+
+     for(let i = 0; i < 5; i++){
+         var currentWeekDate = new Date(moment(newDay).add(i,"week").startOf("day"));
+         var currentWeekStr = currentWeekDate.toString();
+         if(currentWeekDate <= lastWeekOfViewDate){
+             array.push(currentWeekStr);
+         }
+     }
+        
+    this.setState({weeks: array})
     }
 
+    prevMonth () {
+      var FirstMonth = moment(this.state.firstOfTheMonth).subtract(1,"month").startOf("month").toString();
+      var newDay = moment(FirstMonth).startOf("week").toString();
+      console.log(newDay, "NewDay")
+      console.log(FirstMonth, "firstOfTheMonth")
+        this.setState({date: newDay, firstOfTheMonth: FirstMonth});
+
+    this.setState({month: moment(FirstMonth).format("MMMM")});
+    var array = [];
+    var lastWeekOfView = moment(FirstMonth).endOf("month").startOf("week").startOf("day");
+    var weekStartDate = new Date(moment(newDay));
+    var lastWeekOfViewDate = new Date(moment(FirstMonth).endOf("month").startOf("week").startOf("day"))
+    let weekCount = 0;
+
+     for(let i = 0; i < 5; i++){
+         var currentWeekDate = new Date(moment(newDay).add(i,"week").startOf("day"));
+         var currentWeekStr = currentWeekDate.toString();
+         if(currentWeekDate <= lastWeekOfViewDate){
+             array.push(currentWeekStr);
+         }
+     }
+        
+    this.setState({weeks: array})
+    }
   render (){
-    //console.log(this.state.days, "this.state.days")
+    //console.log(this.state.days, "this.state.days")\
+    console.log(this.state.weeks, "weeks array")
   return (
       <div>
-       
+       <h1>{this.state.month}</h1>
       
       {/*<button onClick={this.nextWeek}>Next Week</button> */}
-       
+       <button onClick={this.prevMonth}>Previous Month</button>
+       <button onClick={this.nextMonth}>Next Month</button>
        
        <div>
        
-       <div>{this.state.weeks.map((elem)=>{
+       <div key={this.state.weeks[0]}>{this.state.weeks.map((elem)=>{
            
            return (
-               <div>
+               <div key={elem}>
                    <Week date={elem} />
                     
                 </div>

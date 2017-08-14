@@ -50,7 +50,7 @@ export default class Week extends React.Component {
     }
 
   render (){
-    console.log(this.state.days, "this.state.days")
+    //console.log(this.state.days, "this.state.days")
   return (
       <div>
        
