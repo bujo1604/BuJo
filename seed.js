@@ -4,6 +4,7 @@ const Color = require('./server/db/models/color');
 const Category = require('./server/db/models/category');
 const Event = require('./server/db/models/event');
 const Task = require('./server/db/models/task');
+const Note = require('./server/db/models/note');
 
 const users = [{
   email: 'lena@gmail.com',
@@ -58,34 +59,48 @@ const categories = [
   { name: 'home', userId: 2, colorId: 6},
 ];
 const events = [
-  { name: 'Mom\'s Birthday Dinner', location: '46 Ashland Avenue', time: '20:00:00', userId: 1},
-  { name: 'Grace Hopper Graduation', location: '5 Hanover Square', time: '09:00:00', userId: 1},
-  { name: 'Beach Trip', location: 'Rockaway Beach', time: '11:00:00', userId: 1},
-  { name: 'Going Away Party', location: '240 East 10th Street', time: '20:00:00', userId: 1},
-  { name: 'Hiking', location: 'Bear Mountain', time: '10:00:00', userId: 1},
-  { name: 'Doctor\'s Appointment', location: '80 East 11th Street', time: '9:00:00', userId: 1},
-  { name: 'Painting Class', location: '120 East 20th Street', time: '20:00:00', userId: 1},
-  { name: 'Yoga Class', location: '100 Saint Marks', time: '20:00:00', userId: 2},
-  { name: 'Grace Hopper Graduation', location: '5 Hanover Square', time: '09:00:00', userId: 2},
-  { name: 'Wedding', location: 'Church', time: '10:00:00', userId: 2},
-  { name: 'Interview with Google', location: 'Google', time: '9:00:00', userId: 2},
-  { name: 'Dinner with Mom', location: '46 Ashland Avenue', time: '18:00:00', userId: 2}
+  { name: 'Mom\'s Birthday Dinner', location: '46 Ashland Avenue', date: '20170815', time: '20:00:00', userId: 1},
+  { name: 'Grace Hopper Graduation', location: '5 Hanover Square', date: '20170815', time: '09:00:00', userId: 1},
+  { name: 'Beach Trip', location: 'Rockaway Beach', date: '20170815', time: '11:00:00', userId: 1},
+  { name: 'Going Away Party', location: '240 East 10th Street', date: '20170815', time: '20:00:00', userId: 1},
+  { name: 'Hiking', location: 'Bear Mountain', date: '20170816', time: '10:00:00', userId: 1},
+  { name: 'Doctor\'s Appointment', location: '80 East 11th Street', date: '20170816', time: '9:00:00', userId: 1},
+  { name: 'Painting Class', location: '120 East 20th Street', date: '20170817', time: '20:00:00', userId: 1},
+  { name: 'Yoga Class', location: '100 Saint Marks', date: '20170815', time: '20:00:00', userId: 2},
+  { name: 'Grace Hopper Graduation', location: '5 Hanover Square', date: '20170815', time: '09:00:00', userId: 2},
+  { name: 'Wedding', location: 'Church', date: '20170816', time: '10:00:00', userId: 2},
+  { name: 'Interview with Google', location: 'Google', date: '20170816', time: '9:00:00', userId: 2},
+  { name: 'Dinner with Mom', location: '46 Ashland Avenue', date: '20170817', time: '18:00:00', userId: 2}
 ];
 
 const tasks = [
-  { name: 'laundry', status: 'complete', userId: 1, categoryId: 3},
-  { name: 'run', status: 'complete', userId: 1, categoryId: 2},
-  { name: 'call mom', status: 'incomplete', userId: 1, categoryId: 7},
-  { name: 'grocery shopping', status: 'incomplete', userId: 1, categoryId: 3},
-  { name: 'fix sink', status: 'complete', userId: 1, categoryId: 3},
-  { name: 'paint', status: 'incomplete', userId: 1, categoryId: 6},
-  { name: 'reacto', status: 'complete', userId: 1, categoryId: 5},
-  { name: 'skype Ana', status: 'complete', userId: 1, categoryId: 4},
-  { name: 'study for google interview', status: 'incomplete', userId: 2, categoryId: 13},
-  { name: 'reacto', status: 'complete', userId: 2, categoryId: 13},
-  { name: 'learn d3', status: 'incomplete', userId: 2, categoryId: 13},
-  { name: 'grocery shopping', status: 'complete', userId: 2, categoryId: 14},
-  { name: 'laundry', status: 'complete', userId: 2, categoryId: 14},
+  { name: 'laundry', status: 'complete', date: '20170815', userId: 1, categoryId: 3, value:1},
+  { name: 'run', status: 'complete', date: '20170815', userId: 1, categoryId: 2, value:1},
+  { name: 'call mom', status: 'incomplete', date: '20170815', userId: 1, categoryId: 7, value:1},
+  { name: 'grocery shopping', status: 'incomplete', date: '20170816', userId: 1, categoryId: 3,value:1},
+  { name: 'fix sink', status: 'complete', date: '20170816', userId: 1, categoryId: 3,value:1},
+  { name: 'paint', status: 'incomplete', date: '20170816', userId: 1, categoryId: 6, value:1},
+  { name: 'reacto', status: 'complete', date: '20170816', userId: 1, categoryId: 5, value:1},
+  { name: 'skype Ana', status: 'complete', date: '20170817', userId: 1, categoryId: 4, value:1},
+  { name: 'study for google interview', status: 'incomplete', date: '20170815', userId: 2, categoryId: 13, value:1},
+  { name: 'reacto', status: 'complete', date: '20170815', userId: 2, categoryId: 13, value:1},
+  { name: 'learn d3', status: 'incomplete', date: '20170816', userId: 2, categoryId: 13 , value:1},
+  { name: 'grocery shopping', status: 'complete', date: '20170816', userId: 2, categoryId: 14, value:1},
+  { name: 'laundry', status: 'complete', date: '20170817', userId: 2, categoryId: 14, value:1},
+];
+
+const notes = [
+  { text: 'life is good', date: '20170815', userId: 1},
+  { text: 'life is bad', date: '20170816', userId: 1},
+  { text: 'life is hard', date: '20170816', userId: 1},
+  { text: 'life is short', date: '20170817', userId: 1},
+  { text: 'life is ok', date: '20170817', userId: 1},
+  { text: 'life is good', date: '20170815', userId: 2},
+  { text: 'life is bad', date: '20170816', userId: 2},
+  { text: 'life is hard', date: '20170816', userId: 2},
+  { text: 'life is short', date: '20170817', userId: 2},
+  { text: 'life is ok', date: '20170817', userId: 2},
+
 ];
 
 
@@ -108,6 +123,10 @@ const seed = () =>
   .then(() =>
   Promise.all(tasks.map(task =>
     Task.create(task))
+  ))
+  .then(() =>
+  Promise.all(notes.map(note =>
+    Note.create(note))
   )
 );
 
