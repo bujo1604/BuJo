@@ -74,19 +74,19 @@ const events = [
 ];
 
 const tasks = [
-  { name: 'laundry', status: 'complete', date: '20170815', userId: 1, categoryId: 3},
-  { name: 'run', status: 'complete', date: '20170815', userId: 1, categoryId: 2},
-  { name: 'call mom', status: 'incomplete', date: '20170815', userId: 1, categoryId: 7},
-  { name: 'grocery shopping', status: 'incomplete', date: '20170816', userId: 1, categoryId: 3},
-  { name: 'fix sink', status: 'complete', date: '20170816', userId: 1, categoryId: 3},
-  { name: 'paint', status: 'incomplete', date: '20170816', userId: 1, categoryId: 6},
-  { name: 'reacto', status: 'complete', date: '20170816', userId: 1, categoryId: 5},
-  { name: 'skype Ana', status: 'complete', date: '20170817', userId: 1, categoryId: 4},
-  { name: 'study for google interview', status: 'incomplete', date: '20170815', userId: 2, categoryId: 13},
-  { name: 'reacto', status: 'complete', date: '20170815', userId: 2, categoryId: 13},
-  { name: 'learn d3', status: 'incomplete', date: '20170816', userId: 2, categoryId: 13},
-  { name: 'grocery shopping', status: 'complete', date: '20170816', userId: 2, categoryId: 14},
-  { name: 'laundry', status: 'complete', date: '20170817', userId: 2, categoryId: 14},
+  { name: 'laundry', status: 'complete', date: '20170815', userId: 1, categoryId: 3, value:1},
+  { name: 'run', status: 'complete', date: '20170815', userId: 1, categoryId: 2, value:1},
+  { name: 'call mom', status: 'incomplete', date: '20170815', userId: 1, categoryId: 7, value:1},
+  { name: 'grocery shopping', status: 'incomplete', date: '20170816', userId: 1, categoryId: 3,value:1},
+  { name: 'fix sink', status: 'complete', date: '20170816', userId: 1, categoryId: 3,value:1},
+  { name: 'paint', status: 'incomplete', date: '20170816', userId: 1, categoryId: 6, value:1},
+  { name: 'reacto', status: 'complete', date: '20170816', userId: 1, categoryId: 5, value:1},
+  { name: 'skype Ana', status: 'complete', date: '20170817', userId: 1, categoryId: 4, value:1},
+  { name: 'study for google interview', status: 'incomplete', date: '20170815', userId: 2, categoryId: 13, value:1},
+  { name: 'reacto', status: 'complete', date: '20170815', userId: 2, categoryId: 13, value:1},
+  { name: 'learn d3', status: 'incomplete', date: '20170816', userId: 2, categoryId: 13 , value:1},
+  { name: 'grocery shopping', status: 'complete', date: '20170816', userId: 2, categoryId: 14, value:1},
+  { name: 'laundry', status: 'complete', date: '20170817', userId: 2, categoryId: 14, value:1},
 ];
 
 const notes = [
