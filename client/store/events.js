@@ -25,9 +25,9 @@ const getSingleEvent = (singleEvent) => ({type: GET_SINGLE_EVENT, singleEvent});
  * THUNK CREATORS
  */
 
-export function fetchEventList () {
+export function fetchEventList (userId) {
     return function thunk (dispatch){
-        return axios.get('/api/events')
+        return axios.get(`/api/events/${userId}`)
         .then(res => dispatch(getEventList(res.data)))
         .catch(error => { console.log(error) });
     };

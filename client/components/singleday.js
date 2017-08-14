@@ -19,7 +19,8 @@ class SingleDay extends Component{
   }
 
   componentDidMount(){
-    this.props.loadData();
+
+    this.props.loadData(this.props.user.id);
   }
 
   handleChange(value) {
@@ -28,13 +29,13 @@ class SingleDay extends Component{
       {selectedValue: value});
   }
 
-//radio buttons currently not working 
+//radio buttons currently not working
 
 
 
   render(){
       //here we will get the events and the tasks are present for that day
-      // probs as props 
+      // probs as props
 const categories = this.props.categories.catList
 const tasks = this.props.tasks.taskList
 const events = this.props.events.eventList
@@ -42,7 +43,7 @@ const events = this.props.events.eventList
 
     return (
           <div className="singlePage-container">
-          This is the single day view. 
+          This is the single day view.
           <h2 className= "singlePage-title"> {moment().format("dddd, MMMM Do YYYY")} </h2>
           <input type="text"  placeholder="input event here" /> <br/> <br/>
           <input type="text"  placeholder="input task here" />
@@ -57,7 +58,7 @@ const events = this.props.events.eventList
                 </label>
               )))}
           </RadioGroup>
-        
+
           <Link to={'/events'}> <h3 className="singleName-headings">Events</h3></Link>
            {tasks.map((item, idx) => (
             (<li key={idx}>
@@ -78,7 +79,7 @@ const events = this.props.events.eventList
               </li>
             </div>)
           ))}
-        
+
         </div>
       ) ;
   }
@@ -88,15 +89,16 @@ const events = this.props.events.eventList
 const mapState = (state) => ({
   categories: state.categories,
   tasks: state.tasks,
-  events: state.events
+  events: state.events,
+  user: state.user
 });
 
 const mapDispatch = (dispatch) => {
   return {
-    loadData() {
-      dispatch(fetchCatList());
-      dispatch(fetchTaskList());
-      dispatch(fetchEventList());
+    loadData(userId) {
+      dispatch(fetchCatList(userId));
+      dispatch(fetchTaskList(userId));
+      dispatch(fetchEventList(userId));
     }
   };
 }

@@ -25,9 +25,9 @@ const getSingleCat = (singleCat) => ({type: GET_SINGLE_CAT, singleCat});
  * THUNK CREATORS
  */
 
-export function fetchCatList () {
+export function fetchCatList (userId) {
     return function thunk (dispatch){
-        return axios.get('/api/categories')
+        return axios.get(`/api/categories/${userId}`)
         .then(res => dispatch(getCatList(res.data)))
         .catch(error => { console.log(error) });
     };

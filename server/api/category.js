@@ -5,9 +5,10 @@ const {Category} = require('../db/models');
 
 module.exports = router;
 
-
-router.get('/', function (req, res, next) {
-    Category.findAll()
+//retreive all categories for user and include color
+router.get('/:userId', function (req, res, next) {
+    let userId = req.params.userId
+    Category.findAll({where: {userId}, include: [{ all: true}]})
     .then(category => res.json(category))
     .catch(next);
 

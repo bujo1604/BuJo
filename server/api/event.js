@@ -5,9 +5,10 @@ const {Event} = require('../db/models');
 
 module.exports = router;
 
-
-router.get('/', function (req, res, next) {
-    Event.findAll()
+//retreive all events for user
+router.get('/:userId', function (req, res, next) {
+    let userId = req.params.userId
+    Event.findAll({where: {userId}})
     .then(event => res.json(event))
     .catch(next);
 
