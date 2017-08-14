@@ -13,6 +13,13 @@ const Task = db.define('task', {
      status: {
         type: Sequelize.ENUM('complete', 'incomplete')
     },
+    date: {
+        type: Sequelize.STRING
+    }, 
+    value: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1
+    }
 });
 
 module.exports = Task;

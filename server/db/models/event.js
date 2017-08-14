@@ -10,6 +10,9 @@ const Event = db.define('event', {
     location: {
         type: Sequelize.STRING
     },
+    date: {
+        type: Sequelize.STRING
+    },
     time: {
         type: Sequelize.STRING
     }

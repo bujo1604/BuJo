@@ -3,6 +3,7 @@ const Category = require('./category');
 const Color = require('./color');
 const Event = require('./event');
 const Task = require('./task');
+const Note = require('./note');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -20,6 +21,7 @@ const Task = require('./task');
 User.hasMany(Task);
 User.hasMany(Category);
 User.hasMany(Event);
+User.hasMany(Note);
 Task.belongsTo(Category);
 Category.belongsTo(Color);
 Event.belongsTo(User);
@@ -29,5 +31,6 @@ module.exports = {
   Category,
   Color,
   Event,
-  Task
+  Task,
+  Note
 };
