@@ -59,17 +59,22 @@ const events = this.props.events.eventList
               )))}
           </RadioGroup>
 
-          <Link to={'/events'}> <h3 className="singleName-headings">Events</h3></Link>
-           {tasks.map((item, idx) => (
-            (<li key={idx}>
-              <div className='tasks-titles'>
-               {item.name} <br />
-               <button>{item.status} </button>
-              </div>
-            </li>)
-          ))}
-
           <Link to={'/tasks'}> <h3 className="singleName-headings">Tasks</h3></Link>
+           {tasks.map((task, idx) =>
+            {
+              console.log(task)
+              return (
+              <ul key={idx}>
+              <div className='tasks-titles'>
+              {task.status === 'complete' ?
+              <div> <span style={{color: `${task.category.color.hex}`}}> &#x25CF;</span> <span> {task.name}  </span></div>
+              : <div> <span style={{color: `${task.category.color.hex}`}}>  &#x2613;</span> <span> {task.name}  </span></div>
+              }
+              </div>
+            </ul>)}
+          )}
+
+          <Link to={'/events'}> <h3 className="singleName-headings">Events</h3></Link>
           {events.map((item, idx) => (
             (<div key={idx}>
               <li className='tasks-titles'>
