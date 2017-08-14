@@ -34,6 +34,7 @@ class Routes extends Component {
                   <Route path='/insights' component={Insights} />
                   <Route path= '/day' component={SingleDay} />
                   <Route exact path= '/calendar' component={MyCalendar} />
+                  <Route path='/addtask' component={TaskForm} />
 
                 </Switch>
             }
