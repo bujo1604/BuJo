@@ -1,17 +1,21 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import Chart from './chart'
+import { connect } from 'react-redux'
+import Pie from './pie'
+import Scatter from './scatter'
 
 //COMPONENT
 
 export const Insights = (props) => {
-  const {email} = props
+  const { email } = props
 
   return (
     <div>
       <h3>Hi, {email}</h3>
       <p> Here are your insights </p>
-      <Chart />
+      <div className='flexbox-container'>
+        <Pie />
+        <Scatter />
+      </div>
     </div>
   )
 }

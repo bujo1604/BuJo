@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {Radio, RadioGroup} from 'react-radio-group';
 const moment = require('moment')
 import { connect } from 'react-redux';
-import { fetchCatList } from '../store';
+import { fetchCatList, fetchTaskList, fetchEventList} from '../store';
 
 
 
@@ -11,26 +11,34 @@ class SingleDay extends Component{
 
   constructor(props){
     super(props);
-    this.state ={
+    this.state = {
       selectedValue: ''
     }
-
     // this.getAllCategories = this.getAllCategories.bind(this);
 
   }
 
   componentDidMount(){
-    this.props.loadCategories();
+    this.props.loadData();
   }
 
+  handleChange(value) {
+    console.log('here');
+    this.setState(
+      {selectedValue: value});
+  }
+
+//radio buttons currently not working 
 
 
-//need to include store 
+
   render(){
       //here we will get the events and the tasks are present for that day
       // probs as props 
 const categories = this.props.categories.catList
-   console.log(this.props.categories.catList, 'here');
+const tasks = this.props.tasks.taskList
+const events = this.props.events.eventList
+  //  console.log(this.props.categories.catList, 'here');
 
     return (
           <div className="singlePage-container">
@@ -39,16 +47,38 @@ const categories = this.props.categories.catList
           <input type="text"  placeholder="input event here" /> <br/> <br/>
           <input type="text"  placeholder="input task here" />
 
-          {categories.map((cat, idx) => (
-            (<div key={idx}>
-              <div className='categories-titles'>
-               {cat.name}
+          <RadioGroup
+            name="categories"
+            onChange={this.handleChange}>
+            {categories.map((cat, idx) => (
+              (
+                <label key={idx}>
+                  <Radio value={cat.name} />{cat.name}
+                </label>
+              )))}
+          </RadioGroup>
+        
+          <Link to={'/events'}> <h3 className="singleName-headings">Events</h3></Link>
+           {tasks.map((item, idx) => (
+            (<li key={idx}>
+              <div className='tasks-titles'>
+               {item.name} <br />
+               <button>{item.status} </button>
               </div>
+            </li>)
+          ))}
+
+          <Link to={'/tasks'}> <h3 className="singleName-headings">Tasks</h3></Link>
+          {events.map((item, idx) => (
+            (<div key={idx}>
+              <li className='tasks-titles'>
+               {item.name} <br />
+               {item.location} <br />
+               {item.time}  <br />
+              </li>
             </div>)
           ))}
         
-          <Link to={'/events'}> <h3 className="singleName-headings">Events</h3></Link>
-          <Link to={'/tasks'}> <h3 className="singleName-headings">Tasks</h3></Link>
         </div>
       ) ;
   }
@@ -56,13 +86,17 @@ const categories = this.props.categories.catList
 
 
 const mapState = (state) => ({
-	categories: state.categories
+  categories: state.categories,
+  tasks: state.tasks,
+  events: state.events
 });
 
 const mapDispatch = (dispatch) => {
   return {
-    loadCategories() {
+    loadData() {
       dispatch(fetchCatList());
+      dispatch(fetchTaskList());
+      dispatch(fetchEventList());
     }
   };
 }
