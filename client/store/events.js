@@ -1,85 +1,64 @@
 import axios from 'axios';
 
+//ACTION TYPES
 
-/**
- * ACTION TYPES
- */
-const GET_EVENT_LIST = 'GET_EVENT_LIST';
-const GET_SINGLE_EVENT = 'GET_SINGLE_EVENT';
+const GOT_EVENTS = 'GOT_EVENTS';
 
-/**
- * INITIAL STATE
- */
-const intialState = {
-    eventList: [],
-    singleEvent: {}
-};
+//ACTION CREATORS
 
-/**
- * ACTION CREATORS
- */
-const getEventList = (eventList) => ({type: GET_EVENT_LIST, eventList});
-const getSingleEvent = (singleEvent) => ({type: GET_SINGLE_EVENT, singleEvent});
+const gotEvents = (events) => ({type: GOT_EVENTS, events});
 
-/**
- * THUNK CREATORS
- */
+//THUNK CREATORS
 
-export function fetchEventList (userId) {
+export function fetchEvents (userId) {
     return function thunk (dispatch){
         return axios.get(`/api/events/${userId}`)
-        .then(res => dispatch(getEventList(res.data)))
+        .then(res => dispatch(gotEvents(res.data)))
         .catch(error => { console.log(error) });
     };
 }
 
-export function fetchSingleEvent (eventId) {
-    return function thunk (dispatch){
-        return axios.get(`/api/events/${eventId}`)
-        .then(res => {
-          dispatch(getSingleEvent(res.data));
-        })
-        .catch(error => { console.log(error) });
-    };
-}
-
-export function createEvent (event) {
-    return function thunk (dispatch){
-        return axios.post('/api/events', {event})
-        .then(res => dispatch(getSingleEvent(res.data)))
-        .catch(error => { console.log(error) });
-    };
-}
-
-export function changeEvent (eventId, event) {
-    return function thunk (dispatch){
-        return axios.put(`/api/events/${eventId}`, {event})
-        .then(res => dispatch(getSingleEvent(res.data)))
-        .catch(error => { console.log(error) });
-    }
-}
-
-export function deleteEvent(eventId){
-    return function thunk(){
-        return axios.delete(`/api/events/${eventId}`)
-        .catch(error => { console.log( error) });
-    };
-}
-
-/**
- * REDUCER
- */
-export default function (state = intialState, action) {
-  let newState = Object.assign({}, state);
+// REDUCER
+export default function (state = [], action) {
   switch (action.type) {
-    case GET_EVENT_LIST:
-      newState.eventList = action.eventList;
-      break;
-    case GET_SINGLE_EVENT:
-      newState.singleEvent = action.singleEvent;
-      break;
+    case GOT_EVENTS:
+      return action.events
     default:
       return state;
   }
-  return newState;
 }
+
+
+
+// export function fetchSingleEvent (eventId) {
+//     return function thunk (dispatch){
+//         return axios.get(`/api/events/${eventId}`)
+//         .then(res => {
+//           dispatch(getSingleEvent(res.data));
+//         })
+//         .catch(error => { console.log(error) });
+//     };
+// }
+
+// export function createEvent (event) {
+//     return function thunk (dispatch){
+//         return axios.post('/api/events', {event})
+//         .then(res => dispatch(getSingleEvent(res.data)))
+//         .catch(error => { console.log(error) });
+//     };
+// }
+
+// export function changeEvent (eventId, event) {
+//     return function thunk (dispatch){
+//         return axios.put(`/api/events/${eventId}`, {event})
+//         .then(res => dispatch(getSingleEvent(res.data)))
+//         .catch(error => { console.log(error) });
+//     }
+// }
+
+// export function deleteEvent(eventId){
+//     return function thunk(){
+//         return axios.delete(`/api/events/${eventId}`)
+//         .catch(error => { console.log( error) });
+//     };
+// }

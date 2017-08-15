@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Pie from './pie'
-import Scatter from './scatter'
+import {Pie, Scatter} from './';
 
 //COMPONENT
 
