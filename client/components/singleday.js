@@ -23,7 +23,7 @@ class SingleDay extends Component {
   }
 
   render() {
-    const tasks = this.props.tasks.taskList
+    const tasks = this.props.tasks
     const events = this.props.events.eventList
 
     return (

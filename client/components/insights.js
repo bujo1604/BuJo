@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import Pie from './pie'
 import Scatter from './scatter'
-import { fetchTaskList } from '../store';
+import { fetchTaskList, fetchTaskListWithCount } from '../store';
 
 //COMPONENT
 
@@ -21,7 +21,7 @@ export class Insights extends Component {
     <div>
       <h3>Hi, {email}</h3>
       <p> Here are your insights </p>
-      {tasks.length &&
+      {tasks.length && tasks[0].count &&
         <div className='flexbox-container'>
           <Pie tasks = {tasks} />
           <Scatter tasks = {tasks} />
@@ -45,7 +45,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadData(userId) {
-      dispatch(fetchTaskList(userId));
+      dispatch(fetchTaskListWithCount(userId));
     }
   };
 }

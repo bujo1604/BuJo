@@ -1,26 +1,15 @@
 import axios from 'axios';
+import {addCountToTasks} from './taskUtils'
 
+//ACTION TYPES
 
-/**
- * ACTION TYPES
- */
 const GET_TASK_LIST = 'GET_TASK_LIST';
-// const GET_SINGLE_TASK = 'GET_SINGLE_TASK';
 
-/**
- * INITIAL STATE
- */
-const intialState = []
+//ACTION CREATORS
 
-/**
- * ACTION CREATORS
- */
 const getTaskList = (taskList) => ({type: GET_TASK_LIST, taskList});
-// const getSingleTask = (singleTask) => ({type: GET_SINGLE_TASK, singleTask});
 
-/**
- * THUNK CREATORS
- */
+//THUNK CREATORS
 
 export function fetchTaskList (userId) {
     return function thunk (dispatch){
@@ -29,6 +18,30 @@ export function fetchTaskList (userId) {
         .catch(error => { console.log(error) });
     };
 }
+
+export function fetchTaskListWithCount (userId) {
+    return function thunk (dispatch){
+        return axios.get(`/api/tasks/${userId}`)
+        .then(res => (res.data))
+        .then(tasks => {
+          addCountToTasks(tasks);
+          return tasks
+        })
+        .then(tasks => dispatch(getTaskList(tasks)))
+        .catch(error => { console.log(error) });
+    };
+}
+
+// REDUCER
+export default function (state = [], action) {
+  switch (action.type) {
+    case GET_TASK_LIST:
+      return action.taskList
+    default:
+      return state;
+  }
+}
+
 
 // export function fetchSingleTask (taskId) {
 //     return function thunk (dispatch){
@@ -62,18 +75,3 @@ export function fetchTaskList (userId) {
 //         .catch(error => { console.log( error) });
 //     };
 // }
-
-/**
- * REDUCER
- */
-export default function (state = intialState, action) {
-  switch (action.type) {
-    case GET_TASK_LIST:
-      return action.taskList
-    // case GET_SINGLE_TASK:
-    //   newState.singleTask = action.singleTask;
-    //   break;
-    default:
-      return state;
-  }
-}

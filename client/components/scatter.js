@@ -2,20 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as d3 from 'd3';
 
-function giveCountToTasks(tasks) {
-  let count = 1
-  tasks.forEach((task, i) => {
-    if (i > 0 && task.date === tasks[i - 1].date) {
-      count++
-      task.count = count
-    }
-    else {
-      count = 1
-      task.count = count
-    }
-  })
-}
-
 //COMPONENT
 
 export class Scatter extends Component {
@@ -25,7 +11,6 @@ export class Scatter extends Component {
     this.width = 300
     this.padding = 40
     this.parseTime = d3.timeParse('%Y%m%d')
-    this.countFunction = giveCountToTasks(this.props.tasks)
     //calculate min and max values of data for scale
     this.xDomain = (tasks) => d3.extent(tasks, task => this.parseTime(task.date))
     //for y axis, set the max to either be 10 or the max count
