@@ -1,42 +1,46 @@
 import axios from 'axios';
-import {addCountToTasks} from './taskUtils'
+
+// import {addCountToTasks} from './taskUtils'
 
 //ACTION TYPES
 
-const GET_TASK_LIST = 'GET_TASK_LIST';
+const GOT_TASKS = 'GOT_TASKS';
 
 //ACTION CREATORS
 
-const getTaskList = (taskList) => ({type: GET_TASK_LIST, taskList});
+const gotTasks = (tasks) => ({type: GOT_TASKS, tasks});
+
 
 //THUNK CREATORS
 
-export function fetchTaskList (userId) {
+export function fetchTasks (userId) {
     return function thunk (dispatch){
         return axios.get(`/api/tasks/${userId}`)
-        .then(res => dispatch(getTaskList(res.data)))
+        .then(res => dispatch(gotTasks(res.data)))
         .catch(error => { console.log(error) });
     };
 }
 
-export function fetchTaskListWithCount (userId) {
-    return function thunk (dispatch){
-        return axios.get(`/api/tasks/${userId}`)
-        .then(res => (res.data))
-        .then(tasks => {
-          addCountToTasks(tasks);
-          return tasks
-        })
-        .then(tasks => dispatch(getTaskList(tasks)))
-        .catch(error => { console.log(error) });
-    };
-}
+
+// export function fetchTasksWithCount (userId) {
+//     return function thunk (dispatch){
+//         return axios.get(`/api/tasks/${userId}`)
+//         .then(res => (res.data))
+//         .then(tasks => {
+//           addCountToTasks(tasks);
+//           return tasks
+//         })
+//         .then(tasks => dispatch(gotTasks(tasks)))
+//         .catch(error => { console.log(error) });
+//     };
+// }
 
 // REDUCER
 export default function (state = [], action) {
   switch (action.type) {
-    case GET_TASK_LIST:
-      return action.taskList
+
+    case GOT_TASKS:
+      return action.tasks
     default:
       return state;
   }

@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import Pie from './pie'
-import Scatter from './scatter'
-import { fetchTaskList, fetchTaskListWithCount } from '../store';
+
+import {Pie, Scatter} from './';
+//import { fetchTaskList, fetchTaskListWithCount } from '../store';
+
 
 //COMPONENT
 
