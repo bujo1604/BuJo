@@ -1,85 +1,53 @@
 import axios from 'axios';
 
+//ACTION TYPES
 
-/**
- * ACTION TYPES
- */
-const GET_CAT_LIST = 'GET_CAT_LIST';
-const GET_SINGLE_CAT = 'GET_SINGLE_CAT';
+const GOT_CATEGORIES = 'GOT_CATEGORIES';
 
-/**
- * INITIAL STATE
- */
-const intialState = {
-    catList: [],
-    singleCat: {}
-};
+//ACTION CREATORS
 
-/**
- * ACTION CREATORS
- */
-const getCatList = (catList) => ({type: GET_CAT_LIST, catList});
-const getSingleCat = (singleCat) => ({type: GET_SINGLE_CAT, singleCat});
+const gotCategories = (categories) => ({type: GOT_CATEGORIES, categories});
 
-/**
- * THUNK CREATORS
- */
+//THUNK CREATORS
 
-export function fetchCatList (userId) {
+export function fetchCategories (userId) {
     return function thunk (dispatch){
         return axios.get(`/api/categories/${userId}`)
-        .then(res => dispatch(getCatList(res.data)))
+        .then(res => dispatch(gotCategories(res.data)))
         .catch(error => { console.log(error) });
     };
 }
 
-export function fetchSingleCat (categoryId) {
-    return function thunk (dispatch){
-        return axios.get(`/api/categories/${categoryId}`)
-        .then(res => {
-          dispatch(getSingleCat(res.data));
-        })
-        .catch(error => { console.log(error) });
-    };
-}
-
-export function createCat (category) {
-    return function thunk (dispatch){
-        return axios.post('/api/categories', {category})
-        .then(res => dispatch(getSingleCat(res.data)))
-        .catch(error => { console.log(error) });
-    };
-}
-
-export function changeCat (categoryId, category) {
-    return function thunk (dispatch){
-        return axios.put(`/api/categories/${categoryId}`, {category})
-        .then(res => dispatch(getSingleCat(res.data)))
-        .catch(error => { console.log(error) });
-    }
-}
-
-export function deleteCat(categoryId){
-    return function thunk(){
-        return axios.delete(`/api/categories/${categoryId}`)
-        .catch(error => { console.log( error) });
-    };
-}
-
-/**
- * REDUCER
- */
-export default function (state = intialState, action) {
-  let newState = Object.assign({}, state);
+// REDUCER
+export default function (state = [], action) {
   switch (action.type) {
-    case GET_CAT_LIST:
-      newState.catList = action.catList;
-      break;
-    case GET_SINGLE_CAT:
-      newState.singleCat = action.singleCat;
-      break;
+    case GOT_CATEGORIES:
+      return action.categories
     default:
       return state;
   }
-  return newState;
 }
+
+
+// export function createCat (category) {
+//     return function thunk (dispatch){
+//         return axios.post('/api/categories', {category})
+//         .then(res => dispatch(getSingleCat(res.data)))
+//         .catch(error => { console.log(error) });
+//     };
+// }
+
+// export function changeCat (categoryId, category) {
+//     return function thunk (dispatch){
+//         return axios.put(`/api/categories/${categoryId}`, {category})
+//         .then(res => dispatch(getSingleCat(res.data)))
+//         .catch(error => { console.log(error) });
+//     }
+// }
+
+// export function deleteCat(categoryId){
+//     return function thunk(){
+//         return axios.delete(`/api/categories/${categoryId}`)
+//         .catch(error => { console.log( error) });
+//     };
+// }
