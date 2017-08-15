@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import { Card, FlexParent, CharacterImg, CardText, Title } from './component-style'
 import Week from './Week';
 import Month from './Month';
+import MonthByDay from './MonthByDay';
 
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
@@ -21,7 +22,8 @@ const MyCalendar = (props) => {
       endAccessor='2017 08 31'
     /> */}
     {/*<Week date={"2017 08 01"} /> */}
-     <Month />
+     {/* <Month /> */}
+     <MonthByDay />
   </div>
         </div>
 
