@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 // import {addCountToTasks} from './taskUtils'
 
 //ACTION TYPES
@@ -9,6 +10,7 @@ const GOT_TASKS = 'GOT_TASKS';
 
 const gotTasks = (tasks) => ({type: GOT_TASKS, tasks});
 
+
 //THUNK CREATORS
 
 export function fetchTasks (userId) {
@@ -18,6 +20,7 @@ export function fetchTasks (userId) {
         .catch(error => { console.log(error) });
     };
 }
+
 
 // export function fetchTasksWithCount (userId) {
 //     return function thunk (dispatch){
@@ -35,6 +38,7 @@ export function fetchTasks (userId) {
 // REDUCER
 export default function (state = [], action) {
   switch (action.type) {
+
     case GOT_TASKS:
       return action.tasks
     default:

@@ -19,7 +19,9 @@ class SingleDay extends Component {
   }
 
   render() {
+
     const {tasks, events, notes} = this.props
+
 
     return (
       <div className="singlePage-container">
