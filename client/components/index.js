@@ -13,4 +13,3 @@ export {default as TaskForm} from './task-form';
 
 export {default as Week} from './Week';
 export {default as Month} from './Month';
-export {default as svgCharacter} from './svgCharacter';
