@@ -1,59 +1,61 @@
-import React from 'react';
+import React, { Component } from 'react';
 
+class MonthDumbComp extends Component {
+    constructor(props) {
+        super(props)
+    }
 
-const MonthDumbComp = (props) => {
-    const { daysInMonth, month } = props;
-    
-    return (
-        <span>
-            <text>{month}</text>
-            <table>
+    render() {
+        const { daysInMonth, month } = this.props;
 
+        return (
+            <span>
+                <text>{month}</text>
+                <table>
+                    <thead>
+                        <tr key="1">
+                            <th />
+                            <th />
+                            <th>Event</th>
+                            <th>Task</th>
+                        </tr>
+                    </thead>
 
-                <thead>
+                    <tbody> {daysInMonth.map((day) => {
+                        if (day.weekday === "Su") {
 
-                    <tr key="1">
-                        <th />
-                        <th />
-                        <th>Event</th>
-                        <th>Task</th>
-                    </tr>
-                </thead>
+                            return (
+                                <tr key={Math.random()}>
+                                    <td>
+                                        {day.weekday}
+                                    </td>
+                                    <td> {day.dateOfM}</td>
+                                    <td>{"Sunday Event Data"}</td>
+                                    <td>{"Sunday Task Data"}</td>
+                                </tr>
 
-                <tbody> {daysInMonth.map((day) => {
-                    if (day.weekday === "Su") {
-                       
-                        return (
-                            <tr key={Math.random()}>
-                                <td>
-                                 {day.weekday}
-                                </td>
-                                <td> {day.dateOfM}</td>
-                                <td>{"Sunday Event Data"}</td>
-                                <td>{"Sunday Task Data"}</td>
-                            </tr>
-                           
-                        )
-                    }
-                    else {
-                        return (
-                            <tr key={Math.random()}>
-                                <td>
-                                 {day.weekday}
-                                </td>
-                                <td> {day.dateOfM}</td>
-                                <td>{"Insert Event Data"}</td>
-                                <td>{"Insert Task Data"}</td>
-                            </tr>
+                            )
+                        }
+                        else {
+                            return (
+                                <tr key={Math.random()}>
+                                    <td>
+                                        {day.weekday}
+                                    </td>
+                                    <td> {day.dateOfM}</td>
+                                    <td>{"Insert Event Data"}</td>
+                                    <td>{"Insert Task Data"}</td>
+                                </tr>
 
-                        )
-                    }
-                })} </tbody>
+                            )
+                        }
+                    })} </tbody>
 
-            </table>
-        </span>
+                </table>
+            </span>
 
-    )
+        )
+    }
 }
 
 export default MonthDumbComp;

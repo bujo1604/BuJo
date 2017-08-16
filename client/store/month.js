@@ -1,5 +1,7 @@
-import axios from 'axios';
-//intial state
+import moment from 'moment'
+
+//INITIAL STATE
+const initialState = moment(new Date()).format('MMMM YYYY')
 
 //ACTION TYPES
 
@@ -8,25 +10,19 @@ const GOT_PREVIOUS_MONTH = 'GOT_PREVIOUS_MONTH'
 
 //ACTION CREATORS
 
-const gotNextMonth = (days) => ({type: GOT_NEXT_MONTH, days});
-const gotPreviousMonth = (days) => ({type: GOT_PREVIOUS_MONTH, days});
-
+export const gotNextMonth = () => ({ type: GOT_NEXT_MONTH });
+export const gotPreviousMonth = () => ({ type: GOT_PREVIOUS_MONTH });
 
 //THUNK CREATORS
 
-export function fetchNextMonth (userId) {
-    return function thunk (dispatch){
-        
-        dispatch(gotNextMonth(res.data)
-        
-    };
-}
 
 // REDUCER
-export default function (state = [], action) {
+export default function (state = initialState, action) {
   switch (action.type) {
-    case GOT_EVENTS:
-      return action.events
+    case GOT_NEXT_MONTH:
+      return moment(state).add(1, "month").format("MMMM YYYY");
+    case GOT_PREVIOUS_MONTH:
+      return moment(state).subtract(1, "month").format("MMMM YYYY");
     default:
       return state;
   }
@@ -34,35 +30,3 @@ export default function (state = [], action) {
 
 
 
-// export function fetchSingleEvent (eventId) {
-//     return function thunk (dispatch){
-//         return axios.get(`/api/events/${eventId}`)
-//         .then(res => {
-//           dispatch(getSingleEvent(res.data));
-//         })
-//         .catch(error => { console.log(error) });
-//     };
-// }
-
-// export function createEvent (event) {
-//     return function thunk (dispatch){
-//         return axios.post('/api/events', {event})
-//         .then(res => dispatch(getSingleEvent(res.data)))
-//         .catch(error => { console.log(error) });
-//     };
-// }
-
-// export function changeEvent (eventId, event) {
-//     return function thunk (dispatch){
-//         return axios.put(`/api/events/${eventId}`, {event})
-//         .then(res => dispatch(getSingleEvent(res.data)))
-//         .catch(error => { console.log(error) });
-//     }
-// }
-
-// export function deleteEvent(eventId){
-//     return function thunk(){
-//         return axios.delete(`/api/events/${eventId}`)
-//         .catch(error => { console.log( error) });
-//     };
-// }

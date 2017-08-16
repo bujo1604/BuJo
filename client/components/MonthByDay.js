@@ -1,56 +1,40 @@
 import React from 'react'
 import moment from 'moment'
+import { connect } from 'react-redux';
 // add task component import later...
 // add styled components import later ...
-import { TableH } from './component-style'
-import { makeArrOfDaysInMonthSunToSat, makeArrOfDaysInSingleMonth } from './dateFunctions'
+//import { TableH } from './component-style'
+import { makeArrOfDaysInMonthSunToSat } from './dateFunctions'
 import MonthDumbComp from './MonthDumbComp';
+import { gotNextMonth, gotPreviousMonth } from '../store'
 
-export default class MonthByDay extends React.Component {
+const MonthByDay = (props) => {
 
-    constructor() {
-        super();
-        this.state = {
-
-            daysInMonth: [],
-            currMonth: moment(new Date()).format("MMMM YYYY")
-
-        };
-        this.nextMonth = this.nextMonth.bind(this);
-        this.prevMonth = this.prevMonth.bind(this);
-
-    }
-
-
-    componentDidMount() {
-
-        var arrDaysInMonthView = makeArrOfDaysInMonthSunToSat(this.state.currMonth)
-        this.setState({ daysInMonth: arrDaysInMonthView })
-
-    }
-
-    nextMonth() {
-        var newMonth = moment(this.state.currMonth).add(1, "month").format("MMMM YYYY");
-        var arrDaysInMonthView = makeArrOfDaysInMonthSunToSat(newMonth);
-        this.setState({ daysInMonth: arrDaysInMonthView, currMonth: newMonth })
-
-    }
-
-    prevMonth() {
-        var newMonth = moment(this.state.currMonth).subtract(1, "month").format("MMMM YYYY");
-        var arrDaysInMonthView = makeArrOfDaysInMonthSunToSat(newMonth);
-        this.setState({ daysInMonth: arrDaysInMonthView, currMonth: newMonth })
-    }
-    render() {
-
-        return (
-            <div>
-                <button onClick={this.prevMonth}>Prev Month</button>
-                <button onClick={this.nextMonth}>Next Month</button>
-
-                <MonthDumbComp daysInMonth={this.state.daysInMonth} month={this.state.currMonth} />
-
-            </div>
-        )
-    }
+    const { previousMonth, nextMonth, month } = props
+    //daysInMonth includes Sun-Sat view
+    const daysInMonth = makeArrOfDaysInMonthSunToSat(month)
+    return (
+        <div>
+            <button onClick={previousMonth}>Prev Month</button>
+            <button onClick={nextMonth}>Next Month</button>
+            <MonthDumbComp daysInMonth={daysInMonth} month={month} />
+        </div>
+    )
 }
+
+const mapState = (state) => ({
+    month: state.month
+});
+
+const mapDispatch = (dispatch) => {
+    return {
+        nextMonth() {
+            dispatch(gotNextMonth())
+        },
+        previousMonth() {
+            dispatch(gotPreviousMonth())
+        }
+    };
+}
+
+export default connect(mapState, mapDispatch)(MonthByDay);
