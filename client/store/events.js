@@ -8,7 +8,7 @@ const GOT_NEW_EVENT = 'GOT_NEW_EVENT';
 //ACTION CREATORS
 
 const gotEvents = (events) => ({type: GOT_EVENTS, events});
-const gotNewEvent = (event) => ({type: GOT_NEW_EVENTS, events});
+const gotNewEvent = (event) => ({type: GOT_NEW_EVENT, event});
 
 //THUNK CREATORS
 
@@ -20,9 +20,9 @@ export function fetchEvents (userId) {
     };
 }
 
-export function createEvent (newEvent) {
+export function postEvent (newEvent) {
     return function thunk (dispatch){
-        return axios.post('/api/events/', {event})
+        return axios.post('/api/events/', newEvent)
         .then(res => dispatch(gotNewEvent(res.data)))
         .catch(error => { console.log(error) });
     };
@@ -35,7 +35,7 @@ export default function (state = [], action) {
     case GOT_EVENTS:
       return action.events
     case GOT_NEW_EVENT:
-      return [...state, action.note];
+      return [...state, action.event];
     default:
       return state;
   }

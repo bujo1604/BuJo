@@ -6,19 +6,24 @@ import { postEvent } from '../store'
 class AddEvent extends Component {
     constructor(props) {
         super(props)
-        this.state ={
-            intialValue : ''
-        }
-    }
 
+    }
     render() {
         const { handleSubmit, handleCancel, user } = this.props;
-
+        
         return (
             <div>
-                <form onSubmit={evt => handleSubmit(user, evt)}>
-                    <input 
+            Event
+                <form onSubmit= {evt => handleSubmit(user, evt)}>
+                    Name:<input
                     name="name"
+                    />
+                    Location: <input
+                    name="location"
+                    />
+                    Time: <input
+                    name="time"
+                    placeholder= "HH:MM"
                     />
                     <br />
                     <button type="submit"> Submit </button>
@@ -37,12 +42,17 @@ const mapDispatch = (dispatch, ownProps) => {
     return {
         handleSubmit(user, evt) {
             evt.preventDefault();
-            const newNote = {
+
+            const newEvent = {
                 userId: user.id,
-                note: evt.target.note.value,
+                name: evt.target.name.value,
+                location: evt.target.location.value,
+                time: evt.target.time.value,
                 date: '20170908'
             }
-            dispatch(postEvent(newNote))
+            
+            console.log('THIS IS NEW EVENT', newEvent)
+            dispatch(postEvent(newEvent))
             ownProps.history.push('/day')
         },
         handleCancel() {

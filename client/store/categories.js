@@ -17,7 +17,7 @@ export function addCategory (category) {
 
 export function deleteCategory(id) {
   const action = { type: DELETE_CATEGORY, id: id };
-  console.log("ACTION", action)
+  // console.log("ACTION", action)
   return action;
 }
 
