@@ -1,7 +1,7 @@
 'use strict';
 
 const router = require('express').Router();
-const {Task} = require('../db/models');
+const {Task, Color} = require('../db/models');
 
 module.exports = router;
 
@@ -16,6 +16,7 @@ router.get('/:userId', function (req, res, next) {
     .catch(next);
 
 });
+
 
 
 router.get('/:taskId', function (req, res, next) {

@@ -1,6 +1,7 @@
 'use strict';
 const Sequelize = require('sequelize');
 const db = require('../db');
+const Color = require('./color');
 
 const Category = db.define('category', {
     name: {
@@ -9,7 +10,17 @@ const Category = db.define('category', {
         validate: {
             notEmpty: true
         }
-    }
-});
+    } }
+// }, {
+//     scopes: {
+//         hex:{
+//             include:[{
+//                    model: Color
+//                 }]
+//         }
+//     }
+// }
+);
+
 
 module.exports = Category;
