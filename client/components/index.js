@@ -17,6 +17,5 @@ export {default as Tasks} from './Tasks'
 export {default as TaskForm} from './TaskForm';
 export {default as UserHome} from './UserHome'
 export {default as Week} from './Week';
-export {default as Month} from './Month';
 export {default as MonthByDay} from './MonthByDay';
 export {default as MonthDumbComp} from './MonthDumbComp';

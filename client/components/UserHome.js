@@ -23,22 +23,20 @@ function getRandomColor() {
 export const UserHome = (props) => {
   const {email} = props
   const colorR = getRandomColor();
-  console.log(colorR, "colorR")
   return (
     <div>
       <h3>Welcome, {email}</h3>
-      <img src="./bujoavatar.gif"></img>
         <svg width="300" height="300">
-            
+
             <rect x="0" y="0" width="300" height="300" fill="white" />
             <ellipse cx="200" cy="145" rx="8" ry="100" fill="Gainsboro" transform = "rotate(45 200 145)" />
             <ellipse cx="100" cy="145" rx="8" ry="100" fill="Gainsboro" transform = "rotate(-45 100 145)" />
-            <ellipse cx="175" cy="210" rx="10" ry="50" fill="Gainsboro" /> 
+            <ellipse cx="175" cy="210" rx="10" ry="50" fill="Gainsboro" />
             <ellipse cx="125" cy="210" rx="10" ry="50" fill="Gainsboro" />
 
             <ellipse cx="150" cy="125" rx="50" ry="45" fill="Gainsboro" />
             <rect x="100" y="125" width="100" height="100" fill={colorR} />
-            
+
             <ellipse cx="150" cy="125" rx="50" ry="10" fill="Gainsboro" />
             <ellipse cx="150" cy="225" rx="50" ry="10" fill={colorR} />
             <ellipse cx="100" cy="175" rx="10" ry="50" fill={colorR} />
@@ -50,10 +48,10 @@ export const UserHome = (props) => {
             <line x1="120" y1="105" x2="130" y2="105" stroke="black"  />
            <ellipse cx="200" cy="145" rx="10" ry="50" fill={colorR} transform = "rotate(45 200 145)" />
              <ellipse cx="100" cy="145" rx="10" ry="50" fill={colorR} transform = "rotate(-45 100 145)" />
-            
-            
+
+
         </svg>
-       
+
       </div>
   )
 }
