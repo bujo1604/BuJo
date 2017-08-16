@@ -27,6 +27,9 @@ class SingleDay extends Component {
           <button> Add Tasks </button>
         </Link>
         <Events events={events} />
+        <Link to={'/addevent'}>
+        <button> Add Event </button>
+        </Link>
         <Notes notes={notes} />
         <Link to={'/addnote'}>
           <button> Add Note </button>

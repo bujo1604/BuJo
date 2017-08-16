@@ -4,6 +4,7 @@
  * having to figure out which file they belong to!
  */
 export {default as AddNote} from './AddNote';
+export {default as AddEvent} from './AddEvent'
 export {Login, Signup} from './AuthForm'
 export {default as Events} from './Events'
 export {default as Insights} from './Insights'
