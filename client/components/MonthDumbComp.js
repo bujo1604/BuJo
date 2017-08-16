@@ -26,9 +26,9 @@ const MonthDumbComp = (props) => {
                 <td>
                    {day.weekday}
                 </td>
-                <td> {day.date}</td>
-                <td>{"Insert Event Data"}</td>
-                <td>{"Insert Task Data"}</td>
+                <td> {day.dateOfM}</td>
+                <td>{"Sunday Event Data"}</td>
+                <td>{"Sunday Task Data"}</td>
                 </tr>
                
                 )
@@ -38,7 +38,7 @@ const MonthDumbComp = (props) => {
                 <td>
                    {day.weekday}
                 </td>
-                <td> {day.date}</td>
+                <td> {day.dateofM}</td>
                 <td>{"Insert Event Data"}</td>
                 <td>{"Insert Task Data"}</td>
                 </tr>

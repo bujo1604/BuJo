@@ -15,7 +15,7 @@ function makeArrOfDaysInMonthSunToSat(date) {
         
 
         if (currentDate <= lastDayOfViewDate) {
-            var day = {weekday: moment(currentDate).format("dd"), date: moment(currentDate).format("D")}
+            var day = {weekday: moment(currentDate).format("dd"), dateOfM: moment(currentDate).format("D"), date: moment(currentDate).format("YYYYMMDD")}
             arrDaysInMonthView.push(day);
             
         }
@@ -37,12 +37,13 @@ function makeArrOfDaysInCalendarMonth(date) {
         
 
         if (currentDate <= lastDayOfMonthDate) {
-            var day = {weekday: moment(currentDate).format("dd"), date: moment(currentDate).format("D")}
+            var day = {weekday: moment(currentDate).format("dd"), dateOfM: moment(currentDate).format("D")}
             arrDaysInMonth.push(day);
         }
     }
 
     return arrDaysInMonth;
 }
+
 
 export {makeArrOfDaysInMonthSunToSat, makeArrOfDaysInCalendarMonth}
