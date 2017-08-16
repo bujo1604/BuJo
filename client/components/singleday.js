@@ -23,6 +23,9 @@ class SingleDay extends Component {
       <div className="singlePage-container">
           <h2 className="singlePage-title"> {moment().format('dddd, MMMM Do YYYY')} </h2>
         <Tasks tasks={tasks} />
+        <Link to={'/addtask'}>
+          <button> Add Tasks </button>
+        </Link>
         <Events events={events} />
         <Notes notes={notes} />
         <Link to={'/addnote'}>
