@@ -9,9 +9,6 @@ class SingleDay extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      selectedValue: ''
-    }
   }
 
   componentDidMount() {
@@ -22,21 +19,19 @@ class SingleDay extends Component {
 
     const {tasks, events, notes} = this.props
 
-
     return (
       <div className="singlePage-container">
-        This is the single day view.
           <h2 className="singlePage-title"> {moment().format('dddd, MMMM Do YYYY')} </h2>
-        <Link to={'/addtask'}> <button> Add Task </button> </Link>
-        <button> Add Event </button>
         <Tasks tasks={tasks} />
         <Events events={events} />
         <Notes notes={notes} />
+        <Link to={'/addnote'}>
+          <button> Add Note </button>
+        </Link>
       </div>
     )
   }
 }
-
 
 const mapState = (state) => ({
   user: state.user,
@@ -56,4 +51,3 @@ const mapDispatch = (dispatch) => {
 }
 
 export default connect(mapState, mapDispatch)(SingleDay);
-
