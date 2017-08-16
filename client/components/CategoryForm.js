@@ -26,8 +26,9 @@ class CategoryForm extends Component {
 
     handleColorChange(event) {
         event.preventDefault();
+        console.log(event.target.value)
         this.setState(
-          {color: event.target.value });
+          {colorId: event.target.value });
       }
     handleNameChange(event){
          event.preventDefault();
@@ -43,14 +44,17 @@ class CategoryForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
+        this.setState({name:''})
         const category = {
             name: this.state.name,
             colorId: this.state.colorId,
             userId: this.props.user.id
         };
-         console.log("print",category)
+
+
+          console.log("print",this.state)
         this.props.addNewCategory(category, this.props.user.id);
+
   }
 
     render(){
@@ -67,17 +71,18 @@ class CategoryForm extends Component {
                     {this.state.newCategory ? (
                         <div>
 
-                        <input onChange ={this.handleNameChange} type="text" placeholder="input category here"/>
+                        <input onChange ={this.handleNameChange} value={this.state.name} type="text" placeholder="input category here"/>
                         <div className="form-control">
-                  <select className='color' onClick={this.handleColorChange}>
+                  <div className='color'>
                   {
                    colors.map(color => (
-                        <option key={color.id} value={color.id}>{color.hex}</option>
+                        <button onClick={this.handleColorChange} key={color.id} value={color.id} style={{ color: `${color.hex}` }}> &#x25CF;</button>
                     ))
                 }
-                                  </select>
+                                  </div>
                               </div>
                          <button onClick={this.handleSubmit}> Add</button>
+
                         </div>
                     ) : null}
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Radio, RadioGroup } from 'react-radio-group';
+
 import { connect } from 'react-redux';
 import { fetchCategories, addNewCategory, fetchColors } from '../store';
 import CategoryForm from './CategoryForm';
@@ -8,18 +8,14 @@ class TaskForm extends Component {
     constructor(props){
         super(props)
         this.state = {
-            selectedValue: '',
-
+            selectedValue: ''
         }
-
     }
 
     componentDidMount(){
         this.props.loadCategories(this.props.user.id);
 
     }
-
-
 
     render(){
         // const colors = this.props.colors;
@@ -32,15 +28,13 @@ class TaskForm extends Component {
             <br />
             <input type="text" placeholder="input task here" />
 
-                    <RadioGroup
-                      name="categories">
+
                      {categories.map((cat, idx) => (
                         (
                           <label key={idx} className='color'>
-                            <Radio value={cat.name} /> {cat.name} {cat.color.hex}
+                            <button style={{color: `${cat.color.hex}`}} value={cat.name} > {cat.name}</button>  <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span>
                           </label>
                         )))}
-                    </RadioGroup>
 
                 <CategoryForm />
             </div>
