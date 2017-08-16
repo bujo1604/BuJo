@@ -17,3 +17,5 @@ export {default as Tasks} from './Tasks'
 export {default as TaskForm} from './TaskForm';
 export {default as UserHome} from './UserHome'
 export {default as Week} from './Week';
+
+export {default as CategoryForm} from './CategoryForm';
