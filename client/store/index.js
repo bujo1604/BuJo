@@ -7,7 +7,6 @@ import tasks from './tasks'
 import events from './events'
 import notes from './notes'
 
-
 const reducer = combineReducers({user, categories, tasks, events, notes})
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 const store = createStore(reducer, middleware)
@@ -18,5 +17,6 @@ export * from './categories'
 export * from './tasks'
 export * from './events'
 export * from './notes'
+
 
 
