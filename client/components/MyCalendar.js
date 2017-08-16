@@ -13,7 +13,7 @@ BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
 const MyCalendar = (props) => {
 
     return (
-        <div>
+     <div>
         <div>
     {/* <BigCalendar
       events={[]}
@@ -21,9 +21,9 @@ const MyCalendar = (props) => {
       endAccessor='2017 08 31'
     /> */}
     {/*<Week date={"2017 08 01"} /> */}
-     <Month />
-  </div>
+            <Month />
         </div>
+    </div>
 
     )
 };

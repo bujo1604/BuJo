@@ -26,6 +26,7 @@ const getSingleCat = (singleCat) => ({type: GET_SINGLE_CAT, singleCat});
  */
 
 export function fetchCatList (userId) {
+    console.log("FETCH LIST", userId)
     return function thunk (dispatch){
         return axios.get(`/api/categories/${userId}`)
         .then(res => dispatch(getCatList(res.data)))

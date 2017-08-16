@@ -12,6 +12,7 @@ export const UserHome = (props) => {
     <div>
       <h3>Welcome, {email}</h3>
       <img src="./bujoavatar.gif"></img>
+
     </div>
   )
 }
