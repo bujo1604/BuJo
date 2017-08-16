@@ -10,6 +10,7 @@ import notes from './notes'
 import colors from './colors'
 
 
+
 const reducer = combineReducers({user, categories, tasks, events, notes,  colors})
 
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

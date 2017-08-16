@@ -3,6 +3,7 @@
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
+export {default as AddNote} from './AddNote';
 export {Login, Signup} from './AuthForm'
 export {default as Events} from './Events'
 export {default as Insights} from './Insights'
