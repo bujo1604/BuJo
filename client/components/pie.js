@@ -2,39 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as d3 from 'd3';
 
-const tasks = [
-  {
-    name: 'laundry',
-    value: 1,
-    categorory: 'home',
-    color: '#E91E63'
-  },
-  {
-    name: 'dishes',
-    value: 1,
-    categorory: 'home',
-    color: '#E91E63'
-  },
-  {
-    name: 'run',
-    value: 1,
-    categorory: 'exercise',
-    color: '#7C4DFF'
-  },
-  {
-    name: 'dinner',
-    value: 1,
-    categorory: 'social',
-    color: '#E57373'
-  },
-  {
-    name: 'redux',
-    value: 1,
-    categorory: 'learning',
-    color: '#2196F3'
-  }
-]
-
 //COMPONENT
 
 export class Pie extends Component {
@@ -47,6 +14,7 @@ export class Pie extends Component {
   }
 
   render() {
+    const {tasks} = this.props
     let pie = this.pie(tasks)
     return (
       <svg width={this.width} height={this.height}>
@@ -56,7 +24,7 @@ export class Pie extends Component {
             <path
               key={i}
               d={this.arc(d)}
-              style={{ fill: d.data.color }}
+              style={{ fill: d.data.category.color.hex }}
             />
           ))}
         </g>

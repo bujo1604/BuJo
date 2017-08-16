@@ -36,7 +36,8 @@ router.get('/:categoryId', function (req, res, next) {
 router.post('/', function (req, res, next) {
    Category.create({
         name: req.body.name,
-        colorId: req.body.colorId})
+        colorId: req.body.colorId,
+        userId: req.body.userId})
         .then(category => res.status(201).send(category))
         .catch(next);
 });

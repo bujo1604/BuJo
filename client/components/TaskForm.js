@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Radio, RadioGroup } from 'react-radio-group';
 import { connect } from 'react-redux';
-import { fetchCatList, createCat, fetchColors } from '../store';
+import { fetchCategories, addNewCategory, fetchColors } from '../store';
 console.log("FETCH", fetchColors)
 class TaskForm extends Component {
     constructor(props){
@@ -43,19 +43,21 @@ class TaskForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+
         const category = {
             name: this.state.name,
             colorId: this.state.colorId,
             userId: this.props.user.id
         };
-        this.props.createCat(category);
+         console.log("print",category)
+        this.props.addNewCategory(category, this.props.user.id);
   }
 
     render(){
         const colors = this.props.colors;
-        const categories = this.props.categories.catList;
+        const categories = this.props.categories;
 
-    console.log("CATEGORY", categories)
+    // console.log("CATEGORY", categories)
         return (
             <div>
             here is form!
@@ -87,7 +89,7 @@ class TaskForm extends Component {
                 }
                                   </select>
                               </div>
-                         <button onSubmit={this.handleSubmit}> Add</button>
+                         <button onClick={this.handleSubmit}> Add</button>
                         </div>
                     ) : null}
 
@@ -104,12 +106,12 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => {
     return {
       loadCategories(userId) {
-        dispatch(fetchCatList(userId));
+        dispatch(fetchCategories(userId));
         dispatch(fetchColors());
 
       },
-      createCat(category, userId){
-          dispatch(createCat(category, userId));
+      addNewCategory(category, userId){
+          dispatch(addNewCategory(category, userId));
       }
 
     };

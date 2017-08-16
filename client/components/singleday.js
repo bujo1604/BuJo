@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 const moment = require('moment')
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
-import { fetchTaskList, fetchEventList } from '../store';
-import Tasks from './tasks'
-import Events from './events'
-import TaskForm from './task-form'
-
-
+import { fetchTasks, fetchEvents, fetchNotes } from '../store';
+import {Tasks, Events, Notes} from './';
 
 class SingleDay extends Component {
 
@@ -23,8 +19,9 @@ class SingleDay extends Component {
   }
 
   render() {
-    const tasks = this.props.tasks.taskList
-    const events = this.props.events.eventList
+
+    const {tasks, events, notes} = this.props
+
 
     return (
       <div className="singlePage-container">
@@ -34,6 +31,7 @@ class SingleDay extends Component {
         <button> Add Event </button>
         <Tasks tasks={tasks} />
         <Events events={events} />
+        <Notes notes={notes} />
       </div>
     )
   }
@@ -41,16 +39,18 @@ class SingleDay extends Component {
 
 
 const mapState = (state) => ({
+  user: state.user,
   tasks: state.tasks,
   events: state.events,
-  user: state.user
+  notes: state.notes
 });
 
 const mapDispatch = (dispatch) => {
   return {
     loadData(userId) {
-      dispatch(fetchTaskList(userId));
-      dispatch(fetchEventList(userId));
+      dispatch(fetchTasks(userId));
+      dispatch(fetchEvents(userId));
+      dispatch(fetchNotes(userId));
     }
   };
 }
