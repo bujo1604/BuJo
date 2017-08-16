@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-// import {addCountToTasks} from './taskUtils'
+import {addCountToTasks} from './taskUtils'
 
 //ACTION TYPES
 
@@ -22,18 +21,18 @@ export function fetchTasks (userId) {
 }
 
 
-// export function fetchTasksWithCount (userId) {
-//     return function thunk (dispatch){
-//         return axios.get(`/api/tasks/${userId}`)
-//         .then(res => (res.data))
-//         .then(tasks => {
-//           addCountToTasks(tasks);
-//           return tasks
-//         })
-//         .then(tasks => dispatch(gotTasks(tasks)))
-//         .catch(error => { console.log(error) });
-//     };
-// }
+export function fetchTasksWithCount (userId) {
+    return function thunk (dispatch){
+        return axios.get(`/api/tasks/${userId}`)
+        .then(res => (res.data))
+        .then(tasks => {
+          addCountToTasks(tasks);
+          return tasks
+        })
+        .then(tasks => dispatch(gotTasks(tasks)))
+        .catch(error => { console.log(error) });
+    };
+}
 
 // REDUCER
 export default function (state = [], action) {

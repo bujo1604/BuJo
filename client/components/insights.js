@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
 import {Pie, Scatter} from './';
-//import { fetchTaskList, fetchTaskListWithCount } from '../store';
+import {fetchTasksWithCount } from '../store';
 
 
 //COMPONENT
@@ -46,7 +46,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadData(userId) {
-      dispatch(fetchTaskListWithCount(userId));
+      dispatch(fetchTasksWithCount(userId));
     }
   };
 }
