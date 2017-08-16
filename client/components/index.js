@@ -15,5 +15,7 @@ export {default as SingleDay} from './Singleday'
 export {default as Tasks} from './Tasks'
 export {default as TaskForm} from './TaskForm';
 export {default as UserHome} from './UserHome'
+export {default as CategoryForm} from './CategoryForm';
 export {default as MonthByDay} from './MonthByDay';
 export {default as MonthDumbComp} from './MonthDumbComp';
+
