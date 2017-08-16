@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import { connect } from 'react-redux';
-import { fetchCategories, addNewCategory, fetchColors } from '../store';
+import { fetchCategories, removeCategory, fetchColors } from '../store';
 import CategoryForm from './CategoryForm';
 console.log("FETCH", fetchColors)
 class TaskForm extends Component {
@@ -10,15 +10,24 @@ class TaskForm extends Component {
         this.state = {
             selectedValue: ''
         }
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount(){
         this.props.loadCategories(this.props.user.id);
 
     }
+     handleClick(event) {
+        //  const id = this.props.categories.id;
+        event.preventDefault();
+        console.log("print",event.target.id)
+        this.props.removeCategory(event.target.id);
+        this.props.loadCategories(this.props.user.id);
+
+  }
 
     render(){
-        // const colors = this.props.colors;
+         const colors = this.props.colors;
         const categories = this.props.categories;
 
     // console.log("CATEGORY", categories)
@@ -32,7 +41,7 @@ class TaskForm extends Component {
                      {categories.map((cat, idx) => (
                         (
                           <label key={idx} className='color'>
-                            <button style={{color: `${cat.color.hex}`}} value={cat.name} > {cat.name}</button>  <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span>
+                            <button style={{color: `${cat.color.hex}`}} value={cat.name} > {cat.name}</button>  <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span><button id={cat.id} onClick={this.handleClick}>delete</button>
                           </label>
                         )))}
 
@@ -52,7 +61,9 @@ const mapDispatch = (dispatch) => {
       loadCategories(userId) {
         dispatch(fetchCategories(userId));
 
-
+      },
+      removeCategory(categoryId){
+          dispatch(removeCategory( categoryId));
       }
 
     };
