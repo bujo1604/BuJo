@@ -1,22 +1,22 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Router} from 'react-router'
-import {Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Router } from 'react-router'
+import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, Insights, SingleDay, MyCalendar, TaskForm} from './components';
-import {me} from './store'
+import { Main, Login, Signup, UserHome, Insights, SingleDay, MyCalendar, TaskForm, AddNote } from './components';
+import { me } from './store'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadInitialData()
   }
 
-  render () {
-    const {isLoggedIn} = this.props
+  render() {
+    const { isLoggedIn } = this.props
 
     return (
       <Router history={history}>
@@ -27,16 +27,16 @@ class Routes extends Component {
             <Route path='/signup' component={Signup} />
             {
               isLoggedIn &&
-                <Switch>
+              <Switch>
 
-                  {/* Routes placed here are only available after logging in */}
-                  <Route path='/home' component={UserHome} />
-                  <Route path='/insights' component={Insights} />
-                  <Route path= '/day' component={SingleDay} />
-                  <Route exact path= '/calendar' component={MyCalendar} />
-                  <Route path='/addtask' component={TaskForm} />
-
-                </Switch>
+                {/* Routes placed here are only available after logging in */}
+                <Route path='/home' component={UserHome} />
+                <Route path='/insights' component={Insights} />
+                <Route path='/day' component={SingleDay} />
+                <Route exact path='/calendar' component={MyCalendar} />
+                <Route path='/addtask' component={TaskForm} />
+                <Route path='/addnote' component={AddNote} />
+              </Switch>
             }
             {/* Displays our Login component as a fallback */}
             <Route component={Login} />
@@ -60,7 +60,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData () {
+    loadInitialData() {
       dispatch(me())
     }
   }
