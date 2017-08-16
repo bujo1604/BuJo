@@ -1,32 +1,55 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import Pie from './pie'
-import Scatter from './scatter'
+
+import {Pie, Scatter} from './';
+//import { fetchTaskList, fetchTaskListWithCount } from '../store';
+
 
 //COMPONENT
 
-export const Insights = (props) => {
-  const { email } = props
+export class Insights extends Component {
+  constructor(props) {
+    super(props);
+  }
 
+ componentDidMount() {
+    this.props.loadData(this.props.user.id);
+  }
+
+  render(){
+  const { email, tasks } = this.props
   return (
     <div>
       <h3>Hi, {email}</h3>
       <p> Here are your insights </p>
-      <div className='flexbox-container'>
-        <Pie />
-        <Scatter />
-      </div>
-    </div>
-  )
+      {tasks.length && tasks[0].count &&
+        <div className='flexbox-container'>
+          <Pie tasks = {tasks} />
+          <Scatter tasks = {tasks} />
+        </div>}
+    </div> )
+  }
 }
+
+
 
 //CONTAINER
 
 const mapState = (state) => {
   return {
-    email: state.user.email
+   user: state.user,
+    email: state.user.email,
+    tasks: state.tasks
   }
 }
 
-export default connect(mapState)(Insights)
+const mapDispatch = (dispatch) => {
+  return {
+    loadData(userId) {
+      dispatch(fetchTaskListWithCount(userId));
+    }
+  };
+}
+
+export default connect(mapState, mapDispatch)(Insights)
 

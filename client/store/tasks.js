@@ -1,85 +1,81 @@
 import axios from 'axios';
 
+// import {addCountToTasks} from './taskUtils'
 
-/**
- * ACTION TYPES
- */
-const GET_TASK_LIST = 'GET_TASK_LIST';
-const GET_SINGLE_TASK = 'GET_SINGLE_TASK';
+//ACTION TYPES
 
-/**
- * INITIAL STATE
- */
-const intialState = {
-    taskList: [],
-    singleTask: {}
-};
+const GOT_TASKS = 'GOT_TASKS';
 
-/**
- * ACTION CREATORS
- */
-const getTaskList = (taskList) => ({type: GET_TASK_LIST, taskList});
-const getSingleTask = (singleTask) => ({type: GET_SINGLE_TASK, singleTask});
+//ACTION CREATORS
 
-/**
- * THUNK CREATORS
- */
+const gotTasks = (tasks) => ({type: GOT_TASKS, tasks});
 
-export function fetchTaskList (userId) {
+
+//THUNK CREATORS
+
+export function fetchTasks (userId) {
     return function thunk (dispatch){
         return axios.get(`/api/tasks/${userId}`)
-        .then(res => dispatch(getTaskList(res.data)))
+        .then(res => dispatch(gotTasks(res.data)))
         .catch(error => { console.log(error) });
     };
 }
 
-export function fetchSingleTask (taskId) {
-    return function thunk (dispatch){
-        return axios.get(`/api/tasks/${taskId}`)
-        .then(res => {
-          dispatch(getSingleTask(res.data));
-        })
-        .catch(error => { console.log(error) });
-    };
-}
 
-export function createTask (task) {
-    return function thunk (dispatch){
-        return axios.post('/api/tasks', {task})
-        .then(res => dispatch(getSingleTask(res.data)))
-        .catch(error => { console.log(error) });
-    };
-}
+// export function fetchTasksWithCount (userId) {
+//     return function thunk (dispatch){
+//         return axios.get(`/api/tasks/${userId}`)
+//         .then(res => (res.data))
+//         .then(tasks => {
+//           addCountToTasks(tasks);
+//           return tasks
+//         })
+//         .then(tasks => dispatch(gotTasks(tasks)))
+//         .catch(error => { console.log(error) });
+//     };
+// }
 
-export function changeTask (taskId, task) {
-    return function thunk (dispatch){
-        return axios.put(`/api/tasks/${taskId}`, {task})
-        .then(res => dispatch(getSingleTask(res.data)))
-        .catch(error => { console.log(error) });
-    }
-}
-
-export function deleteTask(taskId){
-    return function thunk(){
-        return axios.delete(`/api/tasks/${taskId}`)
-        .catch(error => { console.log( error) });
-    };
-}
-
-/**
- * REDUCER
- */
-export default function (state = intialState, action) {
-  let newState = Object.assign({}, state);
+// REDUCER
+export default function (state = [], action) {
   switch (action.type) {
-    case GET_TASK_LIST:
-      newState.taskList = action.taskList;
-      break;
-    case GET_SINGLE_TASK:
-      newState.singleTask = action.singleTask;
-      break;
+
+    case GOT_TASKS:
+      return action.tasks
     default:
       return state;
   }
-  return newState;
 }
+
+
+// export function fetchSingleTask (taskId) {
+//     return function thunk (dispatch){
+//         return axios.get(`/api/tasks/${taskId}`)
+//         .then(res => {
+//           dispatch(getSingleTask(res.data));
+//         })
+//         .catch(error => { console.log(error) });
+//     };
+// }
+
+// export function createTask (task) {
+//     return function thunk (dispatch){
+//         return axios.post('/api/tasks', {task})
+//         .then(res => dispatch(getSingleTask(res.data)))
+//         .catch(error => { console.log(error) });
+//     };
+// }
+
+// export function changeTask (taskId, task) {
+//     return function thunk (dispatch){
+//         return axios.put(`/api/tasks/${taskId}`, {task})
+//         .then(res => dispatch(getSingleTask(res.data)))
+//         .catch(error => { console.log(error) });
+//     }
+// }
+
+// export function deleteTask(taskId){
+//     return function thunk(){
+//         return axios.delete(`/api/tasks/${taskId}`)
+//         .catch(error => { console.log( error) });
+//     };
+// }
