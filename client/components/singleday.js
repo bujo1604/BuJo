@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 const moment = require('moment')
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
-import { fetchTasks, fetchEvents, fetchNotes, gotNextDay, gotPreviousDay} from '../store';
+import { fetchTasks, fetchEvents, fetchNotes, gotNextDay, gotPreviousDay, updatedDay} from '../store';
 import {Tasks, Events, Notes} from './';
 
 class SingleDay extends Component {
@@ -11,13 +11,10 @@ class SingleDay extends Component {
     super(props);
   }
 
-  componentDidMount() {
-
-  }
 
   render() {
 
-    const {tasks, events, notes, day, previousDay, nextDay} = this.props
+    const {tasks, events, notes, day, previousDay, nextDay, updateDay} = this.props
     const tasksOnDay = tasks.filter(function(task){
         return task.date === day
     })
@@ -35,7 +32,7 @@ class SingleDay extends Component {
         <button onClick={previousDay}> Previous Day </button>
         <h2 className="singlePage-title"> {moment(day).format("dddd, MMMM Do YYYY")} </h2>
         <button onClick={nextDay}> Next Day </button>
-
+        <button onClick={() => updateDay(moment(new Date()).format("YYYYMMDD"))}> Current Day </button>
           <Tasks tasks={tasksOnDay} />
         <Link to={'/addtask'}>
           <button> Add Tasks </button>
@@ -75,6 +72,9 @@ const mapDispatch = (dispatch) => {
         },
     previousDay() {
             dispatch(gotPreviousDay())
+    },
+    updateDay(day){
+      dispatch(updatedDay(day))
     }
   };
 }

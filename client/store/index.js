@@ -9,8 +9,9 @@ import notes from './notes'
 import colors from './colors'
 import month from './month'
 import day from './day'
+import week from './week'
 
-const reducer = combineReducers({user, categories, tasks, events, notes, colors, month, day})
+const reducer = combineReducers({user, categories, tasks, events, notes, colors, month, day, week})
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 const store = createStore(reducer, middleware)
 
@@ -23,6 +24,7 @@ export * from './colors'
 export * from './notes'
 export * from './month'
 export * from './day'
+export * from './week'
 
 
 
