@@ -2,23 +2,33 @@ import React, { Component } from 'react';
 const moment = require('moment')
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
-import { fetchTasks, fetchEvents, fetchNotes, gotNextDay, gotPreviousDay} from '../store';
-import {Tasks, Events, Notes} from './';
+import { fetchTasks, fetchEvents, fetchNotes, gotNextDay, gotPreviousDay, removeTask} from '../store';
+import { Events, Notes} from './';
 
 class SingleDay extends Component {
 
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
+
+
+
+
+  handleClick(event){
+    event.preventDefault()
+    let catId = event.target.id
+    this.props.removingTask(catId)
+    this.props.loadData(this.props.user.id)
 
   }
 
+
+  
   render() {
 
     const {tasks, events, notes, day, previousDay, nextDay} = this.props
-    
     const tasksOnDay = tasks.filter(function(task){
         return task.date === day
     })
@@ -29,6 +39,8 @@ class SingleDay extends Component {
         return note.date === day
     })
 
+    let tasksThings = tasksOnDay
+
     return (
 
       <div className="singlePage-container">
@@ -37,7 +49,25 @@ class SingleDay extends Component {
         <h2 className="singlePage-title"> {moment(day).format("dddd, MMMM Do YYYY")} </h2>
         <button onClick={nextDay}> Next Day </button>
 
-          <Tasks tasks={tasksOnDay} />
+        <div>
+        <h3 className="singleName-headings">Tasks</h3>
+        {tasksThings.map((task, idx) => (
+            <div key={idx}>
+                {task.status === 'complete' ?
+                    <div >
+                        <span  style={{ color: `${task.category.color.hex}` }}> &#x2613;</span>
+                        <span> {task.name} </span>
+                    </div> :
+                    <div >
+                        <span style={{ color: `${task.category.color.hex}` }}> &#x25CF;</span>
+                        <span> {task.name}
+                        </span><button id={task.id} onClick={this.handleClick} type='submit'>DELETE</button>
+
+                    </div>
+                }
+            </div>
+        ))}
+    </div>
         <Link to={'/addtask'}>
           <button> Add Tasks </button>
         </Link>
@@ -76,6 +106,9 @@ const mapDispatch = (dispatch) => {
         },
     previousDay() {
             dispatch(gotPreviousDay())
+    }, 
+    removingTask(catId){
+      dispatch(removeTask(catId));
     }
   };
 }

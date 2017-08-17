@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { fetchCategories, removeCategory, fetchColors, createTask } from '../store';
 import CategoryForm from './CategoryForm';
 
 class TaskForm extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             categoryId: 1
@@ -13,57 +13,59 @@ class TaskForm extends Component {
 
         this.handleClick = this.handleClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-         this.selectedCategory = this.selectedCategory.bind(this);
+        this.selectedCategory = this.selectedCategory.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.loadCategories(this.props.user.id);
 
     }
-     handleClick(event) {
+    handleClick(event) {
         //  const id = this.props.categories.id;
         event.preventDefault();
         this.props.removeCategory(event.target.id);
         this.props.loadCategories(this.props.user.id);
 
-  }
+    }
 
-   handleSubmit(event, user){
+    handleSubmit(event) {
         event.preventDefault();
-        const newTask ={
+        const newTask = {
             name: event.target.name.value,
             categoryId: this.state.categoryId,
-            date: "20170910",
+            date: this.props.day,
             status: 'incomplete',
             userId: this.props.user.id
         }
-
+  
         this.props.createTask(newTask)
-   }
- selectedCategory (event){
-     event.preventDefault();
-         this.setState({categoryId: event.target.id})
 
- }
-    render(){
+    }
+    selectedCategory(event) {
+        event.preventDefault();
+        this.setState({ categoryId: event.target.id })
+
+    }
+    render() {
 
         const categories = this.props.categories;
 
 
         return (
             <div>
-            here is form!
+                here is form!
             <br />
-            <form onSubmit={this.handleSubmit}>
-            <input name='name' type="text" placeholder="input task here" />
-                <button type='submit'>Add task</button>
-            </form>
-                     {categories.map((cat, idx) => (
-                        (
-                          <label key={idx} className='color'>
-                            <button id={cat.id} onClick={this.selectedCategory} style={{color: `${cat.color.hex}`}} value={cat.name} > {cat.name}</button>  <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span><button id={cat.id} onClick={this.handleClick}>delete</button>
-                          </label>
-                        )))}
+                <form onSubmit={this.handleSubmit}>
+                    <input name='name' type="text" placeholder="input task here" />
+                    <button type='submit'>Add task</button>
+                </form>
+                {categories.map((cat, idx) => (
+                    (
+                        <label key={idx} className='color'>
+                            <button id={cat.id} onClick={this.selectedCategory} style={{ color: `${cat.color.hex}` }} value={cat.name} > {cat.name}</button>
+                            <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span><button id={cat.id} onClick={this.handleClick}>delete</button>
+                        </label>
+                    )))}
 
                 <CategoryForm />
             </div>
@@ -72,25 +74,26 @@ class TaskForm extends Component {
 }
 const mapState = (state) => ({
     user: state.user,
-    categories: state.categories
+    categories: state.categories,
+    day: state.day
 
 })
 
 const mapDispatch = (dispatch, ownProps) => {
     return {
-      loadCategories(userId) {
-        dispatch(fetchCategories(userId));
+        loadCategories(userId) {
+            dispatch(fetchCategories(userId));
 
-      },
-      removeCategory(categoryId){
-          dispatch(removeCategory( categoryId));
-      },
-      createTask(newTask){
-          dispatch(createTask(newTask));
-        ownProps.history.push('/day');
-      }
+        },
+        removeCategory(categoryId) {
+            dispatch(removeCategory(categoryId));
+        },
+        createTask(newTask) {
+            dispatch(createTask(newTask));
+            ownProps.history.push('/day')
+        }
 
     };
-  }
+}
 export default connect(mapState, mapDispatch)(TaskForm);
 

@@ -48,7 +48,6 @@ export function createTask (newTask) {
     return function thunk (dispatch){
         return axios.post('/api/tasks', newTask)
         .then(res => {
-            console.log("RES", res.data)
             dispatch(addTask(res.data))})
         .catch(error => { console.log(error) });
     };
