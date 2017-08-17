@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import SVGformat from './SVGformat'
 
 /**
  * COMPONENT
@@ -26,6 +27,8 @@ const AuthForm = (props) => {
         {error && error.response && <div> {error.response.data} </div>}
       </form>
       <a href='/auth/google'>{displayName} with Google</a>
+      <h1>Meet Your Friend BuJo!</h1>
+      <SVGformat color="MediumSpringGreen" c1="gainsboro" c2="red" c3="black" />
     </div>
   )
 }
