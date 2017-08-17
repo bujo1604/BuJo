@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchTasks, fetchEvents, fetchNotes } from '../store';
+import { fetchTasks, fetchEvents, fetchNotes, updatedDay } from '../store';
 import {TaskBullets, Events} from './';
+import { Tbody, Td, Tr, Thead, Th } from './component-style/index.js'
 
 class MonthDumbComp extends Component {
 
@@ -12,8 +13,7 @@ class MonthDumbComp extends Component {
 
   render() {
 
-    const {tasks, events, daysInMonth, month} = this.props
-
+    const {tasks, events, daysInMonth, month, updateDay} = this.props
     var filteredEvents = [];
     var filteredTasks = [];
     const arrDateFormat = daysInMonth.map(function(day){
@@ -22,60 +22,55 @@ class MonthDumbComp extends Component {
         return day.date;
     })
 
-    for(let i = 0; i < events.length; i++){
+    for (let i = 0; i < events.length; i++){
         var eventDate = events[i].date;
         let index = arrDateFormat.indexOf(eventDate);
-        if(index !== -1){
+        if (index !== -1){
             filteredEvents[index].push(events[i]);
         }
     }
 
-    for(let i = 0; i < tasks.length; i++){
+    for (let i = 0; i < tasks.length; i++){
         var taskDate = tasks[i].date;
         let index = arrDateFormat.indexOf(taskDate);
-        if(index !== -1){
+        if (index !== -1){
             filteredTasks[index].push(tasks[i]);
         }
     }
         return (
             <span>
                 <table>
-                    <thead>
-                        <tr key="1">
-                            <th />
-                            <th />
-                            <th>Event</th>
-                            <th>Task</th>
-                        </tr>
-                    </thead>
+                    <Thead>
+                        <Tr key="1">
+                            <Th>Date</Th>
+                            <Th>Event</Th>
+                            <Th>Task</Th>
+                        </Tr>
+                    </Thead>
 
-                    <tbody> {daysInMonth.map((day) => {
+                    <Tbody> {daysInMonth.map((day) => {
                         if (day.weekday === "We") {
 
                             return (
-                                <tr key={Math.random()}>
-                                    <Link to='/day'><td>
-                                        {day.weekday}
-                                    </td></Link>
-                                    <td> {day.dateOfM}</td>
-                                    <td><Events events={filteredEvents[daysInMonth.indexOf(day)]} /></td>
-                                    <td><TaskBullets tasks={filteredTasks[daysInMonth.indexOf(day)]} /></td>
-                                </tr>
+
+                                <Tr key={Math.random()}>
+                                    <Td><Link to='/day' onClick={() => updateDay(day.date)}>{day.weekday}   {day.dateOfM}</Link></Td>
+                                    <Td><Events events={filteredEvents[daysInMonth.indexOf(day)]} /></Td>
+                                    <Td><TaskBullets tasks={filteredTasks[daysInMonth.indexOf(day)]} /></Td>
+                                </Tr>
 
                             )
                         }
                         else {
                             return (
-                                <tr key={Math.random()}>
-                                    <Link to='/day'>{day.weekday}</Link>
-                                    <td> {day.dateOfM}</td>
-                                    <td><Events events={filteredEvents[daysInMonth.indexOf(day)]} /></td>
-                                    <td><TaskBullets tasks={filteredTasks[daysInMonth.indexOf(day)]} /></td>
-                                </tr>
-
+                                  <Tr key={Math.random()}>
+                                     <Td><Link to='/day' onClick={() => updateDay(day.date)}> {day.weekday}   {day.dateOfM}</Link></Td>
+                                    <Td><Events events={filteredEvents[daysInMonth.indexOf(day)]} /></Td>
+                                    <Td><TaskBullets tasks={filteredTasks[daysInMonth.indexOf(day)]} /></Td>
+                                </Tr>
                             )
                         }
-                    })} </tbody>
+                    })} </Tbody>
 
                 </table>
             </span>
@@ -87,7 +82,8 @@ class MonthDumbComp extends Component {
 const mapState = (state) => ({
   user: state.user,
   tasks: state.tasks,
-  events: state.events
+  events: state.events,
+  day: state.day
 });
 
 const mapDispatch = (dispatch) => {
@@ -96,7 +92,10 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchTasks(userId));
       dispatch(fetchEvents(userId));
       dispatch(fetchNotes(userId));
-    }
+    },
+    updateDay(day) {
+            dispatch(updatedDay(day))
+        },
   };
 }
 
