@@ -12,6 +12,7 @@ const MonthByDay = (props) => {
 
     const { previousMonth, nextMonth, month } = props
     //daysInMonth includes Sun-Sat view
+    console.log(props, "props in MonthByDay")
     const daysInMonth = makeArrOfDaysInMonthSunToSat(month)
     return (
         <div>
@@ -29,10 +30,10 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => {
     return {
         nextMonth() {
-            dispatch(gotNextMonth())
+            dispatch(gotNextMonth())  // to be used in on click
         },
         previousMonth() {
-            dispatch(gotPreviousMonth())
+            dispatch(gotPreviousMonth()) // to be used in on click
         }
     };
 }

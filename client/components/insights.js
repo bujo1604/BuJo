@@ -17,7 +17,8 @@ export class Insights extends Component {
   }
 
   render(){
-  const { email, tasks } = this.props
+  const { email, tasks, user } = this.props
+  console.log(this.props);
   return (
     <div>
       <h3>Hi, {email}</h3>

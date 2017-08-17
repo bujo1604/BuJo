@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 const moment = require('moment')
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
-import { fetchTasks, fetchEvents, fetchNotes } from '../store';
+import { fetchTasks, fetchEvents, fetchNotes, gotNextDay, gotPreviousDay} from '../store';
 import {Tasks, Events, Notes} from './';
 
 class SingleDay extends Component {
@@ -12,22 +12,35 @@ class SingleDay extends Component {
   }
 
   componentDidMount() {
-    this.props.loadData(this.props.user.id);
+  
   }
 
   render() {
 
-    const {tasks, events, notes} = this.props
+    const {tasks, events, notes, day, previousDay, nextDay} = this.props
+    console.log(notes);
+    const tasksOnDay = tasks.filter(function(task){
+        return task.date === day
+    })
+    const eventsOnDay = events.filter(function(event){
+        return event.date === day
+    })
+    const notesOnDay = notes.filter(function(note){
+        return note.date === day
+    })
 
     return (
+
       <div className="singlePage-container">
-          <h2 className="singlePage-title"> {moment().format('dddd, MMMM Do YYYY')} </h2>
-        <Tasks tasks={tasks} />
+          <h2 className="singlePage-title"> {moment(day).format("dddd, MMMM Do YYYY")} </h2>
+        <button onClick={previousDay}> Previous Day </button>
+        <button onClick={nextDay}> Next Day </button>
+          <Tasks tasks={tasksOnDay} />
         <Link to={'/addtask'}>
           <button> Add Tasks </button>
         </Link>
-        <Events events={events} />
-        <Notes notes={notes} />
+        <Events events={eventsOnDay} />
+        <Notes notes={notesOnDay} />
         <Link to={'/addnote'}>
           <button> Add Note </button>
         </Link>
@@ -40,7 +53,8 @@ const mapState = (state) => ({
   user: state.user,
   tasks: state.tasks,
   events: state.events,
-  notes: state.notes
+  notes: state.notes,
+  day: state.day
 });
 
 const mapDispatch = (dispatch) => {
@@ -49,6 +63,12 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchTasks(userId));
       dispatch(fetchEvents(userId));
       dispatch(fetchNotes(userId));
+    },
+     nextDay() {
+            dispatch(gotNextDay())  
+        },
+    previousDay() {
+            dispatch(gotPreviousDay()) 
     }
   };
 }
