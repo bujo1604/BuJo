@@ -12,11 +12,11 @@ const MonthByDay = (props) => {
 
     const { previousMonth, nextMonth, month } = props
     //daysInMonth includes Sun-Sat view
-    console.log(props, "props in MonthByDay")
     const daysInMonth = makeArrOfDaysInMonthSunToSat(month)
     return (
         <div>
             <button onClick={previousMonth}>Prev Month</button>
+            <h1>{month}</h1>
             <button onClick={nextMonth}>Next Month</button>
             <MonthDumbComp daysInMonth={daysInMonth} month={month} />
         </div>

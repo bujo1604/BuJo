@@ -12,13 +12,12 @@ class SingleDay extends Component {
   }
 
   componentDidMount() {
-  
+
   }
 
   render() {
 
     const {tasks, events, notes, day, previousDay, nextDay} = this.props
-    console.log(notes);
     const tasksOnDay = tasks.filter(function(task){
         return task.date === day
     })
@@ -32,7 +31,7 @@ class SingleDay extends Component {
     return (
 
       <div className="singlePage-container">
-          
+
         <button onClick={previousDay}> Previous Day </button>
         <h2 className="singlePage-title"> {moment(day).format("dddd, MMMM Do YYYY")} </h2>
         <button onClick={nextDay}> Next Day </button>
@@ -41,7 +40,7 @@ class SingleDay extends Component {
         <Link to={'/addtask'}>
           <button> Add Tasks </button>
         </Link>
-
+        <h3 className="singleName-headings">Events</h3>
         <Events events={eventsOnDay} />
         <Link to={'/addevent'}>
         <button> Add Event </button>
@@ -72,10 +71,10 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchNotes(userId));
     },
      nextDay() {
-            dispatch(gotNextDay())  
+            dispatch(gotNextDay())
         },
     previousDay() {
-            dispatch(gotPreviousDay()) 
+            dispatch(gotPreviousDay())
     }
   };
 }

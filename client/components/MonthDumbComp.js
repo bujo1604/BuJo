@@ -4,31 +4,14 @@ import { connect } from 'react-redux';
 import { fetchTasks, fetchEvents, fetchNotes } from '../store';
 import {TaskBullets, Events} from './';
 
-const UserHome = (props) => {
- 
-
-  return (
-    <div>
-      <h3>Welcome {props.number}</h3>
-      <img src="./bujoavatar.gif"></img>
-
-    </div>
-  )
-}
-
-
 class MonthDumbComp extends Component {
 
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
-  
+
     const {tasks, events, daysInMonth, month} = this.props
 
     var filteredEvents = [];
@@ -38,7 +21,7 @@ class MonthDumbComp extends Component {
         filteredTasks.push([]);
         return day.date;
     })
-   
+
     for(let i = 0; i < events.length; i++){
         var eventDate = events[i].date;
         let index = arrDateFormat.indexOf(eventDate);
@@ -46,7 +29,7 @@ class MonthDumbComp extends Component {
             filteredEvents[index].push(events[i]);
         }
     }
-  
+
     for(let i = 0; i < tasks.length; i++){
         var taskDate = tasks[i].date;
         let index = arrDateFormat.indexOf(taskDate);
@@ -56,7 +39,6 @@ class MonthDumbComp extends Component {
     }
         return (
             <span>
-                <text>{month}</text>
                 <table>
                     <thead>
                         <tr key="1">
@@ -99,7 +81,7 @@ class MonthDumbComp extends Component {
             </span>
 
         )
-    
+
 }
 }
 const mapState = (state) => ({

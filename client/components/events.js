@@ -4,7 +4,6 @@ const Events = (props) => {
     const { events } = props;
     return (
         <div>
-            <h3 className="singleName-headings">Events</h3>
             {events.map((event, idx) => (
                 <div key={idx}>
                     <span> &#x25CB;</span>
