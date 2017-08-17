@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
+import SVGformat from './SVGformat'
 
 /**
  * COMPONENT
@@ -29,9 +30,12 @@ const Main = (props) => {
             </div>
             : <div>
               {/* The navbar will show these links before you log in */}
+              
               <Link to='/login'>Login</Link>
               <Link to='/signup'>Sign Up</Link>
+              
             </div>
+            
         }
       </nav>
       <hr />

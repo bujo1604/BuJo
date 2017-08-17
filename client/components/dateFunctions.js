@@ -45,5 +45,17 @@ function makeArrOfDaysInCalendarMonth(date) {
     return arrDaysInMonth;
 }
 
+function makeArrDaysInWeek(date) {
+    var arrDaysInWeek = [];
+    var firstDayOfWeek = moment(date).startOf("week");
+    for (let i = 0; i < 7; i++) { 
 
-export {makeArrOfDaysInMonthSunToSat, makeArrOfDaysInCalendarMonth}
+        var currentDate = new Date(moment(firstDayOfWeek).add(i, "days"));
+        var day = {date: moment(currentDate).format("YYYYMMDD")}
+        arrDaysInWeek.push(day);
+            
+    }
+        return arrDaysInWeek;
+
+}
+export {makeArrOfDaysInMonthSunToSat, makeArrOfDaysInCalendarMonth, makeArrDaysInWeek}
