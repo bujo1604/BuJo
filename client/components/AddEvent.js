@@ -51,7 +51,7 @@ const mapDispatch = (dispatch, ownProps) => {
                 date: '20170908'
             }
             
-            console.log('THIS IS NEW EVENT', newEvent)
+            // console.log('THIS IS NEW EVENT', newEvent)
             dispatch(postEvent(newEvent))
             ownProps.history.push('/day')
         },
