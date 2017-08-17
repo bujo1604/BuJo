@@ -19,7 +19,7 @@ export class Scatter extends Component {
     this.xScale = d3.scaleTime().domain(this.xDomain(this.props.tasks)).range([this.padding, this.width - this.padding])
     this.yScale = d3.scaleLinear().domain([0, this.yMax(this.props.tasks)]).range([this.height - this.padding, this.padding])
     //create axis with scales
-    this.xAxis = d3.axisBottom(this.xScale).ticks(7)
+    this.xAxis = d3.axisBottom(this.xScale).ticks(3)
     this.yAxis = d3.axisLeft(this.yScale).ticks(3)
   }
 
@@ -28,12 +28,25 @@ export class Scatter extends Component {
     // d3.selectAll('.yAxis').call(this.yAxis)
   }
 
+  componentWillReceiveProps(nextProps){
+     if (this.props.month !== nextProps.month){
+          //create scale with domain min and max and range of svg coordinates
+          this.xScale = d3.scaleTime().domain(this.xDomain(nextProps.tasks)).range([this.padding, this.width - this.padding])
+          this.yScale = d3.scaleLinear().domain([0, this.yMax(nextProps.tasks)]).range([this.height - this.padding, this.padding])
+          //create axis with scales
+          this.xAxis = d3.axisBottom(this.xScale).ticks(3)
+          this.yAxis = d3.axisLeft(this.yScale).ticks(3)
+          d3.selectAll('.xAxis').call(this.xAxis)
+    }
+  }
+
   render() {
     const {tasks} = this.props
     return (
       <div>
         <svg width={this.width} height={this.height}>
-          {tasks.map((task, i) => (
+          {tasks.map((task, i) => {
+            return (
             <g key={i}>
               <circle
                 r="10"
@@ -41,7 +54,7 @@ export class Scatter extends Component {
                 cy={this.yScale(task.count)}
                 fill={task.category.color.hex}
               />
-            </g>)
+            </g>)}
           )}
           <g className="xAxis" transform={`translate(0, ${this.height - this.padding})`} />
           <g className="yAxis" transform={`translate(${this.padding}, 0)`} />
@@ -55,7 +68,8 @@ export class Scatter extends Component {
 
 const mapState = (state) => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    month: state.month
   }
 }
 
