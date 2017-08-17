@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchCategories, removeCategory, fetchColors } from '../store';
 import CategoryForm from './CategoryForm';
-console.log("FETCH", fetchColors)
+
 class TaskForm extends Component {
     constructor(props){
         super(props)

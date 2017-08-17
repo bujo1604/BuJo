@@ -26,7 +26,10 @@ router.post('/', function (req, res, next) {
    Event.create({
         name: req.body.name,
         location: req.body.location,
-        time: req.body.time})
+        time: req.body.time,
+        date: req.body.date,
+        userId: req.body.userId})
+        
         .then(event => res.status(201).send(event))
         .catch(next);
 });
@@ -38,7 +41,10 @@ router.put('/:eventId', function (req, res, next) {
         return event.update({
             name: req.body.name,
             location: req.body.location,
-            time: req.body.time});
+            time: req.body.time,
+            date: req.body.date,
+            userId: req.body.userId
+        });
     })
     .then(event => {
         res.send(event);

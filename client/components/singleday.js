@@ -32,14 +32,21 @@ class SingleDay extends Component {
     return (
 
       <div className="singlePage-container">
-          <h2 className="singlePage-title"> {moment(day).format("dddd, MMMM Do YYYY")} </h2>
+          
         <button onClick={previousDay}> Previous Day </button>
+        <h2 className="singlePage-title"> {moment(day).format("dddd, MMMM Do YYYY")} </h2>
         <button onClick={nextDay}> Next Day </button>
+
           <Tasks tasks={tasksOnDay} />
         <Link to={'/addtask'}>
           <button> Add Tasks </button>
         </Link>
+
         <Events events={eventsOnDay} />
+        <Link to={'/addevent'}>
+        <button> Add Event </button>
+        </Link>
+
         <Notes notes={notesOnDay} />
         <Link to={'/addnote'}>
           <button> Add Note </button>
