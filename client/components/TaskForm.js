@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import { fetchCategories, removeCategory, fetchColors, createTask } from '../store';
+import { fetchCategories, removeCategory, fetchColors, createTask, fetchTasks } from '../store';
 import CategoryForm from './CategoryForm';
 
 class TaskForm extends Component {
@@ -37,8 +37,8 @@ class TaskForm extends Component {
             status: 'incomplete',
             userId: this.props.user.id
         }
-  
-        this.props.createTask(newTask)
+        const userId =this.props.user.id;
+        this.props.createTask(newTask, userId)
 
     }
     selectedCategory(event) {
@@ -84,12 +84,14 @@ const mapDispatch = (dispatch, ownProps) => {
         loadCategories(userId) {
             dispatch(fetchCategories(userId));
 
+
         },
         removeCategory(categoryId) {
             dispatch(removeCategory(categoryId));
         },
-        createTask(newTask) {
+        createTask(newTask, userId) {
             dispatch(createTask(newTask));
+             dispatch(fetchTasks(userId));
             ownProps.history.push('/day')
         }
 

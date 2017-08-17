@@ -34,7 +34,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => {
     return {
         handleClick(user){
-            
+
             return ( (event) => {
                 event.preventDefault()
             dispatch(removeTask(event.target.id))
