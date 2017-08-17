@@ -14,7 +14,6 @@ class MonthDumbComp extends Component {
   render() {
 
     const {tasks, events, daysInMonth, month, updateDay} = this.props
-    console.log(this.props, "props in monthdumbcomp");
     var filteredEvents = [];
     var filteredTasks = [];
     const arrDateFormat = daysInMonth.map(function(day){
@@ -23,18 +22,18 @@ class MonthDumbComp extends Component {
         return day.date;
     })
 
-    for(let i = 0; i < events.length; i++){
+    for (let i = 0; i < events.length; i++){
         var eventDate = events[i].date;
         let index = arrDateFormat.indexOf(eventDate);
-        if(index !== -1){
+        if (index !== -1){
             filteredEvents[index].push(events[i]);
         }
     }
 
-    for(let i = 0; i < tasks.length; i++){
+    for (let i = 0; i < tasks.length; i++){
         var taskDate = tasks[i].date;
         let index = arrDateFormat.indexOf(taskDate);
-        if(index !== -1){
+        if (index !== -1){
             filteredTasks[index].push(tasks[i]);
         }
     }
@@ -53,19 +52,19 @@ class MonthDumbComp extends Component {
                         if (day.weekday === "We") {
 
                             return (
-                                
+
                                 <Tr key={Math.random()}>
-                                    <Td><Link to='/day' onClick={() => updateDay(day.date)}>{day.weekday}   {day.dateOfM}</Link></Td> 
+                                    <Td><Link to='/day' onClick={() => updateDay(day.date)}>{day.weekday}   {day.dateOfM}</Link></Td>
                                     <Td><Events events={filteredEvents[daysInMonth.indexOf(day)]} /></Td>
                                     <Td><TaskBullets tasks={filteredTasks[daysInMonth.indexOf(day)]} /></Td>
                                 </Tr>
-                                
+
                             )
                         }
                         else {
                             return (
                                   <Tr key={Math.random()}>
-                                     <Td><Link to='/day' onClick={() => updateDay(day.date)}> {day.weekday}   {day.dateOfM}</Link></Td> 
+                                     <Td><Link to='/day' onClick={() => updateDay(day.date)}> {day.weekday}   {day.dateOfM}</Link></Td>
                                     <Td><Events events={filteredEvents[daysInMonth.indexOf(day)]} /></Td>
                                     <Td><TaskBullets tasks={filteredTasks[daysInMonth.indexOf(day)]} /></Td>
                                 </Tr>
