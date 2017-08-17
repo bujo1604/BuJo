@@ -6,6 +6,7 @@ const {Task, Color} = require('../db/models');
 module.exports = router;
 
 //retreive all tasks for user and add .category and .color property to task
+//get'/', add query string to url in thunk
 router.get('/:userId', function (req, res, next) {
     let userId = req.params.userId
     Task.findAll({
@@ -29,8 +30,10 @@ router.get('/:taskId', function (req, res, next) {
 router.post('/', function (req, res, next) {
    Task.create({
         name: req.body.name,
-        description: req.body.description,
-        status: req.body.status})
+        userId: req.body.userId,
+        categoryId: req.body.categoryId,
+        status: req.body.status,
+        date:req.body.date})
         .then(task => res.status(201).send(task))
         .catch(next);
 });

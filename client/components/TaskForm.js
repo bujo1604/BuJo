@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 
 import { connect } from 'react-redux';
-import { fetchCategories, removeCategory, fetchColors } from '../store';
+import { fetchCategories, removeCategory, fetchColors, createTask } from '../store';
 import CategoryForm from './CategoryForm';
-console.log("FETCH", fetchColors)
+
 class TaskForm extends Component {
     constructor(props){
         super(props)
         this.state = {
-            selectedValue: ''
+            categoryId: 1
         }
+
         this.handleClick = this.handleClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+         this.selectedCategory = this.selectedCategory.bind(this);
     }
 
     componentDidMount(){
@@ -20,28 +23,45 @@ class TaskForm extends Component {
      handleClick(event) {
         //  const id = this.props.categories.id;
         event.preventDefault();
-        console.log("print",event.target.id)
         this.props.removeCategory(event.target.id);
         this.props.loadCategories(this.props.user.id);
 
   }
 
+   handleSubmit(event, user){
+        event.preventDefault();
+        const newTask ={
+            name: event.target.name.value,
+            categoryId: this.state.categoryId,
+            date: "20170910",
+            status: 'incomplete',
+            userId: this.props.user.id
+        }
+
+        this.props.createTask(newTask)
+   }
+ selectedCategory (event){
+     event.preventDefault();
+         this.setState({categoryId: event.target.id})
+
+ }
     render(){
-         const colors = this.props.colors;
+
         const categories = this.props.categories;
 
-    // console.log("CATEGORY", categories)
+
         return (
             <div>
             here is form!
             <br />
-            <input type="text" placeholder="input task here" />
-
-
+            <form onSubmit={this.handleSubmit}>
+            <input name='name' type="text" placeholder="input task here" />
+                <button type='submit'>Add task</button>
+            </form>
                      {categories.map((cat, idx) => (
                         (
                           <label key={idx} className='color'>
-                            <button style={{color: `${cat.color.hex}`}} value={cat.name} > {cat.name}</button>  <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span><button id={cat.id} onClick={this.handleClick}>delete</button>
+                            <button id={cat.id} onClick={this.selectedCategory} style={{color: `${cat.color.hex}`}} value={cat.name} > {cat.name}</button>  <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span><button id={cat.id} onClick={this.handleClick}>delete</button>
                           </label>
                         )))}
 
@@ -56,7 +76,7 @@ const mapState = (state) => ({
 
 })
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, ownProps) => {
     return {
       loadCategories(userId) {
         dispatch(fetchCategories(userId));
@@ -64,6 +84,10 @@ const mapDispatch = (dispatch) => {
       },
       removeCategory(categoryId){
           dispatch(removeCategory( categoryId));
+      },
+      createTask(newTask){
+          dispatch(createTask(newTask));
+        ownProps.history.push('/day');
       }
 
     };
