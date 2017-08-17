@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchTasks, fetchEvents, fetchNotes, updatedDay } from '../store';
 import {TaskBullets, Events} from './';
-
+import { Tbody, Td, Tr, Thead, Th } from './component-style/index.js'
 
 class MonthDumbComp extends Component {
 
@@ -41,48 +41,37 @@ class MonthDumbComp extends Component {
         return (
             <span>
                 <table>
-                    <thead>
-                        <tr key="1">
-                            <th />
-                            <th />
-                            <th>Event</th>
-                            <th>Task</th>
-                        </tr>
-                    </thead>
+                    <Thead>
+                        <Tr key="1">
+                            <Th>Date</Th>
+                            <Th>Event</Th>
+                            <Th>Task</Th>
+                        </Tr>
+                    </Thead>
 
-                    <tbody> {daysInMonth.map((day) => {
+                    <Tbody> {daysInMonth.map((day) => {
                         if (day.weekday === "We") {
 
                             return (
-                                <tr key={Math.random()}>
-                                    <span >
-                                    <Link to='/day' onClick={() => updateDay(day.date)}>
-                                            <td>{day.weekday}</td>
-                                            <td> {day.dateOfM}</td>
-                                    </Link>
-                                    </span>
-                                    <td><Events events={filteredEvents[daysInMonth.indexOf(day)]} /></td>
-                                    <td><TaskBullets tasks={filteredTasks[daysInMonth.indexOf(day)]} /></td>
-                                </tr>
-
+                                
+                                <Tr key={Math.random()}>
+                                    <Td><Link to='/day' onClick={() => updateDay(day.date)}>{day.weekday}   {day.dateOfM}</Link></Td> 
+                                    <Td><Events events={filteredEvents[daysInMonth.indexOf(day)]} /></Td>
+                                    <Td><TaskBullets tasks={filteredTasks[daysInMonth.indexOf(day)]} /></Td>
+                                </Tr>
+                                
                             )
                         }
                         else {
                             return (
-                                <tr key={Math.random()}>
-                                    <span >
-                                    <Link to='/day' onClick={() => updateDay(day.date)}>
-                                            <td>{day.weekday}</td>
-                                            <td> {day.dateOfM}</td>
-                                    </Link>
-                                    </span>
-                                    <td><Events events={filteredEvents[daysInMonth.indexOf(day)]} /></td>
-                                    <td><TaskBullets tasks={filteredTasks[daysInMonth.indexOf(day)]} /></td>
-                                </tr>
-
+                                  <Tr key={Math.random()}>
+                                     <Td><Link to='/day' onClick={() => updateDay(day.date)}> {day.weekday}   {day.dateOfM}</Link></Td> 
+                                    <Td><Events events={filteredEvents[daysInMonth.indexOf(day)]} /></Td>
+                                    <Td><TaskBullets tasks={filteredTasks[daysInMonth.indexOf(day)]} /></Td>
+                                </Tr>
                             )
                         }
-                    })} </tbody>
+                    })} </Tbody>
 
                 </table>
             </span>
