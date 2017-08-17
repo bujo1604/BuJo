@@ -12,6 +12,51 @@ export const Card = styled.div`
   margin: ${props => props.login ? '75px' : '20px'};
   box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
 `
+export const styTable = styled.table`
+  border: 1px solid black;
+`
+
+export const styTh = styled.th`
+  border: 1px solid black;
+`
+
+export const styTd = styled.td`
+  border: 1px solid black;
+`
+export const Th = styled.th`
+  text-align: center;
+  color: white;
+  background-color: teal;
+  border: 1px solid black;
+`
+export const Tr = styled.tr`
+  color: #666;
+  border: 1px solid black;
+`
+
+export const Td = styled.td`
+   border: 1px solid black;
+
+  tbody > & {
+    align: center;
+    padding: 200px;
+    border: 20px solid black;
+    vertical-align: top;
+    text-align: left;
+  }
+
+  
+`
+
+export const Thead = styled.thead`
+  color: #666;
+  fill: teal;
+ 
+`
+export const Tbody = styled.tbody`
+  
+  color: #666;
+`
 export const Title = styled.h1`
   font-size: ${props => props.secondary ? '25px' : '35px'};
   letter-spacing: 10px;
