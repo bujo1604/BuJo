@@ -16,6 +16,7 @@ const MonthByDay = (props) => {
     return (
         <div>
             <button onClick={previousMonth}>Prev Month</button>
+            <h1>{month}</h1>
             <button onClick={nextMonth}>Next Month</button>
             <MonthDumbComp daysInMonth={daysInMonth} month={month} />
         </div>
@@ -29,10 +30,10 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => {
     return {
         nextMonth() {
-            dispatch(gotNextMonth())
+            dispatch(gotNextMonth())  // to be used in on click
         },
         previousMonth() {
-            dispatch(gotPreviousMonth())
+            dispatch(gotPreviousMonth()) // to be used in on click
         }
     };
 }

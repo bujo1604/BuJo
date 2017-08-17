@@ -21,11 +21,12 @@ function getRandomColor() {
 
 
 export const UserHome = (props) => {
-  const {email} = props
+  const {email, month} = props
+
   const colorR = getRandomColor();
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h3>Welcome, {email} --- It is {month}</h3>
         <svg width="300" height="300">
 
             <rect x="0" y="0" width="300" height="300" fill="white" />
@@ -61,7 +62,8 @@ export const UserHome = (props) => {
  */
 const mapState = (state) => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    month: state.month
   }
 }
 
