@@ -4,6 +4,7 @@
  * having to figure out which file they belong to!
  */
 export {default as AddNote} from './AddNote';
+export {default as AddEvent} from './AddEvent'
 export {Login, Signup} from './AuthForm'
 export {default as Events} from './Events'
 export {default as Insights} from './Insights'
@@ -18,4 +19,4 @@ export {default as UserHome} from './UserHome'
 export {default as CategoryForm} from './CategoryForm';
 export {default as MonthByDay} from './MonthByDay';
 export {default as MonthDumbComp} from './MonthDumbComp';
-
+export {default as TaskBullets} from './TaskBullets';

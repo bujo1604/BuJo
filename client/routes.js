@@ -4,17 +4,23 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, Insights, SingleDay, MonthByDay, TaskForm, AddNote } from './components';
-import { me } from './store'
+
+import { Main, Login, Signup, UserHome, Insights, SingleDay, MonthByDay, TaskForm, AddNote, AddEvent } from './components';
+import { me, fetchTasks, fetchEvents, fetchNotes} from './store'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
   componentDidMount() {
-    this.props.loadInitialData()
+    this.props.loadUser();
   }
 
+  componentWillReceiveProps(nextProps){
+     if(this.props.user.id !== nextProps.user.id){
+        this.props.loadData(nextProps.user.id);
+    }
+  }
   render() {
     const { isLoggedIn } = this.props
 
@@ -35,6 +41,7 @@ class Routes extends Component {
                 <Route exact path='/calendar' component={MonthByDay} />
                 <Route path='/addtask' component={TaskForm} />
                 <Route path='/addnote' component={AddNote} />
+                <Route path='/addevent' component={AddEvent} />
               </Switch>
             }
             {/* Displays our Login component as a fallback */}
@@ -53,14 +60,20 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData() {
+    loadUser() {
       dispatch(me())
+    },
+     loadData(userId) {
+      dispatch(fetchTasks(userId));
+      dispatch(fetchEvents(userId));
+      dispatch(fetchNotes(userId));
     }
   }
 }
@@ -71,6 +84,6 @@ export default connect(mapState, mapDispatch)(Routes)
  * PROP TYPES
  */
 Routes.propTypes = {
-  loadInitialData: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
