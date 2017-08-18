@@ -25,7 +25,6 @@ export function deleteCategory(id) {
 
 export function fetchCategories (userId) {
     return function thunk (dispatch){
-        console.log('USERID IN THUNK', userId)
         return axios.get(`/api/categories/${userId}`)
         .then(res => dispatch(gotCategories(res.data)))
         .catch(error => { console.log(error) });
@@ -33,7 +32,6 @@ export function fetchCategories (userId) {
 }
 export const addNewCategory = (category, userId) => (dispatch) => {
       axios.post(`/api/categories`, category)
-
         .then(res =>
            {
             dispatch(fetchCategories(userId))})
@@ -41,7 +39,6 @@ export const addNewCategory = (category, userId) => (dispatch) => {
  };
 
  export const removeCategory = categoryId => dispatch => {
-     console.log("ID", categoryId)
   dispatch(deleteCategory(categoryId));
   axios.delete(`/api/categories/${categoryId}`)
        .catch(err => console.error(`Removing category unsuccessful`, err));
