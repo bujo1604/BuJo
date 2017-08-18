@@ -14,8 +14,7 @@ class FutureTasks extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.year, 'this.props.year');
-        console.log(moment(this.props.year).endOf("year").format("YYYYMMDD"))
+        
         this.props.loadDataFuture(this.props.user.id, this.props.year, moment(this.props.year).endOf("year").format("YYYYMMDD"));
 
     }
@@ -39,7 +38,7 @@ class FutureTasks extends React.Component {
                 filterF[index].push(future[i]);
             }
     }
-        console.log(filterF, "filterF")
+        
         return (
             <div>
             <button onClick={previousYear}>Previous Year</button>
@@ -47,7 +46,7 @@ class FutureTasks extends React.Component {
             <button onClick={nextYear}>Next Year</button>
             <div>
             {monthsInYear.map((monthInArr, ind)=>{
-                console.log(filterF[ind], "filterF[ind]")
+                
                 return (<div key={Math.random()}><h3>{moment(monthInArr).format("MMMM")}</h3>
                     <TaskWords tasks={filterF[ind]} />
                     </div>
