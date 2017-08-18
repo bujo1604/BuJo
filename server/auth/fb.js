@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width initial-scale=1.0'>
-    <title>BUJO</title>
-    <script defer src="/bundle.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
-    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
-  </head>
-  <body>
-
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-
-    <div id="app"></div>
-
-    <script>
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -46,7 +28,7 @@
 
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '643395725995953',
+      appId      : '715120318685789',
       cookie     : true,
       xfbml      : true,
       version    : 'v2.10'
@@ -90,24 +72,4 @@ FB.getLoginStatus(function(response) {
         'Thanks for logging in, ' + response.name + '!';
     });
   }
-</script>
 
-
-
-    <!-- <script>
-
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script> -->
-
-  </body>
-</html>
-
-
-<!-- 2c19da7f3de647e7c5c11929c39e3ad4 -->

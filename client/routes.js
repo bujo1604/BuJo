@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 
-import { Main, Login, Signup, UserHome, Insights, SingleDay, MonthByDay, TaskForm, AddNote, AddEvent, Settings } from './components';
+import { Main, Login, Signup, UserHome, Insights, SingleDay, MonthByDay, TaskForm, AddNote, AddEvent, Settings, Fb } from './components';
 import { me, fetchTasks, fetchEvents, fetchNotes} from './store'
 
 /**
@@ -31,6 +31,7 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path='/login' component={Login} />
             <Route path='/signup' component={Signup} />
+
             {
               isLoggedIn &&
               <Switch>
