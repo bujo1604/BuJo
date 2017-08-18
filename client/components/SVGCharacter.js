@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import { fetchTasks, fetchEvents, fetchNotes, gotNextDay, gotPreviousDay, fetchCategories, fetchColors } from '../store';
 import {Tasks, Events, Notes} from './';
 import SVGformat from './SVGformat';
+import HabitTracker1 from './HabitTracker1';
 
 class SVGCharacter extends Component {
 
@@ -72,7 +73,9 @@ class SVGCharacter extends Component {
 
       <div>
         <SVGformat color={Color} c1={c1} c2={c2} c3={c3} />
-      </div>
+        
+        <HabitTracker1 />
+        </div>
     )
   }
 
