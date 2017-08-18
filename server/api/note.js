@@ -26,6 +26,12 @@ router.get('/:userId', function (req, res, next) {
     .catch(next);
 });
 
+router.get('/:noteId', function (req, res, next) {
+    Note.findById(req.params.notetId)
+    .then(event => res.json(event))
+    .catch(next);
+});
+
 //post note for user
 router.post('/', function (req, res, next) {
     return Note.create({
@@ -34,5 +40,15 @@ router.post('/', function (req, res, next) {
         date: req.body.date
     })
     .then(newNote => res.json(newNote))
+    .catch(next);
+});
+
+
+
+router.delete('/:noteId', function (req, res, next) {
+    const id = req.params.noteId;
+
+  Note.destroy({ where: { id } })
+    .then(() => res.status(204).end())
     .catch(next);
 });

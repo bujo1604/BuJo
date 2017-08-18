@@ -70,6 +70,11 @@ const categories = [
   { name: 'friends', userId: 5, colorId: 4},
   { name: 'fashion', userId: 5, colorId: 5},
   { name: 'me myself and I', userId: 5, colorId: 6},
+  { name: 'self care', userId: 3, colorId: 1},
+  { name: 'health', userId: 3, colorId: 2},
+  { name: 'exercise', userId: 3, colorId: 3},
+  { name: 'learning', userId: 3, colorId: 4},
+  { name: 'social', userId: 3, colorId: 5},
 ];
 const events = [
   { name: 'Mom\'s Birthday Dinner', location: '46 Ashland Avenue', date: '20170815', time: '20:00:00', userId: 1},
@@ -99,6 +104,10 @@ const events = [
   { name: 'Lemonade Tour', location: 'x', date: '20170703', time: '18:00:00', userId: 5},
   { name: 'Lemonade Tour', location: 'x', date: '20170705', time: '18:00:00', userId: 5},
   { name: 'Lemonade Tour', location: 'x', date: '20170708', time: '18:00:00', userId: 5},
+  { name: 'Pilates Class', location: '150 5th Avenue, Brooklyn, NY 11217', date: '20170907', time: '09:00:00', userId: 3},
+  { name: 'Vacation', location: 'Lake', date: '20170908', time: '10:00:00', userId: 3},
+  { name: 'Dinner For Dads Birthday', location: 'sushi', date: '2010909', time: '9:00:00', userId: 3},
+  { name: 'Welcome to Nightvale Book Release Party', location: 'The Strand', date: '20171017', time: '18:00:00', userId: 3},
 ];
 
 const tasks = [
@@ -331,21 +340,16 @@ const tasks = [
   { name: 'Dance workout', status: 'complete', date: '20170728', userId: 5, categoryId: 17, value: 1},
   { name: 'Dance workout', status: 'complete', date: '20170729', userId: 5, categoryId: 17, value: 1},
   { name: 'Dance workout', status: 'complete', date: '20170730', userId: 5, categoryId: 17, value: 1},
-
-
-
-
-
-
-
+  { name: 'Emergency Dance Party', status: 'incomplete', userId: 3, date:"notYetAssigned", categoryId: 16 , value:1, assigned: 'unassigned', FutureMonth: '20170801'},
+  { name: 'Go See The New York Neofuturists', status: 'incomplete', date:"notYetAssigned", userId: 3, categoryId: 14 , value:1, assigned: 'unassigned', FutureMonth: '20170901'},
+  { name: 'Performing Afts Camp Reunion', status: 'incomplete', date:"notYetAssigned", userId: 3, categoryId: 15 , value:1, assigned: 'unassigned', FutureMonth: '20170901'},
+  { name: 'Finish reading the book', status: 'complete', date: '20170816', userId: 3, categoryId: 15, value:1, assigned: 'assigned'},
+  { name: 'Take care of the dogs', status: 'complete', date: '20170817', userId: 3, categoryId: 15, value:1, assigned: 'assigned', FutureMonth: '20170801'},
+  { name: 'Pick Up Groceries', status: 'complete', date: 'notYetAssigned',userId: 3, categoryId: 16 , value:1, assigned: 'unassigned', FutureMonth: '20170901'},
+  { name: 'Finish Grace Shopper', status: 'complete', date: 'notYetAssigned', userId: 3, categoryId: 16 , value:1, assigned: 'unassigned', FutureMonth: '20170901'},
+  { name: 'Finish reading the book', status: 'complete', date: '20170816', userId: 3, categoryId: 15, value:1, assigned: 'assigned'},
+  { name: 'Take care of the dogs', status: 'complete', date: '20170817', userId: 3, categoryId: 15, value:1, assigned: 'assigned', FutureMonth: '20170801'},
 ];
-
-  // { name: 'family', userId: 5, colorId: 1},
-  // { name: 'career', userId: 5, colorId: 2},
-  // { name: 'health', userId: 5, colorId: 3},
-  // { name: 'friends', userId: 5, colorId: 4},
-  // { name: 'fashion', userId: 5, colorId: 5},
-  // { name: 'me myself and i', userId: 5, colorId: 6},
 
 const notes = [
   { text: 'life is good', date: '20170815', userId: 1},

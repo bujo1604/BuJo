@@ -8,6 +8,7 @@ import { makeArrOfDaysInMonthSunToSat } from './dateFunctions'
 import MonthDumbComp from './MonthDumbComp';
 import { gotNextMonth, gotPreviousMonth, updatedMonth } from '../store'
 
+
 const MonthByDay = (props) => {
 
     const { previousMonth, nextMonth, month, updateMonth } = props

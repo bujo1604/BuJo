@@ -70,4 +70,20 @@ function makeArrDaysInWeek(date) {
         return arrDaysInWeek;
 
 }
-export {makeArrOfDaysInMonthSunToSat, makeArrOfDaysInCalendarMonth, makeArrDaysInWeek, monthStartDate, monthEndDate, weekEndDate}
+
+function makeArrMonthsInYear(date) {
+    var arrMonthInYear = [];
+    var firstMonthOfYear = moment(date).startOf("year");
+    for (let i = 0; i < 12; i++) { 
+
+        var currentDate = new Date(moment(firstMonthOfYear).add(i, "month"));
+        var month =  moment(currentDate).format("YYYYMMDD")
+        arrMonthInYear.push(month);
+            
+    }
+        return arrMonthInYear;
+
+}
+
+export {makeArrOfDaysInMonthSunToSat, makeArrOfDaysInCalendarMonth, makeArrDaysInWeek, monthStartDate, monthEndDate, weekEndDate, makeArrMonthsInYear}
+
