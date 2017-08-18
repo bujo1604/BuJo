@@ -8,6 +8,7 @@ const Events = (props) => {
                 <div key={idx}>
                     <span> &#x25CB;</span>
                     <span> {event.time} {event.name} </span>
+                     <button >update</button>
                 </div>
             ))}
         </div>

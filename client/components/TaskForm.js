@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { fetchCategories, removeCategory, fetchColors, createTask, fetchTasks } from '../store';
-import CategoryForm from './CategoryForm';
+
 
 class TaskForm extends Component {
     constructor(props) {
@@ -63,11 +63,14 @@ class TaskForm extends Component {
                     (
                         <label key={idx} className='color'>
                             <button id={cat.id} onClick={this.selectedCategory} style={{ color: `${cat.color.hex}` }} value={cat.name} > {cat.name}</button>
-                            <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span><button id={cat.id} onClick={this.handleClick}>delete</button>
+                            <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span>
+                            {/*
+                            <button id={cat.id} onClick={this.handleClick}>delete</button>
+                            */}
                         </label>
                     )))}
 
-                <CategoryForm />
+
             </div>
         )
     }

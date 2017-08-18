@@ -20,3 +20,4 @@ export {default as CategoryForm} from './CategoryForm';
 export {default as MonthByDay} from './MonthByDay';
 export {default as MonthDumbComp} from './MonthDumbComp';
 export {default as TaskBullets} from './TaskBullets';
+export {default as Settings} from './Settings';

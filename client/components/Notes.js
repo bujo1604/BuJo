@@ -9,6 +9,7 @@ const Notes = (props) => {
                 <div key={idx}>
                     <span> &#x25AC;</span>
                     <span> {note.text} </span>
+                     <button >update</button>
                 </div>
             ))}
         </div>

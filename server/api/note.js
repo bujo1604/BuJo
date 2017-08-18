@@ -25,3 +25,19 @@ router.post('/', function (req, res, next) {
     .then(newNote => res.json(newNote))
     .catch(next);
 });
+
+
+router.put('/:noteId', function (req, res, next) {
+     Note.findById(req.params.taskId)
+    .then(note => {
+        if (!note) {res.sendStatus(404)}
+        return note.update({
+            userId: req.body.userId,
+            text: req.body.note,
+            date: req.body.date});
+    })
+    .then(note => {
+        res.send(note);
+    })
+    .catch(next);
+});

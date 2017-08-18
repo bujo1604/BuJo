@@ -44,7 +44,9 @@ router.put('/:taskId', function (req, res, next) {
         if (!task) {res.sendStatus(404)}
         return task.update({
             name: req.body.name,
-            description: req.body.description,
+            userId: req.body.userId,
+            categoryId: req.body.categoryId,
+            date: req.body.date,
             status: req.body.status});
     })
     .then(task => {

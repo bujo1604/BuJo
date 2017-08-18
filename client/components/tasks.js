@@ -12,12 +12,13 @@ const Tasks = (props) => {
                 {task.status === 'complete' ?
                     <div >
                         <span  style={{ color: `${task.category.color.hex}` }}> &#x2613;</span>
-                        <span> {task.name} </span>
+                        <span> {task.name} </span><button >update</button>
                     </div> :
                     <div >
                         <span style={{ color: `${task.category.color.hex}` }}> &#x25CF;</span>
                         <span> {task.name}
-                        </span><button id={task.id}  onClick={  handleClick(user) } type='submit' >DELETE</button>
+                        </span><button id={task.id}  onClick={  handleClick(user) } type='submit' >delete</button>
+                        <button >update</button>
 
                     </div>
                 }
@@ -25,7 +26,11 @@ const Tasks = (props) => {
         ))}
     </div>
     )
+
 }
+
+
+
 
 const mapState = (state) => ({
     user: state.user
