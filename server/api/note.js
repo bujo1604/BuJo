@@ -21,6 +21,24 @@ router.get('/:noteId', function (req, res, next) {
     .catch(next);
 });
 
+router.put('/:noteId', (req, res, next) => {
+    const id = req.params.noteId;
+    Note.findById(id)
+    .then(note => {
+      
+        return note.update(req.body)})
+    .then(updated => {
+       
+        let updatedResponse = updated.dataValues;
+       
+        res.send({message: 'Updated note sucessfully', updatedResponse})
+    })
+    .catch(next);
+})
+
+
+
+
 //post note for user
 router.post('/', function (req, res, next) {
     return Note.create({

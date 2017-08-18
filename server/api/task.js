@@ -42,34 +42,17 @@ router.put('/:taskId', (req, res, next) => {
     const id = req.params.taskId;
     Task.findById(id)
     .then(task => {
-        console.log('req.body', req.body)
+
         return task.update(req.body)})
     .then(updated => {
        
         let updatedResponse = updated.dataValues;
-        console.log('UR', updatedResponse)
+        
         res.send({message: 'Updated sucessfully', updatedResponse})
     })
     .catch(next);
 })
 
-
-// router.put('/:taskId', function (req, res, next) {
-//     Task.findById(req.params.taskId)
-//    .then(task => {
-//        if (!task) {res.sendStatus(404)}
-//        return task.update({
-//            name: req.body.name,
-//            userId: req.body.userId,
-//            categoryId: req.body.categoryId,
-//            date: req.body.date,
-//            status: req.body.status});
-//    })
-//    .then(task => {
-//        res.send(task);
-//    })
-//    .catch(next);
-// });
 
 
 router.delete('/:taskId', function (req, res, next) {

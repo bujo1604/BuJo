@@ -55,7 +55,7 @@ const mapDispatch = (dispatch) => {
             
             return (
                 (event) => {
-                    // alert('are you sure?'); // if yes then change task
+                   // alert('are you sure?'); // if yes then change task
                     const taskId = event.target.id
                     event.preventDefault()
                     dispatch(changeTask(taskId, updatedTask))
