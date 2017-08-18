@@ -25,7 +25,11 @@ const Tasks = (props) => {
             ))}
         </div>
     )
+
 }
+
+
+
 
 const mapState = (state) => ({
     user: state.user
