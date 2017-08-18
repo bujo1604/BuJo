@@ -2,7 +2,7 @@ import React from 'react';
 // import InlineEdit from 'react-edit-inline'
 import { RIETextArea } from 'riek'
 import { connect } from 'react-redux'
-import { fetchNotes, deleteNote, postNote, changeNote } from '../store'
+import { fetchNotes, deleteNote,  changeNote } from '../store'
 
 
 class Notes extends React.Component {
@@ -105,7 +105,6 @@ class Notes extends React.Component {
 
 const mapState = (state) => ({
       user: state.user, 
-      notes: state.notes, 
       day: state.day
     })
     

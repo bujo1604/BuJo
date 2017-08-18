@@ -30,6 +30,13 @@ export function postEvent (newEvent) {
     };
 }
 
+export function changeEvent (eventId, event) {
+    return function thunk (dispatch){
+        return axios.put(`/api/events/${eventId}`, event)
+        .then(res => dispatch(gotEvents(res.data)))
+        .catch(error => { console.log(error) });
+    }
+}
 
 export function deleteEvent(eventId){
     return function thunk(dispatch){
@@ -50,7 +57,7 @@ export default function (state = [], action) {
       return [...state, action.event];
 
     case REMOVE_EVENT:
-        return [...state.filter(event => event.id !== action.id)];
+        return [...state, [].filter(event => event.id !== action.id)];
     default:
       return state;
   }
