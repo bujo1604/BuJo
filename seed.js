@@ -100,9 +100,11 @@ const tasks = [
   { name: 'learn d3', status: 'incomplete', date: '20170816', userId: 2, categoryId: 13 , value:1},
   { name: 'grocery shopping', status: 'complete', date: '20170816', userId: 2, categoryId: 14, value:1},
   { name: 'laundry', status: 'complete', date: '20170817', userId: 2, categoryId: 14, value:1},
-  { name: 'Emergency Dance Party', status: 'incomplete', userId: 3, categoryId: 16 , value:1, assigned: 'unassigned', FutureMonth: '201708'},
+  { name: 'Emergency Dance Party', status: 'incomplete', userId: 3, categoryId: 16 , value:1, assigned: 'unassigned', FutureMonth: '20170801'},
+  { name: 'Go See The New York Neofuturists', status: 'incomplete', userId: 3, categoryId: 14 , value:1, assigned: 'unassigned', FutureMonth: '20170901'},
+  { name: 'Performing Afts Camp Reunion', status: 'incomplete', userId: 3, categoryId: 15 , value:1, assigned: 'unassigned', FutureMonth: '20170901'},
   { name: 'Finish reading the book', status: 'complete', date: '20170816', userId: 3, categoryId: 15, value:1, assigned: 'assigned'},
-  { name: 'Take care of the dogs', status: 'complete', date: '20170817', userId: 3, categoryId: 15, value:1, assigned: 'assigned', FutureMonth: '201708'},
+  { name: 'Take care of the dogs', status: 'complete', date: '20170817', userId: 3, categoryId: 15, value:1, assigned: 'assigned', FutureMonth: '20170801'},
 ];
 
 
