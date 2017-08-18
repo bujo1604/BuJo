@@ -5,10 +5,46 @@ const {Task, Color} = require('../db/models');
 
 module.exports = router;
 
+//retreive all tasks for user between start and end date query
+//and add .category and .color property to task
 router.get('/:userId', function (req, res, next) {
-    let userId = req.params.userId
+    if (!req.query.startdate || !req.query.enddate) return next()
     Task.findAll({
-        where: {userId},
+        where: {
+            userId: req.params.userId,
+            date: { $between: [req.query.startdate, req.query.enddate]}
+        },
+        include: [{ all: true, nested: true }]
+    })
+    .then(task => res.json(task))
+    .catch(next);
+
+});
+
+//retreive all tasks for user
+//add .category and .color property to task
+
+router.get('/:userId', function (req, res, next) {
+    Task.findAll({
+        where: {
+            userId: req.params.userId,
+        },
+        include: [{ all: true, nested: true }]
+    })
+    .then(task => res.json(task))
+    .catch(next);
+
+});
+
+//retreive all COMPLETE/INCOMPLETE tasks for user between start and end date query
+//and add .category and .color property to task
+router.get('/:userId/:status', function (req, res, next) {
+    Task.findAll({
+        where: {
+            userId: req.params.userId,
+            status: req.params.status,
+            date: { $between: [req.query.startdate, req.query.enddate]}
+        },
         include: [{ all: true, nested: true }]
     })
     .then(task => res.json(task))
@@ -45,11 +81,6 @@ router.get('/:userId/future', function (req, res, next) {
     .catch(next);
 
 });
-
-
-
-
-
 
 
 router.get('/:taskId', function (req, res, next) {

@@ -5,6 +5,18 @@ const {Event} = require('../db/models');
 
 module.exports = router;
 
+//retreive all events for user between start and end date query
+router.get('/:userId', function (req, res, next) {
+    if (!req.query.startdate || !req.query.enddate) return next()
+    Event.findAll({where: {
+        userId: req.params.userId,
+        date: { $between: [req.query.startdate, req.query.enddate]}
+    }})
+    .then(event => res.json(event))
+    .catch(next);
+
+});
+
 //retreive all events for user
 router.get('/:userId', function (req, res, next) {
     let userId = req.params.userId
@@ -29,7 +41,7 @@ router.post('/', function (req, res, next) {
         time: req.body.time,
         date: req.body.date,
         userId: req.body.userId})
-        
+
         .then(event => res.status(201).send(event))
         .catch(next);
 });

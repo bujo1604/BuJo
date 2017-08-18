@@ -7,7 +7,6 @@ module.exports = router;
 
 // retreive all categories for user and include color
 router.get('/:userId', function (req, res, next) {
-    console.log("PRINT")
     let userId = req.params.userId
     Category.findAll({where: {userId}, include: [{ all: true}]})
     .then(category => res.json(category))
