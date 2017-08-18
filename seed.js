@@ -406,7 +406,7 @@ const tasks = [
   { name: 'Dance workout', status: 'complete', date: '20170815', userId: 5, categoryId: 17, value: 1},
   { name: 'Dance workout', status: 'complete', date: '20170816', userId: 5, categoryId: 17, value: 1},
   { name: 'Dance workout', status: 'complete', date: '20170818', userId: 5, categoryId: 17, value: 1},
-  { name: 'Dance workout', status: 'icomplete', date: '20170819', userId: 5, categoryId: 17, value: 1},
+  { name: 'Dance workout', status: 'incomplete', date: '20170819', userId: 5, categoryId: 17, value: 1},
   { name: 'Dance workout', status: 'incomplete', date: '20170825', userId: 5, categoryId: 17, value: 1},
   { name: 'Dance workout', status: 'incomplete', date: '20170826', userId: 5, categoryId: 17, value: 1},
   { name: 'Dance workout', status: 'incomplete', date: '20170901', userId: 5, categoryId: 17, value: 1},
