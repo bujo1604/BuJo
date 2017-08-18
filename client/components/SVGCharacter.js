@@ -6,6 +6,7 @@ import { fetchTasks, fetchEvents, fetchNotes, gotNextDay, gotPreviousDay, fetchC
 import {Tasks, Events, Notes} from './';
 import SVGformat from './SVGformat';
 
+
 class SVGCharacter extends Component {
 
   constructor(props) {
@@ -72,6 +73,7 @@ class SVGCharacter extends Component {
 
       <div>
         <SVGformat color={Color} c1={c1} c2={c2} c3={c3} />
+      
       </div>
     )
   }

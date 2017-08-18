@@ -27,11 +27,11 @@ export const UserHome = (props) => {
   const colorR = getRandomColor();
   return (
     <div>
-    
+
 
     <div>
     <h3>Welcome, {email} --- It is {month}</h3>
-       
+
       <SVGCharacter />
     </div>
     </div>

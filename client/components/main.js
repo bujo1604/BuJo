@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
 import SVGformat from './SVGformat'
+import FacebookButton from './FacebookButton'
 
 /**
  * COMPONENT
@@ -27,6 +28,7 @@ const Main = (props) => {
               <Link to='/insights'>Insights</Link>
               <Link to='/day'>Day</Link>
               <Link to='/calendar'>Calendar</Link>
+              <Link to='/futureLog'>Future-Log</Link>
               <a href='#' onClick={handleClick}>Logout</a>
             </div>
             : <div>
@@ -34,7 +36,7 @@ const Main = (props) => {
 
               <Link to='/login'>Login</Link>
               <Link to='/signup'>Sign Up</Link>
-
+                <FacebookButton fb={FacebookButton} />
             </div>
 
         }

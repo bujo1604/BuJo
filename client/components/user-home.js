@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import Fb from './Fb';
+
 
 /**
  * COMPONENT
@@ -13,7 +13,7 @@ export const UserHome = (props) => {
     <div>
       <h3>Welcome, {email}</h3>
       <img src="./bujoavatar.gif"></img>
-      <Fb />
+
     </div>
   )
 }
