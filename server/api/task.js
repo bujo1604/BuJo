@@ -5,8 +5,6 @@ const {Task, Color} = require('../db/models');
 
 module.exports = router;
 
-//retreive all tasks for user and add .category and .color property to task
-//get'/', add query string to url in thunk
 router.get('/:userId', function (req, res, next) {
     let userId = req.params.userId
     Task.findAll({
@@ -17,6 +15,40 @@ router.get('/:userId', function (req, res, next) {
     .catch(next);
 
 });
+//retreive all tasks for user and add .category and .color property to task
+//get'/', add query string to url in thunk
+router.get('/:userId/future', function (req, res, next) {
+    if(!req.query.startdate || !req.query.enddate) return next()
+    let userId = req.params.userId
+    console.log("inside userId/future api route")
+    Task.findAll({
+        where: {userId,
+                assigned: "unassigned",
+                FutureMonth: { $between: [req.query.startdate, req.query.enddate]}
+               
+                },
+         include: [{ all: true, nested: true }]
+        
+    })
+    .then(task => res.json(task))
+    .catch(next);
+
+});
+
+router.get('/:userId/future', function (req, res, next) {
+    let userId = req.params.userId
+    Task.findAll({
+        where: {userId, assigned: "unassigned"},
+        include: [{ all: true, nested: true }]
+    })
+    .then(task => res.json(task))
+    .catch(next);
+
+});
+
+
+
+
 
 
 
