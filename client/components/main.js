@@ -23,6 +23,7 @@ const Main = (props) => {
             ? <div>
               {/* The navbar will show these links after you log in */}
               <Link to='/home'>Home</Link>
+              <Link to='/settings'>Settings</Link>
               <Link to='/insights'>Insights</Link>
               <Link to='/day'>Day</Link>
               <Link to='/calendar'>Calendar</Link>
@@ -31,12 +32,12 @@ const Main = (props) => {
             </div>
             : <div>
               {/* The navbar will show these links before you log in */}
-              
+
               <Link to='/login'>Login</Link>
               <Link to='/signup'>Sign Up</Link>
-              
+
             </div>
-            
+
         }
       </nav>
       <hr />

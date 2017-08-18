@@ -13,6 +13,7 @@ const gotTasks = (tasks) => ({type: GOT_TASKS, tasks});
 const addTask = (task) => ({ type: ADD_TASK, task});
 const deleteTask = (id) => ({ type: DELETE_TASK, id: id });
 
+
 //THUNK CREATORS
 
 export function fetchTasks (userId) {
@@ -23,9 +24,11 @@ export function fetchTasks (userId) {
     };
 }
 
+
+
 export function changeTask (taskId, task) {
     return function thunk (dispatch){
-        return axios.put(`/api/tasks/${taskId}`, {task})
+        return axios.put(`/api/tasks/${taskId}`, task)
         .then(res => dispatch(gotTasks(res.data)))
         .catch(error => { console.log(error) });
     }
@@ -53,7 +56,11 @@ export function createTask (newTask) {
     };
 }
 
-
+export const updateTask = (id, task) => dispatch => {
+  axios.put(`/api/tasks`, task)
+       .then(res => dispatch(gotTasks(res.data)))
+       .catch(err => console.error(`Updating task unsuccessful`, err));
+};
 
  export const removeTask = taskId => dispatch => {
   dispatch(deleteTask(taskId));
@@ -73,6 +80,8 @@ export default function (state = [], action) {
 
     case DELETE_TASK:
       return [...state.filter(task => task.id !== action.id)];
+
+
     default:
       return state;
   }

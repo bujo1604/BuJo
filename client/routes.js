@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 
-import { Main, Login, Signup, UserHome, Insights, SingleDay, MonthByDay, TaskForm, AddNote, AddEvent, FutureTasks } from './components';
+import { Main, Login, Signup, UserHome, Insights, SingleDay, MonthByDay, TaskForm, AddNote, AddEvent, FutureTasks, Settings } from './components';
 import { me, fetchTasks, fetchEvents, fetchNotes} from './store'
 
 /**
@@ -37,6 +37,7 @@ class Routes extends Component {
                 {/* Routes placed here are only available after logging in */}
                 <Route exact path='/' component={UserHome} />
                 <Route path='/home' component={UserHome} />
+                <Route path='/settings' component={Settings} />
                 <Route path='/insights' component={Insights} />
                 <Route path='/day' component={SingleDay} />
                 <Route exact path='/calendar' component={MonthByDay} />
