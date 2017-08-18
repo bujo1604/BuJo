@@ -10,6 +10,7 @@ class AddNote extends Component {
 
     render() {
         const { handleSubmit, handleCancel, user, day } = this.props;
+        
         return (
             <div>
                 <form onSubmit={evt => handleSubmit(user, evt, day)}>
