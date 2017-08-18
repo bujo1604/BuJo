@@ -16,7 +16,6 @@ const getColors = (colors) => ({type: GET_COLORS, colors});
  * THUNK CREATORS
  */
 export const fetchColors = () => dispatch => {
-console.log("COLORS THUNK")
 axios.get('/api/colors')
        .then(res => {
            dispatch(getColors(res.data));
