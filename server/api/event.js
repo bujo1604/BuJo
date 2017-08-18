@@ -46,23 +46,20 @@ router.post('/', function (req, res, next) {
         .catch(next);
 });
 
-router.put('/:eventId', function (req, res, next) {
-     Event.findById(req.params.eventId)
+router.put('/:eventId', (req, res, next) => {
+    const id = req.params.eventId;
+    Event.findById(id)
     .then(event => {
-        if (!event) {res.sendStatus(404)}
-        return event.update({
-            name: req.body.name,
-            location: req.body.location,
-            time: req.body.time,
-            date: req.body.date,
-            userId: req.body.userId
-        });
-    })
-    .then(event => {
-        res.send(event);
+      
+        return event.update(req.body)})
+    .then(updated => {
+       
+        let updatedResponse = updated.dataValues;
+       
+        res.send({message: 'Updated event sucessfully', updatedResponse})
     })
     .catch(next);
-});
+})
 
 router.delete('/:eventId', function (req, res, next) {
     const id = req.params.eventId;

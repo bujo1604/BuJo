@@ -30,6 +30,14 @@ export function postNote (newNote) {
     };
 }
 
+export function changeNote (noteId, note) {
+    return function thunk (dispatch){
+        return axios.put(`/api/notes/${noteId}`, note)
+        .then(res => dispatch(gotNotes(res.data)))
+        .catch(error => { console.log(error) });
+    }
+}
+
 export function deleteNote(noteId){
     return function thunk(dispatch){
         dispatch(removeNote(noteId));
