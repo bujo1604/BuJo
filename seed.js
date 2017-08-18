@@ -56,7 +56,11 @@ const categories = [
   { name: 'creativity', userId: 2, colorId: 3},
   { name: 'social', userId: 2, colorId: 4},
   { name: 'learning', userId: 2, colorId: 5},
-  { name: 'home', userId: 2, colorId: 6},
+  { name: 'self care', userId: 3, colorId: 1},
+  { name: 'health', userId: 3, colorId: 2},
+  { name: 'exercise', userId: 3, colorId: 3},
+  { name: 'learning', userId: 3, colorId: 4},
+  { name: 'social', userId: 3, colorId: 5},
 ];
 const events = [
   { name: 'Mom\'s Birthday Dinner', location: '46 Ashland Avenue', date: '20170815', time: '20:00:00', userId: 1},
@@ -70,7 +74,11 @@ const events = [
   { name: 'Grace Hopper Graduation', location: '5 Hanover Square', date: '20170815', time: '09:00:00', userId: 2},
   { name: 'Wedding', location: 'Church', date: '20170816', time: '10:00:00', userId: 2},
   { name: 'Interview with Google', location: 'Google', date: '20170816', time: '9:00:00', userId: 2},
-  { name: 'Dinner with Mom', location: '46 Ashland Avenue', date: '20170817', time: '18:00:00', userId: 2}
+  { name: 'Dinner with Mom', location: '46 Ashland Avenue', date: '20170817', time: '18:00:00', userId: 2},
+  { name: 'Pilates Class', location: '150 5th Avenue, Brooklyn, NY 11217', date: '20170907', time: '09:00:00', userId: 3},
+  { name: 'Vacation', location: 'Lake', date: '20170908', time: '10:00:00', userId: 3},
+  { name: 'Dinner For Dads Birthday', location: 'sushi', date: '2010909', time: '9:00:00', userId: 3},
+  { name: 'Welcome to Nightvale Book Release Party', location: 'The Strand', date: '20171017', time: '18:00:00', userId: 3},
 ];
 
 const tasks = [
@@ -92,7 +100,18 @@ const tasks = [
   { name: 'learn d3', status: 'incomplete', date: '20170816', userId: 2, categoryId: 13 , value:1},
   { name: 'grocery shopping', status: 'complete', date: '20170816', userId: 2, categoryId: 14, value:1},
   { name: 'laundry', status: 'complete', date: '20170817', userId: 2, categoryId: 14, value:1},
+  { name: 'Emergency Dance Party', status: 'incomplete', userId: 3, date:"notYetAssigned", categoryId: 16 , value:1, assigned: 'unassigned', FutureMonth: '20170801'},
+  { name: 'Go See The New York Neofuturists', status: 'incomplete', date:"notYetAssigned", userId: 3, categoryId: 14 , value:1, assigned: 'unassigned', FutureMonth: '20170901'},
+  { name: 'Performing Afts Camp Reunion', status: 'incomplete', date:"notYetAssigned", userId: 3, categoryId: 15 , value:1, assigned: 'unassigned', FutureMonth: '20170901'},
+  { name: 'Finish reading the book', status: 'complete', date: '20170816', userId: 3, categoryId: 15, value:1, assigned: 'assigned'},
+  { name: 'Take care of the dogs', status: 'complete', date: '20170817', userId: 3, categoryId: 15, value:1, assigned: 'assigned', FutureMonth: '20170801'},
+  { name: 'Pick Up Groceries', status: 'complete', date: 'notYetAssigned',userId: 3, categoryId: 16 , value:1, assigned: 'unassigned', FutureMonth: '20170901'},
+  { name: 'Finish Grace Shopper', status: 'complete', date: 'notYetAssigned', userId: 3, categoryId: 16 , value:1, assigned: 'unassigned', FutureMonth: '20170901'},
+  { name: 'Finish reading the book', status: 'complete', date: '20170816', userId: 3, categoryId: 15, value:1, assigned: 'assigned'},
+  { name: 'Take care of the dogs', status: 'complete', date: '20170817', userId: 3, categoryId: 15, value:1, assigned: 'assigned', FutureMonth: '20170801'},
 ];
+
+
 
 const notes = [
   { text: 'life is good', date: '20170815', userId: 1},

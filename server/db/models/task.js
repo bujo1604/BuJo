@@ -19,6 +19,12 @@ const Task = db.define('task', {
     value: {
         type: Sequelize.INTEGER,
         defaultValue: 1
+    },
+    FutureMonth: {
+        type: Sequelize.STRING
+    },
+    assigned:{
+        type: Sequelize.ENUM('assigned', 'unassigned')
     }
 });
 

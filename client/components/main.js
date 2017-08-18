@@ -27,6 +27,7 @@ const Main = (props) => {
               <Link to='/insights'>Insights</Link>
               <Link to='/day'>Day</Link>
               <Link to='/calendar'>Calendar</Link>
+              <Link to='/futureLog'>Future-Log</Link>
               <a href='#' onClick={handleClick}>Logout</a>
             </div>
             : <div>

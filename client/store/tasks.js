@@ -26,10 +26,10 @@ export function fetchTasks (userId) {
 
 
 
-export function changeTask (taskId, task) {
+export function changeTask (taskId, task, userId) {
     return function thunk (dispatch){
         return axios.put(`/api/tasks/${taskId}`, task)
-        .then(res => dispatch(gotTasks(res.data)))
+        .then(res => dispatch(fetchTasks(userId)))
         .catch(error => { console.log(error) });
     }
 }
@@ -56,11 +56,11 @@ export function createTask (newTask) {
     };
 }
 
-export const updateTask = (id, task) => dispatch => {
-  axios.put(`/api/tasks`, task)
-       .then(res => dispatch(gotTasks(res.data)))
-       .catch(err => console.error(`Updating task unsuccessful`, err));
-};
+// export const updateTask = (id, task) => dispatch => {
+//   axios.put(`/api/tasks`, task)
+//        .then(res => dispatch(gotTasks(res.data)))
+//        .catch(err => console.error(`Updating task unsuccessful`, err));
+// };
 
  export const removeTask = taskId => dispatch => {
   dispatch(deleteTask(taskId));
