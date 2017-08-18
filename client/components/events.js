@@ -40,7 +40,6 @@ class Events extends React.Component {
         const { events, user } = this.props;
         return (
             <div>
-            <h3 className="singleName-headings">Event</h3>
             {events.map((event, idx) => {
                 return (
                     <div key={idx}>
