@@ -23,11 +23,7 @@ class SVGCharacter extends Component {
     
      const {tasks, day, user, categories} = this.props
     const countObj = {};
-<<<<<<< HEAD
-
-=======
    
->>>>>>> efcba909faccffc1af808f34ddb597b698ee630e
     const tasksCompleted = tasks.filter(function(task){
         if(task.status === "complete"){
             if(countObj[task.categoryId]){
