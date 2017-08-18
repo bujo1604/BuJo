@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {addCountToTasks} from './taskUtils'
 
 //ACTION TYPES
 
@@ -24,8 +23,6 @@ export function fetchTasks (userId) {
     };
 }
 
-
-
 export function changeTask (taskId, task, userId) {
     return function thunk (dispatch){
         return axios.put(`/api/tasks/${taskId}`, task)
@@ -34,18 +31,14 @@ export function changeTask (taskId, task, userId) {
     }
 }
 
-export function fetchTasksWithCount (userId) {
+export function fetchTasksByDate (userId, startDate, endDate) {
     return function thunk (dispatch){
-        return axios.get(`/api/tasks/${userId}`)
-        .then(res => (res.data))
-        .then(tasks => {
-          addCountToTasks(tasks);
-          return tasks
-        })
-        .then(tasks => dispatch(gotTasks(tasks)))
+        return axios.get(`/api/tasks/${userId}?startdate=${startDate}&enddate=${endDate}&`)
+        .then(res => dispatch(gotTasks(res.data)))
         .catch(error => { console.log(error) });
     };
 }
+
 
 export function createTask (newTask) {
     return function thunk (dispatch){
@@ -56,17 +49,12 @@ export function createTask (newTask) {
     };
 }
 
-// export const updateTask = (id, task) => dispatch => {
-//   axios.put(`/api/tasks`, task)
-//        .then(res => dispatch(gotTasks(res.data)))
-//        .catch(err => console.error(`Updating task unsuccessful`, err));
-// };
-
- export const removeTask = taskId => dispatch => {
+export const removeTask = taskId => dispatch => {
   dispatch(deleteTask(taskId));
   axios.delete(`/api/tasks/${taskId}`)
        .catch(err => console.error(`Removing task unsuccessful`, err));
 };
+
 
 // REDUCER
 export default function (state = [], action) {
@@ -97,4 +85,10 @@ export default function (state = [], action) {
 //         .catch(error => { console.log(error) });
 //     };
 // }
+
+// export const updateTask = (id, task) => dispatch => {
+//   axios.put(`/api/tasks`, task)
+//        .then(res => dispatch(gotTasks(res.data)))
+//        .catch(err => console.error(`Updating task unsuccessful`, err));
+// };
 
