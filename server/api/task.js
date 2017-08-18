@@ -36,6 +36,22 @@ router.get('/:userId', function (req, res, next) {
 
 });
 
+//retreive all COMPLETE/INCOMPLETE tasks for user between start and end date query
+//and add .category and .color property to task
+router.get('/:userId/:status', function (req, res, next) {
+    Task.findAll({
+        where: {
+            userId: req.params.userId,
+            status: req.params.status,
+            date: { $between: [req.query.startdate, req.query.enddate]}
+        },
+        include: [{ all: true, nested: true }]
+    })
+    .then(task => res.json(task))
+    .catch(next);
+
+});
+
 
 
 router.get('/:taskId', function (req, res, next) {
