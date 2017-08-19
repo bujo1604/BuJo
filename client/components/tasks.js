@@ -108,7 +108,7 @@ const mapDispatch = (dispatch) => {
                     const taskId = event.target.id
                     event.preventDefault()
                     dispatch(changeTask(taskId, updatedTask, user.id))
-                    // dispatch(fetchTasks(user.id)) // needs to adjust the props recieve. componentWillRecieveProps
+                    //dispatch(fetchTasks(user.id)) // needs to adjust the props recieve. componentWillRecieveProps
 
                 })
 
