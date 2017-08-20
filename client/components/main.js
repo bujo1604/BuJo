@@ -15,7 +15,8 @@ const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
 
   return (
-    <div>
+    <div  >
+    <div className="main-div">
       <h1>BUJO</h1>
       <nav>
         {
@@ -41,7 +42,10 @@ const Main = (props) => {
         }
       </nav>
       <hr />
+      <div className = 'content'>
       {children}
+      </div>
+    </div>
     </div>
   )
 }

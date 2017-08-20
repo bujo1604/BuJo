@@ -20,10 +20,33 @@ body {
   }
 
 }
+.main-div {
+   display: flex;
+   justify-content: space-around;
+   flex-direction: column;
+  text-align: center;
 
+}
+
+.content{
+  margin: 0 auto;
+  background-color: rgba(256, 256, 256, 0.7);
+  max-width: 50em;
+  min-width: 50em;
+padding: 20px
+}
+.month{
+   margin: 0 auto;
+}
 .singlePage-title {
     font-family: 'Rock Salt', cursive;
   }
+
+// .flexbox-container {
+//   display: -ms-flex;
+//   display: -webkit-flex;
+//   display: flex;
+// }
 
 .flexbox-container {
   display: -ms-flex;
@@ -31,10 +54,18 @@ body {
   display: flex;
 }
 
+// http://www.lauraashley.com/content/ebiz/lauraashley/invt/3468787/3468787_resp_medium.jpg
 
+//https://s-media-cache-ak0.pinimg.com/564x/e7/c1/56/e7c1561d4317c0eec73c177894793088.jpg
+.b {
+  background-image: url(https://s-media-cache-ak0.pinimg.com/564x/e7/c1/56/e7c1561d4317c0eec73c177894793088.jpg
+);
+}
 
-
-
+.a{
+  background-image: url(http://www.lauraashley.com/content/ebiz/lauraashley/invt/3468787/3468787_resp_medium.jpg
+);
+}
 
 
 
