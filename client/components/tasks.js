@@ -22,7 +22,7 @@ class Tasks extends Component {
         const taskId = event.target.id
         event.preventDefault()
         this.props.removeTask(taskId, userId)
-    
+
     })
 }
 
@@ -53,7 +53,7 @@ dataChanged(data){
                             change={this.dataChanged}
                             propName={task.id.toString()}
                             />
-                            
+
                         </div> :
                         <div >
                             <span id={task.id} onClick={changeStatus(user)} style={{ color: `${task.category.color.hex}` }}> &#x25CF;</span>
@@ -63,7 +63,7 @@ dataChanged(data){
                             change={this.dataChanged}
                             propName={task.id.toString()}
                             />
-                            
+
                             <button id={task.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
 
                         </div>
@@ -91,7 +91,7 @@ const mapDispatch = (dispatch) => {
 
             },
         removeTask(taskId, userId){
-             dispatch(deleteTask(taskId))
+             dispatch(removeTask(taskId))
              dispatch(fetchTasks(userId))
         },
 
@@ -108,7 +108,7 @@ const mapDispatch = (dispatch) => {
                     const taskId = event.target.id
                     event.preventDefault()
                     dispatch(changeTask(taskId, updatedTask, user.id))
-                    // dispatch(fetchTasks(user.id)) // needs to adjust the props recieve. componentWillRecieveProps
+                    //dispatch(fetchTasks(user.id)) // needs to adjust the props recieve. componentWillRecieveProps
 
                 })
 

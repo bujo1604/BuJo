@@ -23,10 +23,10 @@ export function fetchTasks (userId) {
     };
 }
 
-export function changeTask (taskId, task) {
+export function changeTask (taskId, task, userId) {
     return function thunk (dispatch){
         return axios.put(`/api/tasks/${taskId}`, task)
-        .then(res => dispatch(fetchTasks(res.data)))
+        .then(res => dispatch(fetchTasks(userId)))
         .catch(error => { console.log(error) });
     }
 }
