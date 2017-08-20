@@ -8,6 +8,9 @@ export {default as AddEvent} from './AddEvent'
 export {Login, Signup} from './AuthForm'
 export {default as Events} from './Events'
 export {default as Insights} from './Insights'
+export {default as InsightsByMonth} from './InsightsByMonth'
+export {default as InsightsByWeek} from './InsightsByWeek'
+export {default as InsightsByYear} from './InsightsByYear'
 export {default as Main} from './Main'
 export {default as Notes} from './Notes'
 export {default as Pie} from './Pie'
@@ -20,3 +23,5 @@ export {default as CategoryForm} from './CategoryForm';
 export {default as MonthByDay} from './MonthByDay';
 export {default as MonthDumbComp} from './MonthDumbComp';
 export {default as TaskBullets} from './TaskBullets';
+export {default as FutureTasks} from './FutureTasks';
+export {default as Settings} from './Settings';

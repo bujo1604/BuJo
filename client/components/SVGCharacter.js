@@ -7,6 +7,7 @@ import {Tasks, Events, Notes} from './';
 import SVGformat from './SVGformat';
 import HabitTracker1 from './HabitTracker1';
 
+
 class SVGCharacter extends Component {
 
   constructor(props) {
@@ -23,7 +24,7 @@ class SVGCharacter extends Component {
     
      const {tasks, day, user, categories} = this.props
     const countObj = {};
-    console.log(this.props, "this.props in SVGCharacter");
+   
     const tasksCompleted = tasks.filter(function(task){
         if(task.status === "complete"){
             if(countObj[task.categoryId]){
@@ -45,7 +46,7 @@ class SVGCharacter extends Component {
         }
     }
 
-    console.log(largest, "largest")
+   
 
     var Color = "white"
     var c1 = "white"
@@ -53,15 +54,13 @@ class SVGCharacter extends Component {
     var c3 = "white"
     //var Color = "aqua"
     for(let i = 0; i < categories.length; i++){
-        console.log(categories[i].color.hex);
-        console.log(categories[i].id, "categories[i].id")
+        
         if(categories[i].id.toString() === largest[0]){
             Color = categories[i].color.hex;
             c1 = "Gainsboro"
             c2 = "red"
             c3 = "black"
-             console.log(Color, "color")
-            console.log(categories[i].color.hex, "found it");
+             
             
         }
     }

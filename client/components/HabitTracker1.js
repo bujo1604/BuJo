@@ -39,9 +39,9 @@ class HabitTracker1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        color: [0,0,0,0,0,0,0,0,0,0]
+        color: ["white" ,"white" ,"white" ,"white","white","white","white","white","white","white"]
     }
-    this.helper = this.helper.bind(this);
+    this.helper1 = this.helper1.bind(this);
     this.helper2 = this.helper2.bind(this)
   }
 
@@ -49,8 +49,19 @@ class HabitTracker1 extends Component {
     this.props.loadCategories(this.props.user.id);
   }
 
-  helper(){
-      this.setState({color: "blue"});
+  helper1(id){
+      console.log("test click")
+      console.log("id", id)
+      var newColor = this.state.color.slice();
+      if(newColor[id]=== "white"){
+          newColor[id] = "blue";
+      }
+      else{
+          newColor[id] = "white";
+      }
+      this.setState({color: newColor})
+
+      //this.setState({color: "blue"});
   }
   helper2(){
       return "blue";
@@ -66,8 +77,8 @@ class HabitTracker1 extends Component {
         
 <svg width="10000" height="30">
             {arr.map((elem, indd, arrr) => {
-                console.log("am I looping?")
-                return (<rect key={elem} x={ elem * 30 } y="0" width="30" height="30" stroke="black" fill={this.helper2} onClick={()=> {console.log("silly")}} />)
+              
+                return (<rect key={indd} x={ elem * 30 } y="0" width="30" height="30" stroke="black" fill={this.state.color[indd]} onClick={() => {this.helper1(indd)}} />)
             })}
         
 
