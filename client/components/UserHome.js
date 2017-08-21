@@ -32,10 +32,14 @@ export const UserHome = (props) => {
 
     <div>
     <h3>Welcome, {email} --- It is {moment(new Date()).format("dddd, MMMM Do YYYY")}</h3>
-       
+   
+
       <SVGCharacter />
     </div>
     <p>Are You Just getting started with BuJo? - Checkout the Getting Started information in Settings!</p>
+    <div>
+    
+    </div>
     </div>
   )
 }

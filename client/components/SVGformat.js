@@ -7,7 +7,7 @@ const SVGformat = (props) => {
       
         <svg width="300" height="300">
 
-            <rect x="0" y="0" width="300" height="300" fill="white" />
+            <rect x="0" y="0" width="300" height="300" fillOpacity="0" fill="blue" />
             <ellipse cx="200" cy="145" rx="8" ry="100" fill={c1} transform = "rotate(45 200 145)" />
             <ellipse cx="100" cy="145" rx="8" ry="100" fill={c1} transform = "rotate(-45 100 145)" />
             <ellipse cx="175" cy="210" rx="10" ry="50" fill={c1} />
