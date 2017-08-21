@@ -26,11 +26,13 @@ class SingleDay extends Component {
 
     return (
 
-      <div className="singlePage-container">
-
-        <button calssName='tabs is-fullwidth' onClick={previousDay}> Previous Day </button>
+      <div >
+       <div className="singlePage-container">
+        <a href='#' className="previous round" onClick={previousDay}> &#8249;</a>
         <h2 className="singlePage-title"> {moment(day).format("dddd, MMMM Do YYYY")} </h2>
-        <button calssName='next' onClick={nextDay}> Next Day </button>
+        <a href='#' className="next round" onClick={nextDay}> &#8250;</a>
+        </div>
+        <hr />
         <button onClick={() => updateDay(moment(new Date()).format("YYYYMMDD"))}> Current Day </button>
           <Tasks tasks={tasksOnDay} />
         <Link to={'/addtask'}>

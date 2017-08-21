@@ -16,7 +16,7 @@ const Main = (props) => {
 
   return (
     <div className='main-div'>
-      <h1 className='header'>BUJO</h1>
+      <h1 className='header'><p className='p'>BUJO</p> <a href="#"><i className="fa fa-trash"></i></a> </h1>
       <ul>
         {
           isLoggedIn
@@ -45,13 +45,18 @@ const Main = (props) => {
               </li>
 
             </div>
-            : <div>
+            : <ul>
               {/* The navbar will show these links before you log in */}
 
+                <li>
               <Link to='/login'>Login</Link>
+              </li>
+                <li>
               <Link to='/signup'>Sign Up</Link>
+              </li>
 
-            </div>
+
+            </ul>
 
         }
       </ul>
