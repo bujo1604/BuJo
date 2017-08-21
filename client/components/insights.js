@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { InsightsByMonth, InsightsByWeek, InsightsByYear } from './';
-import { updateView } from '../store';
+import moment from 'moment'
+import { InsightsByMonth, InsightsByWeek } from './';
+import { updateView, updatedMonth, updatedWeek } from '../store';
 
 //COMPONENT
 
@@ -11,15 +12,13 @@ export class Insights extends Component {
   }
 
   render() {
-    const {insightsView, changeView} = this.props
+    const { insightsView, changeViewWeek, changeViewMonth } = this.props
     return (
       <div>
-        <button onClick= {() => changeView('week')}> Week </button>
-        <button onClick= {() => changeView('month')}> Month </button>
-        <button onClick= {() => changeView('year')}> Year </button>
+        <button onClick={() => changeViewWeek('week')}> Week </button>
+        <button onClick={() => changeViewMonth('month')}> Month </button>
         {insightsView === 'week' && <InsightsByWeek />}
         {insightsView === 'month' && <InsightsByMonth />}
-        {insightsView === 'year' && <InsightsByYear />}
       </div>)
   }
 }
@@ -38,8 +37,13 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    changeView(view) {
+    changeViewWeek(view) {
       dispatch(updateView(view));
+      dispatch(updatedWeek(moment(new Date()).format("YYYYMMDD")))
+    },
+    changeViewMonth(view) {
+      dispatch(updateView(view));
+      dispatch(updatedMonth(moment(new Date()).format('MMMM YYYY')))
     }
   };
 }
