@@ -28,11 +28,13 @@ export const UserHome = (props) => {
   const colorR = getRandomColor();
   return (
     <div>
+
       <div>
         <h3>Welcome, {email} --- It is {moment(new Date()).format("dddd, MMMM Do YYYY")}</h3>
         <BujoAnimate />
       </div>
       <p>Are You Just getting started with BuJo? - Checkout the Getting Started information in Settings!</p>
+
     </div>
   )
 }
