@@ -17,18 +17,33 @@ const Main = (props) => {
   return (
     <div className='main-div'>
       <h1 className='header'>BUJO</h1>
-      <nav className="nav">
+      <ul>
         {
           isLoggedIn
-            ? <div >
+            ? <div className='table' >
               {/* The navbar will show these links after you log in */}
+              <li>
               <Link to='/home'>Home</Link>
+               </li>
+                <li>
               <Link to='/settings'>Settings</Link>
+              </li>
+                <li>
               <Link to='/insights'>Insights</Link>
+              </li>
+                <li>
               <Link to='/day'>Day</Link>
+              </li>
+                <li>
               <Link to='/calendar'>Calendar</Link>
+              </li>
+                <li>
               <Link to='/futureLog'>Future-Log</Link>
+              </li>
+                <li>
               <a href='#' onClick={handleClick}>Logout</a>
+              </li>
+
             </div>
             : <div>
               {/* The navbar will show these links before you log in */}
@@ -39,7 +54,7 @@ const Main = (props) => {
             </div>
 
         }
-      </nav>
+      </ul>
 
       <div className='content'>
       {children}

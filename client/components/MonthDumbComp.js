@@ -39,7 +39,7 @@ class MonthDumbComp extends Component {
     }
         return (
             <span>
-                <table>
+                <table className="month">
                     <Thead>
                         <Tr key="1">
                             <Th>Date</Th>

@@ -28,9 +28,9 @@ class SingleDay extends Component {
 
       <div className="singlePage-container">
 
-        <button onClick={previousDay}> Previous Day </button>
+        <button calssName='tabs is-fullwidth' onClick={previousDay}> Previous Day </button>
         <h2 className="singlePage-title"> {moment(day).format("dddd, MMMM Do YYYY")} </h2>
-        <button onClick={nextDay}> Next Day </button>
+        <button calssName='next' onClick={nextDay}> Next Day </button>
         <button onClick={() => updateDay(moment(new Date()).format("YYYYMMDD"))}> Current Day </button>
           <Tasks tasks={tasksOnDay} />
         <Link to={'/addtask'}>
