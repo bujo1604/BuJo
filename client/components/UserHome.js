@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import SVGCharacter from './SVGCharacter'
+import { connect } from 'react-redux'
+import {SVGCharacter, BujoAnimate} from './'
 import moment from 'moment'
 /**
  * COMPONENT
  */
 
- function colorPick(){
+function colorPick() {
   return "blue";
 }
 
@@ -23,23 +23,18 @@ function getRandomColor() {
 
 
 export const UserHome = (props) => {
-  const {email, month} = props
+  const { email, month } = props
 
   const colorR = getRandomColor();
   return (
     <div>
-    
 
-    <div>
-    <h3>Welcome, {email} --- It is {moment(new Date()).format("dddd, MMMM Do YYYY")}</h3>
-   
+      <div>
+        <h3>Welcome, {email} --- It is {moment(new Date()).format("dddd, MMMM Do YYYY")}</h3>
+        <BujoAnimate />
+      </div>
+      <p>Are You Just getting started with BuJo? - Checkout the Getting Started information in Settings!</p>
 
-      <SVGCharacter />
-    </div>
-    <p>Are You Just getting started with BuJo? - Checkout the Getting Started information in Settings!</p>
-    <div>
-    
-    </div>
     </div>
   )
 }
