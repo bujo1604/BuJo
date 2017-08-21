@@ -16,7 +16,7 @@ class Routes extends Component {
     this.props.loadUser();
   }
    componentWillMount () {
-    document.body.className = "a";
+    document.body.className = "b";
 }
   componentWillReceiveProps(nextProps){
      if(this.props.user.id !== nextProps.user.id){
