@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Pie, Scatter } from './';
+import { Pie, Scatter } from './'
+import moment from 'moment'
 import { fetchCompleteTasksByDate, gotNextMonth, gotPreviousMonth } from '../store';
-import {addWeekCountToTasks} from '../store/taskUtils'
-import {monthStartDate, monthEndDate} from './dateFunctions'
+import {addDayCountToTasks} from '../store/taskUtils'
+import {monthStartDate, monthEndDate, weekStartDate} from './dateFunctions'
+import * as d3 from 'd3';
 
 //COMPONENT
 
@@ -24,16 +26,17 @@ export class InsightsByMonth extends Component {
 
   render() {
     const { completeTasks, month, previousMonth, nextMonth } = this.props
-    addWeekCountToTasks(completeTasks)
+    completeTasks.forEach(task => {task.date = weekStartDate(task.date)})
+    addDayCountToTasks(completeTasks)
     return (
       <div>
         <h1>{month}</h1>
         <button onClick={previousMonth}>Prev Month</button>
-        <button onClick={nextMonth}>Next Month</button>
+        { monthEndDate(month) < moment(new Date()).format('YYYYMMDD') && <button onClick={nextMonth}>Next Month</button>}
         {!completeTasks.length ? <p>no tasks </p> :
           <div className="flexbox-container">
             <Pie tasks={completeTasks} />
-            <Scatter tasks={completeTasks} />
+            <Scatter tasks={completeTasks} startDate = {monthStartDate(month)} endDate ={weekStartDate(monthEndDate(month))} tickNum = {5} tickFormat = {d3.timeFormat('%b %d')}/>
           </div>}
       </div>)
   }

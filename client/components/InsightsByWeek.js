@@ -5,6 +5,7 @@ import { fetchCompleteTasksByDate, gotNextWeek, gotPreviousWeek } from '../store
 import moment from 'moment'
 import {addDayCountToTasks} from '../store/taskUtils'
 import {weekEndDate} from './dateFunctions'
+import * as d3 from 'd3';
 
 //COMPONENT
 
@@ -19,8 +20,8 @@ export class InsightsByWeek extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    const {loadData, user, week} = nextProps
-    if (this.props.week !== week) loadData(user.id, week, weekEndDate(week));
+    const {loadData, user, week, insightsView} = nextProps
+    if (this.props.week !== week || this.props.insightsView !== insightsView) loadData(user.id, week, weekEndDate(week));
   }
 
   render() {
@@ -30,17 +31,15 @@ export class InsightsByWeek extends Component {
       <div>
         <h1>{moment(week).format('MMMM D')} - {moment(weekEndDate(week)).format('MMMM D YYYY')}</h1>
         <button onClick={previousWeek}>Prev Week</button>
-        <button onClick={nextWeek}>Next Week</button>
+        {week < moment(new Date()).format('YYYYMMDD') && <button onClick={nextWeek}>Next Week</button>}
         {!completeTasks.length ? <p>no tasks </p> :
           <div className="flexbox-container">
             <Pie tasks={completeTasks} />
-            <Scatter tasks={completeTasks} startDate = {week} endDate ={weekEndDate(week)} />
+            <Scatter tasks={completeTasks} startDate = {week} endDate ={weekEndDate(week)} tickNum = {7} tickFormat = {d3.timeFormat("%a")}/>
           </div>}
       </div>)
   }
 }
-
-
 
 //CONTAINER
 
