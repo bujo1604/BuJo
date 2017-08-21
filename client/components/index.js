@@ -6,6 +6,8 @@
 export {default as AddNote} from './AddNote';
 export {default as AddEvent} from './AddEvent'
 export {Login, Signup} from './AuthForm'
+export {default as BujoAnimate} from './BujoAnimate'
+export {default as BujoSVG} from './BujoSVG'
 export {default as Events} from './Events'
 export {default as Insights} from './Insights'
 export {default as InsightsByMonth} from './InsightsByMonth'
@@ -24,3 +26,4 @@ export {default as MonthDumbComp} from './MonthDumbComp';
 export {default as TaskBullets} from './TaskBullets';
 export {default as FutureTasks} from './FutureTasks';
 export {default as Settings} from './Settings';
+export {default as SVGCharacter} from './SVGCharacter';
