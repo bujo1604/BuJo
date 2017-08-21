@@ -7,7 +7,6 @@ module.exports = router;
 
 //retreive all tasks for user and add .category and .color property to task
 router.get('/', function (req, res, next) {
-console.log("COLORS API")
     Color.findAll()
     .then(color => res.json(color))
     .catch(next);

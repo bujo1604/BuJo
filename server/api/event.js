@@ -5,6 +5,18 @@ const {Event} = require('../db/models');
 
 module.exports = router;
 
+//retreive all events for user between start and end date query
+router.get('/:userId', function (req, res, next) {
+    if (!req.query.startdate || !req.query.enddate) return next()
+    Event.findAll({where: {
+        userId: req.params.userId,
+        date: { $between: [req.query.startdate, req.query.enddate]}
+    }})
+    .then(event => res.json(event))
+    .catch(next);
+
+});
+
 //retreive all events for user
 router.get('/:userId', function (req, res, next) {
     let userId = req.params.userId
@@ -29,28 +41,25 @@ router.post('/', function (req, res, next) {
         time: req.body.time,
         date: req.body.date,
         userId: req.body.userId})
-        
+
         .then(event => res.status(201).send(event))
         .catch(next);
 });
 
-router.put('/:eventId', function (req, res, next) {
-     Event.findById(req.params.eventId)
+router.put('/:eventId', (req, res, next) => {
+    const id = req.params.eventId;
+    Event.findById(id)
     .then(event => {
-        if (!event) {res.sendStatus(404)}
-        return event.update({
-            name: req.body.name,
-            location: req.body.location,
-            time: req.body.time,
-            date: req.body.date,
-            userId: req.body.userId
-        });
-    })
-    .then(event => {
-        res.send(event);
+      
+        return event.update(req.body)})
+    .then(updated => {
+       
+        let updatedResponse = updated.dataValues;
+       
+        res.send({message: 'Updated event sucessfully', updatedResponse})
     })
     .catch(next);
-});
+})
 
 router.delete('/:eventId', function (req, res, next) {
     const id = req.params.eventId;

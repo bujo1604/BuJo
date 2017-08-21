@@ -31,6 +31,15 @@ body {
   display: flex;
 }
 
+.tooltip {
+  opacity: 0;
+}
+.tooltip:hover {
+  opacity: 1;
+  }
+
+
+
 
 
 // .container {

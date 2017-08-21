@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 //compare tasks.date values to sort by
 
 function compareDate(a,b) {
@@ -11,8 +13,8 @@ export function sortTasksByDate(tasks){
   return tasks.sort(compareDate)
 }
 
-//add count to tasks
-export function addCountToTasks(tasks) {
+//add count to tasks - per day
+export function addDayCountToTasks(tasks) {
   let count = 1
   tasks = sortTasksByDate(tasks)
   tasks.forEach((task, i) => {
@@ -22,6 +24,22 @@ export function addCountToTasks(tasks) {
     }
     else {
       count = 1
+      task.count = count
+    }
+  })
+}
+
+//add count to tasks - per week
+export function addWeekCountToTasks(tasks) {
+  let count = 1
+  tasks = sortTasksByDate(tasks)
+  tasks.forEach((task, i) => {
+    if (moment(task.date).format('dd') === 'Su' ) {
+      count = 1
+      task.count = count
+    }
+    else {
+      count++
       task.count = count
     }
   })

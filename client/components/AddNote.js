@@ -9,10 +9,11 @@ class AddNote extends Component {
     }
 
     render() {
-        const { handleSubmit, handleCancel, user } = this.props;
+        const { handleSubmit, handleCancel, user, day } = this.props;
+        
         return (
             <div>
-                <form onSubmit={evt => handleSubmit(user, evt)}>
+                <form onSubmit={evt => handleSubmit(user, evt, day)}>
                     <textarea
                         name="note"
                         cols="60"
@@ -29,19 +30,21 @@ class AddNote extends Component {
 }
 
 const mapState = (state) => ({
-    user: state.user
+    user: state.user,
+    day: state.day
 });
 
 const mapDispatch = (dispatch, ownProps) => {
     return {
-        handleSubmit(user, evt) {
+        handleSubmit(user, evt, day) {
             evt.preventDefault();
             const newNote = {
                 userId: user.id,
                 note: evt.target.note.value,
-                date: '20170908'
+                date: day
             }
             dispatch(postNote(newNote))
+
             ownProps.history.push('/day')
         },
         handleCancel() {

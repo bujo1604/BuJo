@@ -1,9 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
-import {Pie, Scatter} from './';
-import {fetchTasksWithCount } from '../store';
-
+import moment from 'moment'
+import { InsightsByMonth, InsightsByWeek } from './';
+import { updateView, updatedMonth, updatedWeek } from '../store';
 
 //COMPONENT
 
@@ -12,41 +11,39 @@ export class Insights extends Component {
     super(props);
   }
 
- componentDidMount() {
-    this.props.loadData(this.props.user.id);
-  }
-
-  render(){
-  const { email, tasks } = this.props
-  return (
-    <div>
-      <h3>Hi, {email}</h3>
-      <p> Here are your insights </p>
-      {tasks.length && tasks[0].count &&
-        <div className='flexbox-container'>
-          <Pie tasks = {tasks} />
-          <Scatter tasks = {tasks} />
-        </div>}
-    </div> )
+  render() {
+    const { insightsView, changeViewWeek, changeViewMonth } = this.props
+    return (
+      <div>
+        <button onClick={() => changeViewWeek('week')}> Week </button>
+        <button onClick={() => changeViewMonth('month')}> Month </button>
+        {insightsView === 'week' && <InsightsByWeek />}
+        {insightsView === 'month' && <InsightsByMonth />}
+      </div>)
   }
 }
-
 
 
 //CONTAINER
 
 const mapState = (state) => {
   return {
-   user: state.user,
-    email: state.user.email,
-    tasks: state.tasks
+    user: state.user,
+    month: state.month,
+    completeTasks: state.completeTasks,
+    insightsView: state.insightsView
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    loadData(userId) {
-      dispatch(fetchTasksWithCount(userId));
+    changeViewWeek(view) {
+      dispatch(updateView(view));
+      dispatch(updatedWeek(moment(new Date()).format("YYYYMMDD")))
+    },
+    changeViewMonth(view) {
+      dispatch(updateView(view));
+      dispatch(updatedMonth(moment(new Date()).format('MMMM YYYY')))
     }
   };
 }

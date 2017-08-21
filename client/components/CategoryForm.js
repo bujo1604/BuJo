@@ -26,7 +26,6 @@ class CategoryForm extends Component {
 
     handleColorChange(event) {
         event.preventDefault();
-        console.log(event.target.value)
         this.setState(
             { colorId: event.target.value });
     }
@@ -59,7 +58,7 @@ class CategoryForm extends Component {
         const colors = this.props.colors;
 
 
-        // console.log("CATEGORY", categories)
+       
         return (
             <div>
 

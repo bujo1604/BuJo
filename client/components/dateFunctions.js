@@ -1,23 +1,39 @@
 
 import moment from 'moment'
 
+function monthStartDate(month){
+    return moment(month).startOf('month').startOf('week').format('YYYYMMDD')
+}
+
+function monthEndDate(month){
+    return moment(month).endOf('month').endOf('week').format('YYYYMMDD')
+}
+
+function weekEndDate(week){
+    return moment(week).endOf('week').format('YYYYMMDD')
+}
+
+function weekStartDate(week){
+    return moment(week).startOf('week').format('YYYYMMDD')
+}
+
 function makeArrOfDaysInMonthSunToSat(date) {
     var arrDaysInMonthView = [];
     var firstOfTheMonth = moment(date).startOf("month");
     var firstDayOfView = firstOfTheMonth.startOf("week")
     var firstDayOfViewStr = firstDayOfView.toString();
-    var lastDayOfView = moment(date).endOf("month").endOf("week").startOf("day"); 
+    var lastDayOfView = moment(date).endOf("month").endOf("week").startOf("day");
     var lastDayOfViewDate = new Date(lastDayOfView);
 
-    for (let i = 0; i < 37; i++) { 
+    for (let i = 0; i < 37; i++) {
 
         var currentDate = new Date(moment(firstDayOfViewStr).add(i, "days"));
-        
+
 
         if (currentDate <= lastDayOfViewDate) {
             var day = {weekday: moment(currentDate).format("dd"), dateOfM: moment(currentDate).format("D"), date: moment(currentDate).format("YYYYMMDD")}
             arrDaysInMonthView.push(day);
-            
+
         }
     }
         return arrDaysInMonthView;
@@ -34,7 +50,7 @@ function makeArrOfDaysInCalendarMonth(date) {
     for (let i = 0; i < 31; i++) {
 
         var currentDate = new Date(moment(firstDayOfMonthStr).add(i, "days"));
-        
+
 
         if (currentDate <= lastDayOfMonthDate) {
             var day = {weekday: moment(currentDate).format("dd"), dateOfM: moment(currentDate).format("D")}
@@ -45,5 +61,33 @@ function makeArrOfDaysInCalendarMonth(date) {
     return arrDaysInMonth;
 }
 
+function makeArrDaysInWeek(date) {
+    var arrDaysInWeek = [];
+    var firstDayOfWeek = moment(date).startOf("week");
+    for (let i = 0; i < 7; i++) {
 
-export {makeArrOfDaysInMonthSunToSat, makeArrOfDaysInCalendarMonth}
+        var currentDate = new Date(moment(firstDayOfWeek).add(i, "days"));
+        var day = {date: moment(currentDate).format("YYYYMMDD")}
+        arrDaysInWeek.push(day);
+
+    }
+        return arrDaysInWeek;
+
+}
+
+function makeArrMonthsInYear(date) {
+    var arrMonthInYear = [];
+    var firstMonthOfYear = moment(date).startOf("year");
+    for (let i = 0; i < 12; i++) {
+
+        var currentDate = new Date(moment(firstMonthOfYear).add(i, "month"));
+        var month =  moment(currentDate).format("YYYYMMDD")
+        arrMonthInYear.push(month);
+
+    }
+        return arrMonthInYear;
+
+}
+
+export {makeArrOfDaysInMonthSunToSat, makeArrOfDaysInCalendarMonth, makeArrDaysInWeek, monthStartDate, monthEndDate, weekEndDate, weekStartDate, makeArrMonthsInYear}
+

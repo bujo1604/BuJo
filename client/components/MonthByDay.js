@@ -6,17 +6,20 @@ import { connect } from 'react-redux';
 //import { TableH } from './component-style'
 import { makeArrOfDaysInMonthSunToSat } from './dateFunctions'
 import MonthDumbComp from './MonthDumbComp';
-import { gotNextMonth, gotPreviousMonth } from '../store'
+import { gotNextMonth, gotPreviousMonth, updatedMonth } from '../store'
+
 
 const MonthByDay = (props) => {
 
-    const { previousMonth, nextMonth, month } = props
+    const { previousMonth, nextMonth, month, updateMonth } = props
     //daysInMonth includes Sun-Sat view
     const daysInMonth = makeArrOfDaysInMonthSunToSat(month)
     return (
         <div>
             <button onClick={previousMonth}>Prev Month</button>
+            <h1>{month}</h1>
             <button onClick={nextMonth}>Next Month</button>
+            <button onClick={()=> updateMonth(moment(new Date()).format("MMMM YYYY"))}>Current Month</button>
             <MonthDumbComp daysInMonth={daysInMonth} month={month} />
         </div>
     )
@@ -29,10 +32,13 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => {
     return {
         nextMonth() {
-            dispatch(gotNextMonth())
+            dispatch(gotNextMonth())  // to be used in on click
         },
         previousMonth() {
-            dispatch(gotPreviousMonth())
+            dispatch(gotPreviousMonth()) // to be used in on click
+        },
+        updateMonth(month){
+            dispatch(updatedMonth(month))
         }
     };
 }
