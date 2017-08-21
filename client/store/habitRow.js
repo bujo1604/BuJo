@@ -4,13 +4,15 @@ import axios from 'axios';
 
 const GOT_ROWS = 'GOT_ROWS';
 const GOT_NEW_ROW = 'GOT_NEW_ROW';
-const REMOVE_ROW = 'REMOVE_ROW'
+const REMOVE_ROW = 'REMOVE_ROW';
+const UPDATE_ROW = 'UPDATE_ROW';
 
 //ACTION CREATORS
 
 const gotRows = (rows) => ({type: GOT_ROWS, rows});
 const gotNewRow = (row) => ({type: GOT_NEW_ROW, row});
-const removeRow = (row) => ({type: REMOVE_ROW, row})
+const removeRow = (row) => ({type: REMOVE_ROW, row});
+const updateRow = (row) => ({type: UPDATE_ROW, row});
 
 //THUNK CREATORS
 
@@ -21,7 +23,14 @@ export function fetchRows (userId) {
         .catch(error => { console.log(error) });
     };
 }
-
+export function updateRowThunk (rowId, update) {
+    return function thunk (dispatch){
+        return axios.put(`/api/habitrow/${rowId}`, update)
+        .then(res => {console.log(res.data, "res.data in HabitRow Store");
+            dispatch(updateRow(res.data))})
+        .catch(error => { console.log(error, "error in updateRowThunk") });
+    }
+}
 /*
 export function postNote (newNote) {
     return function thunk (dispatch){
@@ -53,6 +62,10 @@ export default function (state = [], action) {
   switch (action.type) {
     case GOT_ROWS:
       return action.rows
+    case UPDATE_ROW: 
+        return state.map(row => (
+            action.row.id === row.id ? action.row : row
+        ));
 /*
     case GOT_NEW_NOTE:
       return [...state, action.note]

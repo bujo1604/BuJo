@@ -21,15 +21,16 @@ export function fetchHabitMains (userId) {
         .catch(error => { console.log(error) });
     };
 }
-/*
-export function postHabitMain (newNote) {
+
+export function postHabitMain (newHabitMain) {
     return function thunk (dispatch){
-        return axios.post('/api/notes/', newNote)
-        .then(res => dispatch(gotNewNote(res.data)))
+        return axios.post('/api/habitmain/', newHabitMain)
+        .then(res => dispatch(gotNewHabitMain(res.data)))
         .catch(error => { console.log(error) });
     };
 }
 
+/*
 export function changeNote (noteId, note) {
     return function thunk (dispatch){
         return axios.put(`/api/notes/${noteId}`, note)

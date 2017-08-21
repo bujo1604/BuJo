@@ -22,3 +22,12 @@ router.get('/:userId', function (req, res, next) {
     .catch(next);
 
 });
+
+router.put('/:rowId', function (req, res, next) {
+  const rowId = req.params.rowId;
+
+  HabitTrackerRow.findById(rowId)
+    .then(row => row.update(req.body))
+    .then((updatedRow)=>{res.json(updatedRow)})
+    .catch(next);
+});

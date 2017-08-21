@@ -22,3 +22,11 @@ router.get('/:userId/', function (req, res, next) {
     .catch(next);
 
 });
+
+router.post('/', function (req, res, next) {
+    HabitTrackerMain.create(req.body)
+    .then(function(newMain){
+        res.status(201).json(newMain);
+    })
+    .catch(next);
+});
