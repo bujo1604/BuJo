@@ -15,12 +15,12 @@ const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
 
   return (
-    <div>
-      <h1>BUJO</h1>
-      <nav>
+    <div className='main-div'>
+      <h1 className='header'>BUJO</h1>
+      <nav className="nav">
         {
           isLoggedIn
-            ? <div>
+            ? <div >
               {/* The navbar will show these links after you log in */}
               <Link to='/home'>Home</Link>
               <Link to='/settings'>Settings</Link>
@@ -40,8 +40,11 @@ const Main = (props) => {
 
         }
       </nav>
-      <hr />
+
+      <div className='content'>
       {children}
+      </div>
+
     </div>
   )
 }
