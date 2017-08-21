@@ -24,3 +24,4 @@ export {default as MonthDumbComp} from './MonthDumbComp';
 export {default as TaskBullets} from './TaskBullets';
 export {default as FutureTasks} from './FutureTasks';
 export {default as Settings} from './Settings';
+export {default as Sidebar} from './Sidebar';

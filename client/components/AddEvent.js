@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import TimePicker from 'material-ui/TimePicker';
 import { postEvent } from '../store'
 
 
@@ -21,10 +22,15 @@ class AddEvent extends Component {
                     Location: <input
                         name="location"
                     />
-                    Time: <input
-                        name="time"
-                        placeholder="HH:MM"
-                    />
+                   
+
+                    TimePicker: 
+                    <TimePicker
+                    format="ampm"
+                    hintText="HH:MM"
+                    name= "time"
+                  />
+
                     <br />
                     <button type="submit"> Submit </button>
                 </form>
