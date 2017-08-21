@@ -1,29 +1,4 @@
-/* import React from 'react';
 
-const HabitTracker1 = (props) => {
-console.log("hellooutthere!")
-var arr = [0,10,20,30,40,50,60,70,80,90,100]
-    return (
-        <div>
-        <h1>Please Help!</h1>
-      
-        
-<svg width="10000" height="30">
-            {arr.map((elem) => {
-                console.log("am I looping?")
-                return (<rect key={elem} x={ elem * 6 } y="0" width="30" height="30" stroke="black" fill="aqua" />)
-            })}
-        
-
-
-</svg>
-      </div>
-    )
-}
-
-export default HabitTracker1;
-
-*/
 
 import React, { Component } from 'react';
 const moment = require('moment')

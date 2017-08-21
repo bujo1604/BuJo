@@ -442,10 +442,28 @@ const habitMain = [
 {title: 'My Habit Tracker for August 2017', month: '20170801', userId: 1},
 {title: 'My Habit Tracker for September 2017', month: '20170901', userId: 1},
 {title: 'My Habit Tracker for October 2017', month: '20171001', userId: 1},
+{title: 'My Habit Tracker for August 2017', month: '20170801', userId: 2},
+{title: 'My Habit Tracker for September 2017', month: '20170901', userId: 2},
+{title: 'My Habit Tracker for October 2017', month: '20171001', userId: 2},
+{title: 'My Habit Tracker for August 2017', month: '20170801', userId: 3},
+{title: 'My Habit Tracker for September 2017', month: '20170901', userId: 3},
+{title: 'My Habit Tracker for October 2017', month: '20171001', userId: 3},
+{title: 'My Habit Tracker for August 2017', month: '20170801', userId: 4},
+{title: 'My Habit Tracker for September 2017', month: '20170901', userId: 4},
+{title: 'My Habit Tracker for October 2017', month: '20171001', userId: 4},
+  {title: 'My Habit Tracker for August 2017', month: '20170801', userId: 5},
+{title: 'My Habit Tracker for September 2017', month: '20170901', userId: 5},
+{title: 'My Habit Tracker for October 2017', month: '20171001', userId: 5},
 ];
 
 const habitRow = [
-{habit: "drink enough water", c1:"blue", c2:"blue",c3:"blue", userId: 1, habitTrackerMainId: 1}
+{habit: "drink enough water1", c1:"blue", c2:"blue",c3:"blue", userId: 1, habitTrackerMainId: 1},
+{habit: "drink enough water2", c1:"blue", c2:"blue",c3:"blue", userId: 2, habitTrackerMainId: 4},
+{habit: "drink enough water2b", c1:"blue", c2:"blue",c3:"blue", userId: 2, habitTrackerMainId: 5},
+{habit: "drink enough water2b", c1:"blue", c2:"blue",c3:"blue", userId: 2, habitTrackerMainId: 5},
+{habit: "drink enough water3", c1:"blue", c2:"blue",c3:"blue", userId: 3, habitTrackerMainId: 7},
+{habit: "drink enough water4", c1:"blue", c2:"blue",c3:"blue", userId: 4, habitTrackerMainId: 10},
+{habit: "drink enough water5", c1:"blue", c2:"blue",c3:"blue", userId: 5, habitTrackerMainId: 13},
 ];
 
 
