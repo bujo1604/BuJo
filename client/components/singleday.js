@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 const moment = require('moment')
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
-import { fetchTasks, fetchEvents, fetchNotes, gotNextDay, gotPreviousDay, updatedDay} from '../store';
-import {Tasks, Events, Notes} from './';
+import { Link } from 'react-router-dom';
+import { fetchTasks, fetchEvents, fetchNotes, gotNextDay, gotPreviousDay, updatedDay } from '../store';
+import { Tasks, Events, Notes, Sidebar } from './';
 
 class SingleDay extends Component {
 
@@ -13,46 +13,50 @@ class SingleDay extends Component {
 
 
   render() {
-    const {tasks, events, notes, day, previousDay, nextDay, updateDay} = this.props
-    const tasksOnDay = tasks.filter(function(task){
-        return task.date === day
+    const { tasks, events, notes, day, previousDay, nextDay, updateDay } = this.props
+    const tasksOnDay = tasks.filter(function (task) {
+      return task.date === day
     })
-    const eventsOnDay = events.filter(function(event){
-        return event.date === day
+    const eventsOnDay = events.filter(function (event) {
+      return event.date === day
     })
-    const notesOnDay = notes.filter(function(note){
-        return note.date === day
+    const notesOnDay = notes.filter(function (note) {
+      return note.date === day
     })
 
     return (
-      <div>
-        <div className="singlePage-container">
-          <a href='#' className="previous round" onClick={previousDay}> &#8249;</a>
-          <h2 className="singlePage-title"> {moment(day).format("ddd D")}  </h2> 
-          <h2> {moment(day).format("MMMM YYYY")} </h2>
-          <a href='#' className="next round" onClick={nextDay}> &#8250;</a>
-          
+      <div className="content-container">
+
+        <div className="content-main">
+          <div className="content-title">
+            <a href='#' onClick={previousDay}> &#8249;</a>
+            <h2> {moment(day).format("ddd D")}  </h2>
+            <h2> {moment(day).format("MMMM YYYY")} </h2>
+            <a href='#' onClick={nextDay}> &#8250;</a>
+          </div>
+          <button onClick={() => updateDay(moment(new Date()).format("YYYYMMDD"))}> Current Day </button>
+
+          <h3 className="singleDay-headings">Events</h3>
+          <Events events={eventsOnDay} />
+          <Link to={'/addevent'}>
+            <button> Add Event </button>
+          </Link>
+
+          <Tasks tasks={tasksOnDay} />
+          <Link to={'/addtask'}>
+            <button> Add Tasks </button>
+          </Link>
+
+
+          <Notes notes={notesOnDay} />
+          <Link to={'/addnote'}>
+            <button> Add Note </button>
+          </Link>
         </div>
-        <hr />          
 
-        <button onClick={() => updateDay(moment(new Date()).format("YYYYMMDD"))}> Current Day </button>
-        
-        <h3 className="singleDay-headings">Events</h3>
-        <Events events={eventsOnDay} />
-        <Link to={'/addevent'}>
-          <button> Add Event </button>
-        </Link>
-        
-        <Tasks tasks={tasksOnDay} />
-        <Link to={'/addtask'}>
-          <button> Add Tasks </button>
-        </Link>
-       
-
-        <Notes notes={notesOnDay} />
-        <Link to={'/addnote'}>
-          <button> Add Note </button>
-        </Link>
+        <div className="content-sidebar" >
+          <Sidebar />
+        </div>
       </div>
     )
   }
@@ -73,13 +77,13 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchEvents(userId));
       dispatch(fetchNotes(userId));
     },
-     nextDay() {
-            dispatch(gotNextDay())
-        },
-    previousDay() {
-            dispatch(gotPreviousDay())
+    nextDay() {
+      dispatch(gotNextDay())
     },
-    updateDay(day){
+    previousDay() {
+      dispatch(gotPreviousDay())
+    },
+    updateDay(day) {
       dispatch(updatedDay(day))
     }
   };
