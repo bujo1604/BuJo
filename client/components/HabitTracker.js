@@ -7,6 +7,14 @@ import { fetchHabitMains, fetchRows, updateRowThunk, fetchColors, postHabitMain,
 import HabitRow from './HabitRow'
 
 
+function circleFunc(r, cx, cy, TotNum, order) {
+    
+    var angle = (order / TotNum )*2*Math.PI;
+    var x = Math.floor(Math.cos(angle)*r + cx)
+    var y = Math.floor(Math.sin(angle)*r + cy);
+    var coord = [x,y]; // x,y
+    return coord;
+}
 class HabitTracker extends Component {
 
   constructor(props) {
@@ -76,7 +84,12 @@ class HabitTracker extends Component {
   
   render() {
     const {habitMain, habitRow, user, loadRows, colors, addHabitMain} = this.props
- 
+    var svgWidth = 500;
+    var svgHeight = svgWidth;
+    var cirR = svgWidth/20; 
+    var svgCenterX = svgWidth / 2;
+    var svgCenterY = svgHeight / 2;
+    var bCirR = (svgWidth * 0.9) /2
     var orderedHabit = habitMain.slice();
 
     var compareFunc = function (a,b) {
@@ -151,17 +164,18 @@ class HabitTracker extends Component {
                     <div key={Math.random()}>
                     
                     
-                    <p style={{display:"inline"}}>{row.habit}</p>    
+                       
                      
-                    <svg style={{display:"inline"}} width="930" height="30" key={Math.random()}>
-                   
+                    <svg width={svgWidth} height={svgHeight} key={Math.random()}>
+                    <text x={svgCenterX} y={svgCenterY} >{row.habit}</text> 
                     {thirty1Days.map((day, ind)=>{
                         var colNumb = ind + 1;
                         var colStr = 'c' + colNumb;
-                         
+                         var cx = circleFunc(bCirR, svgCenterX, svgCenterY, 31, day)[0];
+                         var cy = circleFunc(bCirR, svgCenterX, svgCenterY, 31, day)[1];
                     return (<g key={Math.random()}>
-                    <rect key={ind} x={(day - 1)*30} y="0" width="30" height="30" stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr])}} />
-                    <text key={Math.random()} x={(day - 1)*30+10} y="22" onClick={() => {this.clicker(row.id, colStr, row[colStr])}}>{day}</text>
+                    <circle key={ind} cx={cx} cy={cy} r={cirR} stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr])}} />
+                    <text textAnchor="middle" key={Math.random()} x={cx} y={cy} onClick={() => {this.clicker(row.id, colStr, row[colStr])}}>{day}</text>
                     </g>)
                 
                     })}
