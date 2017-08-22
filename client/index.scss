@@ -56,7 +56,7 @@ body {
 
 .page-content {
   grid-area: content;
-  background-color: lightblue;
+  // background-color: lightblue;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -134,21 +134,35 @@ margin: 0 auto;
 flex-direction: column
 }
 
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  text-align: left;
-  padding: 8px;
-}
-
 th {
-  background-color: #4CAF50 ;
-  color: white;
-}
+  vertical-align: top;
+  padding-left: 10px;
+    padding-right: 10px;
+  }
+  td {
+    vertical-align: top;
+    text-align:left;
+    padding-left: 10px;
+    padding-right: 10px;
+  
+  }
+  .day{
+    vertical-align: top;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 30px;
+  }
+  
+  .table{
+    margin:0px;
+  }
+  
+
+  .event{
+    padding-left: 10px;
+  }
+
+
 // .flexbox-container {
 //   display: -ms-flex;
 //   display: -webkit-flex;

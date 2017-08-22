@@ -1,9 +1,6 @@
 import React from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux';
-// add task component import later...
-// add styled components import later ...
-//import { TableH } from './component-style'
 import { makeArrOfDaysInMonthSunToSat } from './dateFunctions'
 import MonthDumbComp from './MonthDumbComp';
 import { gotNextMonth, gotPreviousMonth, updatedMonth } from '../store'

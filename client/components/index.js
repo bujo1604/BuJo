@@ -28,3 +28,4 @@ export {default as FutureTasks} from './FutureTasks';
 export {default as Settings} from './Settings';
 export {default as Sidebar} from './Sidebar';
 export {default as SVGCharacter} from './SVGCharacter';
+export {default as HabitTracker} from './HabitTracker';

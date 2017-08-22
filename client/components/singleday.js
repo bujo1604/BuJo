@@ -28,21 +28,26 @@ class SingleDay extends Component {
       <div>
         <div className="singlePage-container">
           <a href='#' className="previous round" onClick={previousDay}> &#8249;</a>
-          <h2 className="singlePage-title"> {moment(day).format("dddd D")}  </h2> <h2> {moment(day).format("MMMM YYYY")} </h2>
+          <h2 className="singlePage-title"> {moment(day).format("ddd D")}  </h2> 
+          <h2> {moment(day).format("MMMM YYYY")} </h2>
           <a href='#' className="next round" onClick={nextDay}> &#8250;</a>
+          
         </div>
-        <hr />
+        <hr />          
 
         <button onClick={() => updateDay(moment(new Date()).format("YYYYMMDD"))}> Current Day </button>
-        <Tasks tasks={tasksOnDay} />
-        <Link to={'/addtask'}>
-          <button> Add Tasks </button>
-        </Link>
-        <h3 className="singleName-headings">Events</h3>
+        
+        <h3 className="singleDay-headings">Events</h3>
         <Events events={eventsOnDay} />
         <Link to={'/addevent'}>
           <button> Add Event </button>
         </Link>
+        
+        <Tasks tasks={tasksOnDay} />
+        <Link to={'/addtask'}>
+          <button> Add Tasks </button>
+        </Link>
+       
 
         <Notes notes={notesOnDay} />
         <Link to={'/addnote'}>
