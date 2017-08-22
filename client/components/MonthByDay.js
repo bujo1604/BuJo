@@ -1,9 +1,6 @@
 import React from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux';
-// add task component import later...
-// add styled components import later ...
-//import { TableH } from './component-style'
 import { makeArrOfDaysInMonthSunToSat } from './dateFunctions'
 import MonthDumbComp from './MonthDumbComp';
 import { gotNextMonth, gotPreviousMonth, updatedMonth } from '../store'
@@ -16,9 +13,13 @@ const MonthByDay = (props) => {
     const daysInMonth = makeArrOfDaysInMonthSunToSat(month)
     return (
         <div>
-            <button onClick={previousMonth}>Prev Month</button>
-            <h1>{month}</h1>
-            <button onClick={nextMonth}>Next Month</button>
+        monthn by day component <br/>
+        <div className='singlePage-container'>
+            <a href='#' className='previous round' onClick={previousMonth}>&#8249;</a>
+            <h2 className='singlePage-title'> {month} </h2>
+            <a href='#' className='next round' onClick={nextMonth}> &#8250; </a>
+        </div>
+        <hr />
             <button onClick={()=> updateMonth(moment(new Date()).format("MMMM YYYY"))}>Current Month</button>
             <MonthDumbComp daysInMonth={daysInMonth} month={month} />
         </div>

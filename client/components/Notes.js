@@ -45,14 +45,18 @@ class Notes extends React.Component {
             {notes.map((note, idx) => (
 
                     <div key={idx}>
-                        <span> &#x25AC;</span>
+                        <span className='event'> &#x25AC;</span>
+                        <span className='event'>
                         <RIETextArea
                         id={note.id}
                         value={note.text}
                         change={this.dataChanged}
                         propName={note.id.toString()}
                         />
+                        </span>
+                        <span className='event'>
                         <button id={note.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
+                        </span>
                     </div>
                 ))}
             

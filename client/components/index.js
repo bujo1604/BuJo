@@ -15,6 +15,7 @@ export {default as InsightsByWeek} from './InsightsByWeek'
 export {default as Main} from './Main'
 export {default as Notes} from './Notes'
 export {default as Pie} from './Pie'
+export {default as Reflections} from './Reflections'
 export {default as Scatter} from './Scatter'
 export {default as SingleDay} from './Singleday'
 export {default as Tasks} from './Tasks'
@@ -26,4 +27,6 @@ export {default as MonthDumbComp} from './MonthDumbComp';
 export {default as TaskBullets} from './TaskBullets';
 export {default as FutureTasks} from './FutureTasks';
 export {default as Settings} from './Settings';
+export {default as Sidebar} from './Sidebar';
 export {default as SVGCharacter} from './SVGCharacter';
+export {default as HabitTracker} from './HabitTracker';

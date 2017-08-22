@@ -13,8 +13,8 @@ class Settings extends Component {
                 {categories.map((cat, idx) => (
                     (
                         <label key={idx} className='color'>
-                            <button id={cat.id} onClick={this.selectedCategory} style={{ color: `${cat.color.hex}` }} value={cat.name} > {cat.name}</button>
-                            <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span>
+                            <button id={cat.id} onClick={this.selectedCategory}  value={cat.name} > {cat.name} <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span></button>
+                            
                             {/*
                             <button id={cat.id} onClick={this.handleClick}>delete</button>
                             */}
@@ -25,7 +25,7 @@ class Settings extends Component {
                     <h3>Welcome to Bujo!</h3>
                     <p>Bujo is a Bullet Journal inspired Task Management System.</p>
                     <p>When you complete Tasks - you will be able to see your BuJo avatar</p>
-                    <p>BuJo's outfit changes color based on tasks you complete</p>
+                    <p>BuJo's outfit changes co    lor based on tasks you complete</p>
                     <p>When you complete tasks, you can also refer to your insights page to learn more about where you are spending your time</p>
                     <p></p>
                     <p></p>
