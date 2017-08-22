@@ -34,6 +34,9 @@ const Main = (props) => {
                   <Link to='/calendar'>Calendar</Link>
                   <Link to='/futureLog'>Future-Log</Link>
                   <Link to='/reflections'>Reflections</Link>
+                  <Link to='/habitTracker'>Habit Tracker</Link>
+                  <Link to='/help'>Help</Link>
+
                   <a href='#' onClick={handleClick}>Logout</a>
                 </ul>
               </div>
@@ -43,6 +46,7 @@ const Main = (props) => {
 
                 <Link to='/login'>Login</Link>
                 <Link to='/signup'>Sign Up</Link>
+                <Link to='/help'>Help</Link>
 
               </div>
 

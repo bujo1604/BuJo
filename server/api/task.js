@@ -36,9 +36,13 @@ router.get('/:userId', function (req, res, next) {
 
 });
 
+
 //retreive all COMPLETE/INCOMPLETE tasks for user between start and end date query
 //and add .category and .color property to task
 router.get('/:userId/:status', function (req, res, next) {
+    if(req.params.status === "future"){
+        return next();
+    }
     Task.findAll({
         where: {
             userId: req.params.userId,
@@ -56,7 +60,6 @@ router.get('/:userId/:status', function (req, res, next) {
 router.get('/:userId/future', function (req, res, next) {
     if(!req.query.startdate || !req.query.enddate) return next()
     let userId = req.params.userId
-    console.log("inside userId/future api route")
     Task.findAll({
         where: {userId,
                 assigned: "unassigned",
@@ -72,6 +75,7 @@ router.get('/:userId/future', function (req, res, next) {
 });
 
 router.get('/:userId/future', function (req, res, next) {
+    console.log("inside userId/future api route without start and end dates")
     let userId = req.params.userId
     Task.findAll({
         where: {userId, assigned: "unassigned"},
@@ -81,6 +85,8 @@ router.get('/:userId/future', function (req, res, next) {
     .catch(next);
 
 });
+
+
 
 
 router.get('/:taskId', function (req, res, next) {
@@ -96,7 +102,10 @@ router.post('/', function (req, res, next) {
         userId: req.body.userId,
         categoryId: req.body.categoryId,
         status: req.body.status,
-        date:req.body.date})
+        date:req.body.date,
+        FutureMonth: req.body.FutureMonth,
+        assigned: req.body.assigned
+    })
         .then(task => res.status(201).send(task))
         .catch(next);
 });

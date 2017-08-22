@@ -26,7 +26,7 @@ export function fetchRows (userId) {
 export function updateRowThunk (rowId, update) {
     return function thunk (dispatch){
         return axios.put(`/api/habitrow/${rowId}`, update)
-        .then(res => {console.log(res.data, "res.data in HabitRow Store");
+        .then(res => {
             dispatch(updateRow(res.data))})
         .catch(error => { console.log(error, "error in updateRowThunk") });
     }
