@@ -34,8 +34,8 @@ class Events extends React.Component {
 
     dataChanged(data){
         console.log(data);
-        const eventId = 15
-        console.log('inchnage', event)
+        // const eventId = 15
+        // console.log('inchnage', event)
         this.props.editEvent(eventId, data)
     }
 
