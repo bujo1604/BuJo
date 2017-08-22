@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 const moment = require('moment')
 import { connect } from 'react-redux';
 //import {Link} from 'react-router-dom';
-import { fetchHabitMains, fetchRows, updateRowThunk, fetchColors } from '../store';
+import { fetchHabitMains, fetchRows, updateRowThunk, fetchColors, postHabitMain, gotNextMonth, gotPreviousMonth, updatedMonth } from '../store';
 //import {Tasks, Events, Notes} from './';
 import HabitRow from './HabitRow'
 
@@ -11,9 +11,14 @@ class HabitTracker extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+        value: ''
+    }
     
     this.clicker = this.clicker.bind(this);
     this.colorSwap = this.colorSwap.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
    
  
   }
@@ -26,7 +31,14 @@ class HabitTracker extends Component {
        
   }
 
+  handleSubmit(event){
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+    var month = moment(new Date()).startOf("month").format("YYYYMMDD");
 
+    var obj = {month: month, title: this.state.value, userId: this.props.user.id}
+    this.props.addHabitMain(obj);
+}
   colorSwap(color){
 
     var sliceOfColors = this.props.colors.slice();
@@ -60,8 +72,13 @@ class HabitTracker extends Component {
     this.props.UpdateRow(num, { [item]: newColor}, this.props.user.id)
   }
 
+  handleChange(event){
+      this.setState({value: event.target.value});
+      console.log(this.state.value, "this.state.value");
+  }
+  
   render() {
-    const {habitMain, habitRow, user, loadRows, colors} = this.props
+    const {habitMain, habitRow, user, loadRows, colors, addHabitMain} = this.props
     console.log(colors, "colors");
     console.log(this.props, "this.props")
     var orderedHabit = habitMain.slice();
@@ -118,17 +135,29 @@ class HabitTracker extends Component {
     return (
 
       <div className="singlePage-container">
+      
 
        <h1>Habit Tracker</h1>
+       
+       <form onSubmit={this.handleSubmit}>
+                <label>
+                    Name:
+                <input type="text" value={this.state.value} onChange={this.handleChange} />
+                </label>
+                <input type="submit" value="Add New Habit Tracker" />
+            </form>
        {arrMains.map((habitmain, ind)=>{
          
        
            return (
+
             <div key={Math.random()}>
             <p>{habitmain.title}</p>
+   
             {habitmain.row.map((row) => {
                 return (
                     <div key={Math.random()}>
+                    
                     
                     <p style={{display:"inline"}}>{row.habit}</p>    
                      
@@ -166,6 +195,7 @@ const mapState = (state) => ({
   habitMain: state.habitMain,
   habitRow: state.habitRow,
   colors: state.colors,
+  month: state.month
 });
 
 const mapDispatch = (dispatch) => {
@@ -174,6 +204,9 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchHabitMains(userId))
     
       
+    },
+    addHabitMain(newMain){
+        dispatch(postHabitMain(newMain))
     },
     loadRows(userId){
         dispatch(fetchRows(userId))
@@ -186,7 +219,16 @@ const mapDispatch = (dispatch) => {
         console.log(item, "item inside UpdateRow")
         dispatch(updateRowThunk(rowId, item));
         //dispatch(fetchRows(userId));
-    }
+    },
+         nextMonth() {
+            dispatch(gotNextMonth())  // to be used in on click
+        },
+        previousMonth() {
+            dispatch(gotPreviousMonth()) // to be used in on click
+        },
+        updateMonth(month){
+            dispatch(updatedMonth(month))
+        }
   };
 }
 

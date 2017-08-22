@@ -5,14 +5,14 @@ const TaskBullets = (props) => {
     return (
         <div>
             {tasks.map((task, idx) => (
-                    <div display="inline" key={idx}>{task.status === 'complete' ?
+                    <span  key={idx}>{task.status === 'complete' ?
 
-                            <div key={idx} style={{ color: `${task.category.color.hex}`}} display="inline"> &#x2613;</div>
+                            <span key={idx}  style={{ color: `${task.category.color.hex}`}} > &#x2613;</span>
                           :
 
-                            <div key={idx} style={{ color: `${task.category.color.hex}` }} display="inline">  &#x25CF;</div>
+                            <span key={idx}  style={{ color: `${task.category.color.hex}` }}>  &#x25CF;</span>
                     }
-                </div>
+                </span>
             ))}
         </div>
     )
