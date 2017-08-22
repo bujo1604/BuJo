@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchTasks, fetchEvents, fetchNotes, updatedDay } from '../store';
 import {TaskBullets, Events} from './';
-// import { tr, td, Tr, Thead, Th } from './component-style/index.js'
+import { Tbody, Td, Tr, Thead, Th } from './component-style/index.js'
+import HabitTracker from './HabitTracker';
 
 class MonthDumbComp extends Component {
 
@@ -76,6 +77,7 @@ class MonthDumbComp extends Component {
                     })} </tr>
 
                 </table>
+                <HabitTracker />
             </span>
 
         )

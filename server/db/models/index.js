@@ -4,6 +4,8 @@ const Color = require('./color');
 const Event = require('./event');
 const Task = require('./task');
 const Note = require('./note');
+const HabitTrackerMain = require('./habitTrackerMain');
+const HabitTrackerRow = require('./habitTrackerRow');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -22,9 +24,16 @@ User.hasMany(Task);
 User.hasMany(Category);
 User.hasMany(Event);
 User.hasMany(Note);
+User.hasMany(HabitTrackerMain);
+User.hasMany(HabitTrackerRow);
+HabitTrackerMain.belongsTo(User);
+HabitTrackerMain.hasMany(HabitTrackerRow);
+HabitTrackerRow.belongsTo(HabitTrackerMain);
+HabitTrackerRow.belongsTo(User);
 Task.belongsTo(Category);
 Category.belongsTo(Color);
 Event.belongsTo(User);
+
 
 module.exports = {
   User,
@@ -32,5 +41,7 @@ module.exports = {
   Color,
   Event,
   Task,
-  Note
+  Note,
+  HabitTrackerMain,
+  HabitTrackerRow
 };

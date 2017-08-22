@@ -1,0 +1,43 @@
+@keyframes colorflip {
+  0% { fill: #E91E63; }
+  24% { fill: #E91E63; }
+  25% { fill: #E57373; }
+  49% { fill: #E57373; }
+  50% { fill: #7C4DFF; }
+  74% { fill: #7C4DFF; }
+  75% { fill : #2196F3; }
+  100% { fill : #2196F3; }
+}
+
+// .bujoColor {
+//   animation:
+//     colorflip 5s linear infinite
+// }
+
+
+// @keyframes fadeinandout {
+//   0% { opacity: 1; }
+//   50% { opacity: 0; }
+//   50% { opacity: 1; }
+// }
+
+// .fullBujo {
+//   animation:
+//     fadeinandout 1s linear infinite
+
+// }
+
+// @keyframes rotate {
+//   0% {
+//     transform: rotateY(0deg);
+//   }
+//   100% {
+//     transform: rotateY(30deg);
+//   }
+// }
+
+// .arms {
+// fill: red;
+//   animation :
+//     rotate 5s linear infinite
+// }
