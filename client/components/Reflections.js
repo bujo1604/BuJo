@@ -45,15 +45,17 @@ class Reflections extends React.Component {
                 {notes.map((note, idx) => (
 
                     <div key={idx}>
-                        <span> &#x25AC;</span>
+                        <span className='event'> &#x25AC;</span>
+                        <span className='event'>
                         <RIETextArea
                             id={note.id}
                             value={note.text}
                             change={this.dataChanged}
                             propName={note.id.toString()}
                         />
-                        <span>{moment(note.date).format("MM.D.YY")}</span>
-                        <button id={note.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
+                        </span>
+                        <span className='event'>{moment(note.date).format("MM.D.YY")}</span>
+                       <span className='event'> <button id={note.id} onClick={this.handleClick(user)} type='submit' >DELETE</button></span>
                     </div>
                 ))}
             </div>

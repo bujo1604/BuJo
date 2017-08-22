@@ -10,20 +10,36 @@ class AddNote extends Component {
 
     render() {
         const { handleSubmit, handleCancel, user, day } = this.props;
-        
+
         return (
-            <div>
-                <form onSubmit={evt => handleSubmit(user, evt, day)}>
-                    <textarea
-                        name="note"
-                        cols="60"
-                        rows="6"
+            <div className="day-position">
+                <form  onSubmit={evt => handleSubmit(user, evt, day)}>
+                <div className='text' >
+                    <textarea className="textarea"
+                         name="note"
+                        // cols="60"
+                        // rows="6"
                         placeholder="How was your day today?"
                     />
+                    </div>
                     <br />
-                    <button type="submit"> Submit </button>
+                     <button
+                  className="button is-success"
+
+                >
+                 <span className="icon is-small">
+                    <i className="fa fa-check" />
+                  </span>
+                  <span>Add</span>
+                </button>
                 </form>
-                <button onClick={handleCancel}> Cancel </button>
+
+                <button className="button is-danger is-outlined" onClick={handleCancel}>
+    <span>Cancel</span>
+    <span className="icon is-small">
+      <i className="fa fa-times"></i>
+    </span>
+  </button>
             </div>
         )
     }

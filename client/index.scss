@@ -31,13 +31,17 @@ body {
   grid-gap: 10px;
   height: 100vh;
 
-  
 
+
+}
+
+.day-position{
+  justify-content: flex-start;
 }
 
 .page-header {
   grid-area: header;
-  background-color: lightpink; 
+  background-color: lightpink;
   display: flex;
   text-align:center;
   flex-direction: column;
@@ -51,7 +55,7 @@ body {
 .page-sidebar {
   grid-area: nav;
   background-color: lightgreen;
-   
+
 }
 
 .page-content {
@@ -67,7 +71,7 @@ body {
 .page-legend {
   grid-area: side;
   background-color: lightgreen;
-   
+
 }
 
 
@@ -93,7 +97,51 @@ body {
 li :hover {
   background-color: #555;
   color: white;
+}
+.text{
+      width: 600px !important;
+      height: 200px !important;
+  align-items: center;
+  justify-content: center;
+text-align: center;
+margin-bottom: 3px;
+margin-right: 5px;
+padding-left: 200px;
+}
+.input{
+    width: 200px !important;
+  align-items: center;
+  justify-content: space-between;
+text-align: center;
+margin-bottom: 3px;
+margin-right: 5px;
+}
 
+.button {
+  width: 130px !important;
+  align-items: center;
+  justify-content: space-between;
+text-align: center;
+margin-bottom: 3px;
+margin-left: 6px;
+}
+
+.picker{
+
+  align-items: center;
+  margin-bottom: 3px;
+  align-items: center;
+  justify-content: center;
+text-align: center;
+}
+
+.space {
+  margin-bottom: 20px;
+}
+.position{
+  display: flex;
+  flex-direction: row;
+justify-content: space-between;
 
 }
 a {
@@ -144,7 +192,7 @@ th {
     text-align:left;
     padding-left: 10px;
     padding-right: 10px;
-  
+
   }
   .day{
     vertical-align: top;
@@ -152,17 +200,36 @@ th {
     padding-right: 10px;
     padding-bottom: 30px;
   }
-  
+
   .table{
     margin:0px;
   }
-  
+
 
   .event{
     padding-left: 10px;
+
   }
 
+.align-left{
+justify-content: center;
+text-align:left;
+ align-items: center;
+  padding-right: 250px;
 
+  }
+.del{
+  margin-left: 300px;
+  padding-right:0;
+}
+.lin{
+  align-items: baseline;
+}
+  .parent-center{
+   grid-area: center;
+justify-content: center;
+ margin-left: 250px;
+  }
 // .flexbox-container {
 //   display: -ms-flex;
 //   display: -webkit-flex;

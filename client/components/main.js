@@ -24,7 +24,7 @@ const Main = (props) => {
             isLoggedIn
               ? <div>
                 {/* The navbar will show these links after you log in */}
-                
+
                 <ul className="menu-list">
                 <li className="is-active"> <Link to='/home'>Home</Link> </li>
                   <Link to='/settings'>Settings</Link>
@@ -47,10 +47,9 @@ const Main = (props) => {
 
           }
         </aside>
-      
-      
+
+
       <div className="page-content">
-      in childern
       {children}
       </div>
       <div className='page-legend' >
@@ -61,12 +60,12 @@ const Main = (props) => {
           <p className='sideBar-titles'>   &#x2613; To Do </p>
           <p className='sideBar-titles'> &#x25CF; Completed </p>
           <p className='sideBar-titles'>  &#x25AC;  Note  </p>
-        
+
           <hr />
         <h2 className='sideBar-legend'> Values </h2>
         <p className='sideBar-titles'>  &#x25AC; Some random value  </p>
         </div>
-     
+
         <hr />
 
       </div>

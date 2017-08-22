@@ -53,17 +53,24 @@ class TaskForm extends Component {
 
         return (
             <div>
-                here is form!
+                Here is form!
             <br />
                 <form onSubmit={this.handleSubmit}>
-                    <input name='name' type="text" placeholder="input task here" />
-                    <button type='submit'>Add task</button>
+                    <input className="input" name='name' type="text" placeholder="input task here" />
+                    <button
+                  className="button is-success"
+                >
+                 <span className="icon is-small">
+                    <i className="fa fa-check" />
+                  </span>
+                  <span>Add</span>
+                </button>
                 </form>
                 {categories.map((cat, idx) => (
                     (
                         <label key={idx} className='color'>
-                            <button id={cat.id} onClick={this.selectedCategory} value={cat.name} > {cat.name} <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span></button>
-                            
+                            <button className="button" id={cat.id} onClick={this.selectedCategory} value={cat.name} > {cat.name} <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span></button>
+
                             {/*
                             <button id={cat.id} onClick={this.handleClick}>delete</button>
                             */}

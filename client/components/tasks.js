@@ -40,15 +40,17 @@ dataChanged(data){
   render() {
     const { tasks, user, changeStatus } = this.props;
     return (
-        <div>
-            <h3 className="singleName-headings">Tasks</h3>
+
+        <div className="parent-center">
+        <div className='align-left'>
+
             {tasks.map((task, idx) => (
-                <div key={idx}>
+                <div className='lin' key={idx}>
                     {task.status === 'complete' ?
                         <div>
 
-                    <span className='event' style={{ color: `${task.category.color.hex}` }}> &#x2613;</span>
-                        <span className='event'>     
+                    <span className='event-bool' style={{ color: `${task.category.color.hex}` }}> &#x2613;</span>
+                        <span className='event'>
                         <RIEInput
                             id={task.id}
                             value={task.name}
@@ -68,14 +70,17 @@ dataChanged(data){
                             propName={task.id.toString()}
                             />
                             </span>
-                            <span className='event'>
+                             <div className='del'>
+                            <span>
                             <button id={task.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
                             </span>
+                            </div>
                         </div>
                     }
 
                 </div>
             ))}
+        </div>
         </div>
     )
 

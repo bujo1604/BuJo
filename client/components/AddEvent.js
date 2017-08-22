@@ -14,27 +14,39 @@ class AddEvent extends Component {
 
         return (
             <div>
+            <div  className="space" >
                 Event
+                </div>
                 <form onSubmit={evt => handleSubmit(user, evt, day)}>
-                    Name:<input
+                    Name:<input  className="input"
                         name="name"
                     />
-                    Location: <input
+                    Location: <input  className="input"
                         name="location"
                     />
-                   
 
-                    TimePicker: 
-                    <TimePicker
-                    format="ampm"
-                    hintText="HH:MM"
-                    name= "time"
-                  />
+
+                    TimePicker:
+                    <div className="picker"><TimePicker format="ampm" hintText="HH:MM" name= "time" /></div>
 
                     <br />
-                    <button type="submit"> Submit </button>
+                   <button
+                  className="button is-success"
+
+                >
+                 <span className="icon is-small">
+                    <i className="fa fa-check" />
+                  </span>
+                  <span>Submit</span>
+                </button>
                 </form>
-                <button onClick={handleCancel}> Cancel </button>
+
+                <button className="button is-danger is-outlined" onClick={handleCancel}>
+    <span>Cancel</span>
+    <span className="icon is-small">
+      <i className="fa fa-times"></i>
+    </span>
+  </button>
             </div>
         )
     }

@@ -74,7 +74,7 @@ class MonthDumbComp extends Component {
                     })}
 
                </table>
-               <HabitTracker />
+
             </span>
 
        )

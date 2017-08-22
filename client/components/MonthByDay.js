@@ -13,14 +13,14 @@ const MonthByDay = (props) => {
     const daysInMonth = makeArrOfDaysInMonthSunToSat(month)
     return (
         <div>
-        monthn by day component <br/>
+
         <div className='singlePage-container'>
             <a href='#' className='previous round' onClick={previousMonth}>&#8249;</a>
             <h2 className='singlePage-title'> {month} </h2>
             <a href='#' className='next round' onClick={nextMonth}> &#8250; </a>
         </div>
         <hr />
-            <button onClick={()=> updateMonth(moment(new Date()).format("MMMM YYYY"))}>Current Month</button>
+            <button className="button is-primary" onClick={()=> updateMonth(moment(new Date()).format("MMMM YYYY"))}>Current Month</button>
             <MonthDumbComp daysInMonth={daysInMonth} month={month} />
         </div>
     )
