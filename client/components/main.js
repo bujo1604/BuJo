@@ -16,6 +16,7 @@ const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
 
   return (
+
     <div className='page'>
       <h1 className='page-header' >BUJO</h1>
         <aside className='page-sidebar'>
@@ -31,11 +32,13 @@ const Main = (props) => {
                   <Link to='/day'>Day</Link>
                   <Link to='/calendar'>Calendar</Link>
                   <Link to='/futureLog'>Future-Log</Link>
+                  <Link to='/reflections'>Reflections</Link>
                   <a href='#' onClick={handleClick}>Logout</a>
                   </ul>
               </div>
               : <div>
                 {/* The navbar will show these links before you log in */}
+
 
                 <Link to='/login'>Login</Link>
                 <Link to='/signup'>Sign Up</Link>
