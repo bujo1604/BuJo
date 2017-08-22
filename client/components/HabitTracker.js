@@ -32,7 +32,7 @@ class HabitTracker extends Component {
   }
 
   handleSubmit(event){
-    alert('A name was submitted: ' + this.state.value);
+   
     event.preventDefault();
     var month = moment(new Date()).startOf("month").format("YYYYMMDD");
 
@@ -46,7 +46,7 @@ class HabitTracker extends Component {
     sliceOfColors.forEach((color)=>{
         ArrOfColors.push(color.hex);
     })
-    console.log(ArrOfColors, "arrofColors")
+  
     if(color == null){return null}
     else{
     if(ArrOfColors.indexOf(color) !== -1){
@@ -64,32 +64,28 @@ class HabitTracker extends Component {
   }
 
   clicker (num, item, color){
-      console.log('clicked')
-      console.log('num that was clicked', num + 1)
-    console.log("item", item)
-    console.log("color,", color)
+
     var newColor = this.colorSwap(color);
     this.props.UpdateRow(num, { [item]: newColor}, this.props.user.id)
   }
 
   handleChange(event){
       this.setState({value: event.target.value});
-      console.log(this.state.value, "this.state.value");
+    
   }
   
   render() {
     const {habitMain, habitRow, user, loadRows, colors, addHabitMain} = this.props
-    console.log(colors, "colors");
-    console.log(this.props, "this.props")
+ 
     var orderedHabit = habitMain.slice();
 
     var compareFunc = function (a,b) {
         if(a.month < b.month){
-            console.log(a.month, "a.month")
+         
             return -1;
         }
         else if(b.month < a.month){
-            console.log(a.month, "a.month")
+        
             return 1;
         }
         return 0;
@@ -107,10 +103,7 @@ class HabitTracker extends Component {
         arrMains.push(mainObj);
         arrMainIds.push(main.id);
     })
-   // console.log(habitRow, "habitRow in Habit Tracker")
-   // console.log(orderedHabit, "orderedHabit in Habit Tracker")
-
-    //var arrMainRow = [];
+  
     habitRow.forEach((row)=>{
       
         var mainId = row.habitTrackerMainId;
@@ -119,8 +112,7 @@ class HabitTracker extends Component {
 
     })
 
-    console.log(arrMains, "arrMains")
-    console.log(arrMainIds, "arrMainIds")
+  
     
     
     function thirty1 () {
@@ -178,7 +170,7 @@ class HabitTracker extends Component {
                     </div>
                 )
             })}
-            {/* <HabitRow habitRowArr={arrMains} /> */}
+            
             </div>
             
             )
@@ -215,10 +207,9 @@ const mapDispatch = (dispatch) => {
         dispatch(fetchColors())
     },
     UpdateRow(rowId, item, userId){
-        console.log(rowId, "rowId inside updateRow");
-        console.log(item, "item inside UpdateRow")
+       
         dispatch(updateRowThunk(rowId, item));
-        //dispatch(fetchRows(userId));
+      
     },
          nextMonth() {
             dispatch(gotNextMonth())  // to be used in on click
@@ -233,6 +224,3 @@ const mapDispatch = (dispatch) => {
 }
 
 export default connect(mapState, mapDispatch)(HabitTracker);
-
-
-  /* <rect key={ind} x={(day - 1)*30} y="0" width="30" height="30" stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr])}} /> */
