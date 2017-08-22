@@ -7,6 +7,8 @@ router.use('/tasks', require('./task'));
 router.use('/colors', require('./color'));
 router.use('/events', require('./event'));
 router.use('/notes', require('./note'));
+router.use('/habitmain', require('./habitmain'));
+router.use('/habitrow', require('./habitrow'))
 
 router.use((req, res, next) => {
   const error = new Error('Not Found');
