@@ -22,10 +22,10 @@ class Notes extends React.Component {
             const noteId = event.target.id
             event.preventDefault()
             this.props.removeNote(noteId, userId)
-        
+
         })
     }
-    
+
     dataChanged(data){
         const note = Object.keys(data);
         const noteId = note[0]
@@ -35,7 +35,7 @@ class Notes extends React.Component {
 
         this.props.editNote(noteId, editNote)
     }
-    
+
 
     render(){
         const { notes, user } = this.props;
@@ -45,18 +45,22 @@ class Notes extends React.Component {
             {notes.map((note, idx) => (
 
                     <div key={idx}>
-                        <span> &#x25AC;</span>
+                        <span className='event'> &#x25AC;</span>
+                        <span className='event'>
                         <RIETextArea
                         id={note.id}
                         value={note.text}
                         change={this.dataChanged}
                         propName={note.id.toString()}
                         />
+                        </span>
+                        <span className='event'>
                         <button id={note.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
+                        </span>
                     </div>
                 ))}
-            
-           
+
+
         </div>
         )
     }
@@ -90,7 +94,7 @@ class Notes extends React.Component {
 //     const { notes, user, handleClick } = props;
 //     return (
 //         <div>
-//            
+//
 //             {notes.map((note, idx) => (
 //                 <div key={idx}>
 //                     <span> &#x25AC;</span>
@@ -104,10 +108,10 @@ class Notes extends React.Component {
 
 
 const mapState = (state) => ({
-      user: state.user, 
+      user: state.user,
       day: state.day
     })
-    
+
     const mapDispatch = (dispatch) => {
         return {
             editNote(noteId, editNote, userId ){
@@ -122,6 +126,6 @@ const mapState = (state) => ({
 
             }
         }
-    
-    
+
+
     export default connect(mapState, mapDispatch)(Notes)

@@ -43,9 +43,9 @@ class Events extends React.Component {
             {events.map((event, idx) => {
                 return (
                     <div key={idx}>
-                        <span> &#x25AC;</span>
+                        <span className='event'> &#x25CB;</span>
 
-
+                        <span className='event'>
                         <RIEInput
                         id={event.id}
                         value={event.time}
@@ -58,23 +58,27 @@ class Events extends React.Component {
                             {style: {minWidth: 120}}
                         }
                         />
-                        <br />
+                        </span>
+                        <span className='event'>
                         <RIEInput
                         id={event.id}
                         value={event.name}
                         change={this.dataChanged}
                         propName="name"
                         />
-                        <br />
-
+                       </span>
+                        <span className='event'>
                         <RIEInput
                         id={event.id}
                         value={event.location}
                         change={() => this.dataChanged(event.id)}
                         propName="location"
                         />
-                        <button id={event.id} onClick={this.handleClick(user)} type="submit" >DELETE</button>
-                        <br />
+                        </span>
+                        <span className='event'>
+                        <button  id={event.id} onClick={this.handleClick(user)} type="submit" >DELETE</button>
+                        </span>
+
                     </div>
                 )})}
 

@@ -16,7 +16,7 @@ const Main = (props) => {
 
   return (
     <div className='main-div'>
-      <h1 className='header'><p className='p'>BUJO</p> <a href="#"><i className="fa fa-trash"></i></a> </h1>
+      <h1 className='header'>BUJO </h1>
       <ul>
         {
           isLoggedIn

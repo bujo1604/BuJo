@@ -46,26 +46,30 @@ dataChanged(data){
                 <div key={idx}>
                     {task.status === 'complete' ?
                         <div >
-                            <span style={{ color: `${task.category.color.hex}` }}> &#x2613;</span>
+                            <span className='event' style={{ color: `${task.category.color.hex}` }}> &#x2613;</span>
+                            <span className='event'>
                             <RIEInput
                             id={task.id}
                             value={task.name}
                             change={this.dataChanged}
                             propName={task.id.toString()}
                             />
+                            </span>
 
                         </div> :
                         <div >
-                            <span id={task.id} onClick={changeStatus(user)} style={{ color: `${task.category.color.hex}` }}> &#x25CF;</span>
+                            <span className='event' id={task.id} onClick={changeStatus(user)} style={{ color: `${task.category.color.hex}` }}> &#x25CF;</span>
+                            <span className='event'>
                             <RIEInput
                             id={task.id}
                             value={task.name}
                             change={this.dataChanged}
                             propName={task.id.toString()}
                             />
-
+                            </span>
+                            <span className='event'>
                             <button id={task.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
-
+                            </span>
                         </div>
                     }
 

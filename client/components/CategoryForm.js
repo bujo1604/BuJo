@@ -58,7 +58,7 @@ class CategoryForm extends Component {
         const colors = this.props.colors;
 
 
-       
+
         return (
             <div>
 

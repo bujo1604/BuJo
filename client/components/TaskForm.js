@@ -62,7 +62,7 @@ class TaskForm extends Component {
                 {categories.map((cat, idx) => (
                     (
                         <label key={idx} className='color'>
-                            <button id={cat.id} onClick={this.selectedCategory} style={{ color: `${cat.color.hex}` }} value={cat.name} > {cat.name}</button>
+                            <button id={cat.id} onClick={this.selectedCategory}  value={cat.name} > {cat.name}</button>
                             <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span>
                             {/*
                             <button id={cat.id} onClick={this.handleClick}>delete</button>
