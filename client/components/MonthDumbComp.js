@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchTasks, fetchEvents, fetchNotes, updatedDay } from '../store';
-import {TaskBullets, EventsDumbComponent, HabitTracker} from './';
+import {TaskBullets, EventsDumbComponent} from './';
+
 
 class MonthDumbComp extends Component {
 
@@ -74,7 +75,7 @@ class MonthDumbComp extends Component {
                     })}
 
                </table>
-               <HabitTracker />
+              
             </span>
 
        )
