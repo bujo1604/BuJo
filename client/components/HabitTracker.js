@@ -175,7 +175,7 @@ class HabitTracker extends Component {
                          var cy = circleFunc(bCirR, svgCenterX, svgCenterY, 31, day)[1];
                     return (<g key={Math.random()}>
                     <circle key={ind} cx={cx} cy={cy} r={cirR} stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr])}} />
-                    <text textAnchor="middle" key={Math.random()} x={cx} y={cy} onClick={() => {this.clicker(row.id, colStr, row[colStr])}}>{day}</text>
+                    <text textAcodenchor="middle" key={Math.random()} x={cx} y={cy} onClick={() => {this.clicker(row.id, colStr, row[colStr])}}>{day}</text>
                     </g>)
                 
                     })}
