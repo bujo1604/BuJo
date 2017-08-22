@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchTasks, fetchEvents, fetchNotes, updatedDay } from '../store';
-import {TaskBullets, Events} from './';
+import {TaskBullets, EventsDumbComponent} from './';
+
 
 class MonthDumbComp extends Component {
 
@@ -55,7 +56,7 @@ class MonthDumbComp extends Component {
                                <tr key={Math.random()}>
                                     <td><Link to='/day' onClick={() => updateDay(day.date)}>{day.weekday}   {day.dateOfM}</Link></td>
 
-                                   <td  className='day'><Events events={filteredEvents[daysInMonth.indexOf(day)]} /></td>
+                                   <td  className='day'><EventsDumbComponent events={filteredEvents[daysInMonth.indexOf(day)]} /></td>
                                     <td><TaskBullets tasks={filteredTasks[daysInMonth.indexOf(day)]} /></td>
                                 </tr>
 
@@ -65,7 +66,7 @@ class MonthDumbComp extends Component {
                             return (
                                   <tr key={Math.random()}>
                                      <td ><Link to='/day' onClick={() => updateDay(day.date)}> {day.weekday}   {day.dateOfM}</Link></td>
-                                    <td className='day'><Events events={filteredEvents[daysInMonth.indexOf(day)]} /></td>
+                                    <td className='day'><EventsDumbComponent events={filteredEvents[daysInMonth.indexOf(day)]} /></td>
                                     <td><TaskBullets tasks={filteredTasks[daysInMonth.indexOf(day)]} /></td>
 
                                </tr>
