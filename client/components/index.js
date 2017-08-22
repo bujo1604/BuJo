@@ -32,4 +32,4 @@ export {default as SVGCharacter} from './SVGCharacter';
 export {default as HabitTracker} from './HabitTracker';
 export {default as EventsDumbComponent} from './EventsDumbComponent';
 export {default as Help} from './Help';
-
+export {default as UpdateTask} from './UpdateTask'

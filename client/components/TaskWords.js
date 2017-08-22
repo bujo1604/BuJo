@@ -33,29 +33,25 @@ class TaskWords extends Component {
   }
 
 componentDidMount(){
-    //this.props.loadCategories(this.props.user.id)
+  
 }
 
 
   render() {
-    const { tasks } = this.props;
-console.log(this.props, "this.props. in taskwords")
-    for(let i = 0; i < tasks.length; i++){
-        if(!!tasks.category){
-            console.log("has a category")
-        }
-        else{
-            console.log("doesnt have a category")
-        }
+    const { tasks, categories } = this.props;
+
+    var colors = {};
+    for(let i = 0; i<categories.length; i++){
+        colors[categories[i].id] = categories[i].color.hex
     }
     
     return (
         <div>
             {tasks.map((task, idx) => (
                     <div display="inline" key={idx}>
-                           
-                            <span key={idx} display="inline">{task.name}</span>
-                                <Link to={'/help'}>update</Link>
+                            <Link to={'/updateTask'}>
+                            <span key={idx}  display="inline" style={{ color: `${colors[task.categoryId]}` }}>{task.name}</span>
+                            </Link>
                             </div>
             ))}
         </div>
@@ -67,7 +63,7 @@ console.log(this.props, "this.props. in taskwords")
 }
 
 const mapState = (state) => ({
- //categories: state.categories,
+ categories: state.categories,
  user: state.user,
 });
 
