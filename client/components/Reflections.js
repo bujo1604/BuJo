@@ -40,7 +40,8 @@ class Reflections extends React.Component {
         const { notes, user } = this.props;
         sortTasksByDate(notes)
         return (
-            <div>
+             <div className="parent-center">
+            <div className='align-left'>
                 <h3 className="singleName-headings">Reflections</h3>
                 {notes.map((note, idx) => (
 
@@ -55,9 +56,14 @@ class Reflections extends React.Component {
                         />
                         </span>
                         <span className='event'>{moment(note.date).format("MM.D.YY")}</span>
-                       <span className='event'> <button id={note.id} onClick={this.handleClick(user)} type='submit' >DELETE</button></span>
+                       <div className='del'>
+                        <span >
+                        <button id={note.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
+                        </span>
+                        </div>
                     </div>
                 ))}
+            </div>
             </div>
         )
     }

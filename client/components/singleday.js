@@ -41,16 +41,16 @@ class SingleDay extends Component {
       <div>
         <div className="singlePage-container">
           <a href="#" className="previous round" onClick={previousDay}>
-            {" "}&#8249;
+            &#8249;
           </a>
           <h2 className="singlePage-title">
-            {" "}{moment(day).format("ddd D")}{" "}
+            {moment(day).format("ddd D")}
           </h2>
           <h2>
-            {" "}{moment(day).format("MMMM YYYY")}{" "}
+            {moment(day).format("MMMM YYYY")}
           </h2>
           <a href="#" className="next round" onClick={nextDay}>
-            {" "}&#8250;
+            &#8250;
           </a>
         </div>
         <hr />
@@ -59,7 +59,7 @@ class SingleDay extends Component {
             className="button is-primary"
             onClick={() => updateDay(moment(new Date()).format("YYYYMMDD"))}
           >
-            {" "}Current Day{" "}
+            Current Day
           </button>
         </div>
 

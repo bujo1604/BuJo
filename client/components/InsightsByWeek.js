@@ -29,15 +29,23 @@ export class InsightsByWeek extends Component {
     addDayCountToTasks(completeTasks)
     return (
       <div>
-        <h1>{moment(week).format('MMMM D')} - {moment(weekEndDate(week)).format('MMMM D YYYY')}</h1>
-        <button onClick={previousWeek}>Prev Week</button>
-        {week < moment(new Date()).format('YYYYMMDD') && <button onClick={nextWeek}>Next Week</button>}
+      <div className="singlePage-container">
+
+        <a href="#" className="previous round" onClick={previousWeek}> &#8249;
+          </a>
+          <h1>{moment(week).format('MMMM D')} - {moment(weekEndDate(week)).format('MMMM D YYYY')}</h1>
+        {week < moment(new Date()).format('YYYYMMDD') && <a href="#" className="next round"  onClick={nextWeek}> &#8250;
+          </a>}
+          </div>
+          <hr />
         {!completeTasks.length ? <p>no tasks </p> :
           <div className="flexbox-container">
             <Pie tasks={completeTasks} />
             <Scatter tasks={completeTasks} startDate = {week} endDate ={weekEndDate(week)} tickNum = {7} tickFormat = {d3.timeFormat("%a")}/>
           </div>}
+
       </div>)
+
   }
 }
 
