@@ -167,7 +167,7 @@ class HabitTracker extends Component {
       
 
        <h1>Habit Tracker</h1>
-       
+       <div>
        <form onSubmit={this.handleSubmit}>
                 <label>
                     Name:
@@ -175,16 +175,9 @@ class HabitTracker extends Component {
                 </label>
                 <input type="submit" value="Add New Habit Tracker" />
             </form> 
+            </div>
             <div>
-       {arrMains.map((habitmain, ind)=>{
-         
-       
-           return (
-
-            <div key={Math.random()}>
-            <p>{habitmain.title}</p>
-   
-            {habitmain.row.map((row) => {
+             {habitRow.map((row) => {
                 return (
                     <div key={Math.random()}>
                     <div >
@@ -193,7 +186,7 @@ class HabitTracker extends Component {
                        
                      
                     <svg width={svgWidth} height={svgHeight} key={Math.random()}>
-                    <text x={svgCenterX} y={svgCenterY} >{row.habit}</text> 
+                    <text textAnchor="middle" x={svgCenterX} y={svgCenterY} >{row.habit}</text> 
                     {thirty1Days.map((day, ind)=>{
                         var colNumb = ind + 1;
                         var colStr = 'c' + colNumb;
@@ -201,7 +194,7 @@ class HabitTracker extends Component {
                          var cy = circleFunc(bCirR, svgCenterX, svgCenterY, numDaysR , day)[1];
                     return (<g key={Math.random()}>
                     <circle key={ind} cx={cx} cy={cy} r={cirR} stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr])}} />
-                    <text textAnchor="middle" key={Math.random()} x={cx} y={cy} onClick={() => {this.clicker(row.id, colStr, row[colStr])}}>{day}</text>
+                    <text textAnchor="middle" x={cx} y={cy} onClick={() => {this.clicker(row.id, colStr, row[colStr])}}>{day}</text>
                     </g>)
                 
                     })}
@@ -211,13 +204,9 @@ class HabitTracker extends Component {
                     </div>
                 )
             })}
-            
             </div>
-            
-            )
-       })
-
-       }
+            <div>
+     
     </div>
       </div>
     )
