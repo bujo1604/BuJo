@@ -267,10 +267,11 @@ th {
 text-decoration: underline;
 }
 .align-left{
-justify-content: center;
+// justify-content: center;
 text-align:left;
- align-items: center;
-  padding-right: 250px;
+//  align-items: center;
+   padding-right: 150px;
+  //  padding-left: 150px;
 
   }
 .del{
@@ -283,7 +284,7 @@ text-align:left;
   .parent-center{
    grid-area: center;
 justify-content: center;
- margin-left: 350px;
+ margin-left: 250px;
 
   }
 
@@ -373,5 +374,5 @@ a:hover {
 //   .delete-btn:hoover {
 //     display: inline;
 //   }
- 
+
 // }

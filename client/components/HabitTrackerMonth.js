@@ -12,15 +12,15 @@ const HabitTrackerMonth = (props) => {
     //daysInMonth includes Sun-Sat view
     const daysInMonth = makeArrOfDaysInMonthSunToSat(month)
     return (
-        <div>
-        Habit Tracker <br/>
-        <div className='singlePage-container'>
+         <div className='space-around-buttons'>
+        <h2 className="content-title">Habit Tracker</h2>
+        <div className="content-title">
             <a href='#' className='previous round' onClick={previousMonth}>&#8249;</a>
             <h2 className='singlePage-title'> {month} </h2>
             <a href='#' className='next round' onClick={nextMonth}> &#8250; </a>
         </div>
-        <hr />
-            <button onClick={()=> updateMonth(moment(new Date()).format("MMMM YYYY"))}>Current Month</button>
+
+            {/*<button onClick={()=> updateMonth(moment(new Date()).format("MMMM YYYY"))}>Current Month</button>*/}
             <HabitTracker  /> {/*moment(this.props.month).startOf("month").format("YYYYMMDD") */}
         </div>
     )
@@ -44,7 +44,7 @@ const mapDispatch = (dispatch) => {
             dispatch(updatedMonth(month))
             //dispatch(fetchRows(userId, startdate,enddate))
         },
-     
+
     };
 }
 

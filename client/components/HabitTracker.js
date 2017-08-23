@@ -8,13 +8,13 @@ import HabitRow from './HabitRow'
 
 
 function circleFunc(r, cx, cy, TotNum, order) {
-    
+
     var angle = ((order - Math.ceil(TotNum/4) - 1)/ TotNum )*2*Math.PI;
 
     var x = Math.floor(Math.cos(angle)*r + cx)
     var y = Math.floor(Math.sin(angle)*r + cy);
     var rad = Math.floor(order * 360 / TotNum);
-    
+
     var coord = [x,y, rad]; // x,y
     return coord;
 }
@@ -25,25 +25,25 @@ class HabitTracker extends Component {
     this.state = {
         value: '',
         color: 'blue'
-   
+
 
     }
-    
+
     this.clicker = this.clicker.bind(this);
     this.colorSwap = this.colorSwap.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.thirty1 = this.thirty1.bind(this);
     this.changeColorState = this.changeColorState.bind(this);
- 
+
   }
 
   componentDidMount(){
       this.props.loadColors(this.props.user.id);
        this.props.loadMains(this.props.user.id);
        this.props.loadRows(this.props.user.id, moment(this.props.month).startOf("month").format("YYYYMMDD"), moment(this.props.month).endOf("month").format("YYYYMMDD"));
-       
-       
+
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -53,7 +53,7 @@ class HabitTracker extends Component {
     }
   }
   handleSubmit(event){
-   
+
     event.preventDefault();
     var month = moment(this.props.month).startOf("month").format("YYYYMMDD");
 
@@ -73,7 +73,7 @@ class HabitTracker extends Component {
     sliceOfColors.forEach((color)=>{
         ArrOfColors.push(color.hex);
     })
-  
+
 
     if(color == null){return null}
     else{
@@ -100,13 +100,13 @@ class HabitTracker extends Component {
 
   handleChange(event){
       this.setState({value: event.target.value});
-    
+
   }
   thirty1 () {
         var arrDays = [];
         var numDays = Number(moment(this.props.month).endOf("month").format('DD'));
-     
-        
+
+
         for(var j = 1; j <= numDays; j++ ){
             arrDays.push(j);
         }
@@ -118,10 +118,10 @@ class HabitTracker extends Component {
     }
   render() {
     const {habitMain, habitRow, user, loadRows, colors, addHabitMain} = this.props
-    
+
     var svgWidth = 400;
     var svgHeight = svgWidth;
-    var cirR = svgWidth/60; 
+    var cirR = svgWidth/60;
     var svgCenterX = svgWidth / 2;
     var svgCenterY = svgHeight / 2;
     var bCirR = (svgWidth * 0.6) /2
@@ -130,11 +130,11 @@ class HabitTracker extends Component {
 
     var compareFunc = function (a,b) {
         if(a.month < b.month){
-         
+
             return -1;
         }
         else if(b.month < a.month){
-        
+
             return 1;
         }
         return 0;
@@ -152,9 +152,9 @@ class HabitTracker extends Component {
         arrMains.push(mainObj);
         arrMainIds.push(main.id);
     })
-  
+
     habitRow.forEach((row)=>{
-      
+
         var mainId = row.habitTrackerMainId;
         var arrId = arrMainIds.indexOf(mainId);
         arrMains[arrId].row.push(row);
@@ -162,7 +162,7 @@ class HabitTracker extends Component {
     })
 
   */
-    
+
     /*
     function thirty1 () {
         var arrDays = [];
@@ -179,17 +179,17 @@ class HabitTracker extends Component {
     return (
 
       <div className="singlePage-container">
-      
 
-       <h1>Habit Tracker</h1>
+
+
        <div>
        <form onSubmit={this.handleSubmit}>
                 <label>
                     Habit:
-                <input type="text" value={this.state.value} onChange={this.handleChange} />
+                <input className="input" type="text" value={this.state.value} onChange={this.handleChange} />
                 </label>
-                <input type="submit" value="Add New Habit Tracker" />
-            </form> 
+                <input  className="button is-success" type="submit" value="Add New Tracker" />
+            </form>
 
               {colors.map((cat, idx) => (
                     (
@@ -207,13 +207,13 @@ class HabitTracker extends Component {
                 return (
                     <div key={Math.random()}>
                     <div >
-                    
-                    
-                       
-                     
+
+
+
+
                     <svg width={svgWidth} height={svgHeight} key={Math.random()}>
-                    
-                     
+
+
                     {thirty1Days.map((day, ind)=>{
                         var colNumb = ind + 1;
                         var colStr = 'c' + colNumb;
@@ -226,25 +226,25 @@ class HabitTracker extends Component {
                         var dcy = circleFunc(bCirR - 1*cirR, svgCenterX, svgCenterY, numDaysR , day)[1];
                         var letter = moment((this.props.month)).add(day-1, "day").format("dd")
                          var rotate = angle.toString() + " " + cx + " " + cy;
-                        var transf = "rotate(" + rotate + ")" 
+                        var transf = "rotate(" + rotate + ")"
                         return (<g key={Math.random()}>
                     <ellipse key={ind} cx={cx} cy={cy} rx={cirR*2} ry={cirR*10} transform={transf} stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}} />
                     <text textAnchor="middle" x={tcx} y={tcy} fontFamily="ABeeZee" onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}}>{day}</text>
                     <text textAnchor="middle" x={dcx} y={dcy} fontFamily="ABeeZee" fontSize="10" onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}}>{letter}</text>
                     </g>)
-                
+
                     })}
                     <circle cx={svgCenterX} cy={svgCenterY} r={bCirR*0.650} fill="#d7e7e8" stroke="black"/>
                     <text textAnchor="middle" x={svgCenterX} y={svgCenterY} fontFamily="ABeeZee">{row.habit}</text>
                     </svg>
-                    
+
                     </div>
                     </div>
                 )
             })}
             </div>
             <div>
-     
+
     </div>
       </div>
     )
@@ -263,8 +263,8 @@ const mapDispatch = (dispatch) => {
   return {
     loadMains(userId) {
       dispatch(fetchHabitMains(userId))
-    
-      
+
+
     },
     addHabitMain(newMain){
         dispatch(postHabitMain(newMain))
@@ -276,9 +276,9 @@ const mapDispatch = (dispatch) => {
         dispatch(fetchColors())
     },
     UpdateRow(rowId, item, userId){
-       
+
         dispatch(updateRowThunk(rowId, item));
-      
+
     },
          nextMonth() {
             dispatch(gotNextMonth())  // to be used in on click
