@@ -27,25 +27,29 @@ class Notes extends React.Component {
     }
 
     handleClick(user, note) {
-        // console.log('in handle click')
+        
         const userId = user.id
 
         return ((event) => {
-            console.log(note.id);
+            
             const noteId = note.id
 
             event.preventDefault();
+
+            this.setState({valueSingle: ''})
             this.props.removeNote(noteId, userId)
         })
     }
 
     handleChangeSingle(event, value) {
+        console.log('before', this.state)
+        console.log('value', value)
         return (
             this.setState(
                 {
-                    valueSingle: value,
-                    edit: false
-                }
+                    valueSingle: value
+                }, 
+                console.log('after', this.state)
             )
         )
     }
@@ -58,6 +62,7 @@ class Notes extends React.Component {
         const editNote = {
             text: data[note]
         }
+        this.setState({valueSingle: ''})
         this.props.editNote(noteId, editNote)
     }
 
@@ -65,7 +70,7 @@ class Notes extends React.Component {
 
     render() {
         const { notes, user } = this.props;
-
+        console.log('STATE', this.state)
 
         return (
             <div className="parent-center">
@@ -73,19 +78,25 @@ class Notes extends React.Component {
 
                     {notes.map((note, idx) => (
                         <div className='lin' key={idx}>
-                            {(this.state.edit) ?
-                                (
-                                    <span className='event-bool'> &#x25AC;  {note.text}  </span>
-                                ) :
+                            {(this.state.valueSingle === "1") ?
                                 (
                                     <span className='event'> &#x25AC;
-                                     <RIETextArea
-                                            id={note.id}
-                                            value={note.text}
-                                            change={this.dataChanged}
-                                            propName={note.id.toString()}
-                                        />
-                                    </span>
+                                    <RIETextArea
+                                           id={note.id}
+                                           value={note.text}
+                                           change={this.dataChanged}
+                                           propName={note.id.toString()}
+                                           editProps={
+                                            { style: { backgroundColor: 'yellow', 
+                                        border: 10, 
+                                    textColor: 'blue'} }
+                                        }
+                                       />
+        
+                                   </span>
+                                ) :
+                                (
+                                    <span className='event-bool'> &#x25AC;  {note.text} {console.log('in false')} </span>
                                 )
                             }
                             <IconMenu

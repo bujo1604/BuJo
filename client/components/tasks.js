@@ -14,7 +14,7 @@ class Tasks extends Component {
         super(props);
         this.state = {
             completed: false,
-            edit: 'true'
+            edit: false
         }
 
         this.dataChanged = this.dataChanged.bind(this);
@@ -28,7 +28,6 @@ class Tasks extends Component {
             const taskId = task.id
             event.preventDefault()
             this.props.removeTask(taskId, userId)
-
         })
     }
 
@@ -41,6 +40,7 @@ class Tasks extends Component {
         }
 
         this.props.editTask(taskId, editTask)
+        this.setState({edit: false})
     }
 
     handleChangeSingle(event, value) {
@@ -49,7 +49,7 @@ class Tasks extends Component {
             this.setState(
                 {
                     valueSingle: value,
-                    edit: false
+                    edit: "true"
                 }
             )
         )
@@ -98,6 +98,7 @@ class Tasks extends Component {
                                 value={this.state.valueSingle}
                             >
                                 <MenuItem onClick={changeStatus(user, task)} value="1" primaryText='Change Status' />
+                                <MenuItem onClick={changeStatus(user, task)} value="2" primaryText='Migrate Task' />
                                 <MenuItem value="2" primaryText="Edit Task" />
                                 <MenuItem onClick={this.handleClick(user, task)} value="3" primaryText="Delete Task" />
 
@@ -132,7 +133,6 @@ const mapDispatch = (dispatch) => {
         changeStatus(user, task) {
             let updatedTask = {};
             //add possiblity of changing from complete to incomplete
-            
             return (
                 
                 (event) => {
