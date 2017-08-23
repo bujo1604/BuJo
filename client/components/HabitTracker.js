@@ -119,7 +119,7 @@ class HabitTracker extends Component {
   render() {
     const {habitMain, habitRow, user, loadRows, colors, addHabitMain} = this.props
     
-    var svgWidth = 600;
+    var svgWidth = 400;
     var svgHeight = svgWidth;
     var cirR = svgWidth/60; 
     var svgCenterX = svgWidth / 2;
@@ -220,18 +220,22 @@ class HabitTracker extends Component {
                         var angle = circleFunc(bCirR, svgCenterX, svgCenterY, numDaysR , day)[2];
                          var cx = circleFunc(bCirR, svgCenterX, svgCenterY, numDaysR , day)[0];
                          var cy = circleFunc(bCirR, svgCenterX, svgCenterY, numDaysR , day)[1];
-                        var tcx = circleFunc(bCirR + 50, svgCenterX, svgCenterY, numDaysR , day)[0];
-                        var tcy = circleFunc(bCirR + 50, svgCenterX, svgCenterY, numDaysR , day)[1];
+                        var tcx = circleFunc(bCirR + (1.6*cirR), svgCenterX, svgCenterY, numDaysR , day)[0];
+                        var tcy = circleFunc(bCirR + (1.6*cirR), svgCenterX, svgCenterY, numDaysR , day)[1];
+                        var dcx = circleFunc(bCirR - 1*cirR, svgCenterX, svgCenterY, numDaysR , day)[0];
+                        var dcy = circleFunc(bCirR - 1*cirR, svgCenterX, svgCenterY, numDaysR , day)[1];
+                        var letter = moment((this.props.month)).add(day-1, "day").format("dd")
                          var rotate = angle.toString() + " " + cx + " " + cy;
                         var transf = "rotate(" + rotate + ")" 
                         return (<g key={Math.random()}>
-                    <ellipse key={ind} cx={cx} cy={cy} rx="30" ry="100" transform={transf} stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}} />
-                    <text textAnchor="middle" x={tcx} y={tcy} onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}}>{day}</text>
+                    <ellipse key={ind} cx={cx} cy={cy} rx={cirR*2} ry={cirR*10} transform={transf} stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}} />
+                    <text textAnchor="middle" x={tcx} y={tcy} fontFamily="ABeeZee" onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}}>{day}</text>
+                    <text textAnchor="middle" x={dcx} y={dcy} fontFamily="ABeeZee" fontSize="10" onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}}>{letter}</text>
                     </g>)
                 
                     })}
-                    <circle cx={svgCenterX} cy={svgCenterY} r="125" fill="lightyellow" stroke="black"/>
-                    <text textAnchor="middle" x={svgCenterX} y={svgCenterY} >{row.habit}</text>
+                    <circle cx={svgCenterX} cy={svgCenterY} r={bCirR*0.650} fill="#d7e7e8" stroke="black"/>
+                    <text textAnchor="middle" x={svgCenterX} y={svgCenterY} fontFamily="ABeeZee">{row.habit}</text>
                     </svg>
                     
                     </div>
