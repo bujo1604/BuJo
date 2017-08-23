@@ -32,15 +32,15 @@ export function updateRowThunk (rowId, update) {
         .catch(error => { console.log(error, "error in updateRowThunk") });
     }
 }
-/*
-export function postNote (newNote) {
+
+export function postRow (newRow) {
     return function thunk (dispatch){
-        return axios.post('/api/notes/', newNote)
-        .then(res => dispatch(gotNewNote(res.data)))
+        return axios.post('/api/habitrow/', newRow)
+        .then(res => dispatch(gotNewRow(res.data)))
         .catch(error => { console.log(error) });
     };
 }
-
+/*
 export function changeNote (noteId, note) {
     return function thunk (dispatch){
         return axios.put(`/api/notes/${noteId}`, note)
@@ -67,10 +67,10 @@ export default function (state = [], action) {
         return state.map(row => (
             action.row.id === row.id ? action.row : row
         ));
-/*
-    case GOT_NEW_NOTE:
-      return [...state, action.note]
 
+    case GOT_NEW_ROW:
+      return [...state, action.row]
+/*
       case REMOVE_NOTE:
       return [...state.filter(note => note.id !== action.id)];
     */
