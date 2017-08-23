@@ -11,6 +11,10 @@ const HabitTrackerRow = db.define('habitTrackerRow', {
         type: Sequelize.STRING,
         defaultValue: "white"
     },
+    color: {
+        type: Sequelize.STRING,
+        defaultValue: "#E91E63"
+    },
     c1: {
         type: Sequelize.STRING,
         defaultValue: "white"

@@ -22,6 +22,7 @@ class HabitTracker extends Component {
     super(props);
     this.state = {
         value: '',
+        color: 'blue'
    
 
     }
@@ -31,7 +32,7 @@ class HabitTracker extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.thirty1 = this.thirty1.bind(this);
-   
+    this.changeColorState = this.changeColorState.bind(this);
  
   }
 
@@ -54,17 +55,24 @@ class HabitTracker extends Component {
     event.preventDefault();
     var month = moment(this.props.month).startOf("month").format("YYYYMMDD");
 
-    var obj = {month: month, habit: this.state.value, userId: this.props.user.id}
+    var obj = {month: month, habit: this.state.value, userId: this.props.user.id, color:this.state.color}
     this.props.addHabitRow(obj);
 }
-  colorSwap(color){
-
+  colorSwap(color, c2){
+    if(color === "white"){
+        return c2
+    }
+    else{
+        return "white"
+    }
+    /*
     var sliceOfColors = this.props.colors.slice();
     var ArrOfColors = [];
     sliceOfColors.forEach((color)=>{
         ArrOfColors.push(color.hex);
     })
   
+
     if(color == null){return null}
     else{
     if(ArrOfColors.indexOf(color) !== -1){
@@ -79,11 +87,12 @@ class HabitTracker extends Component {
         return ArrOfColors[0];
     }
     }
+*/
   }
 
-  clicker (num, item, color){
+  clicker (num, item, color, habitcolor){
 
-    var newColor = this.colorSwap(color);
+    var newColor = this.colorSwap(color, habitcolor);
     this.props.UpdateRow(num, { [item]: newColor}, this.props.user.id)
   }
 
@@ -100,6 +109,10 @@ class HabitTracker extends Component {
             arrDays.push(j);
         }
         return arrDays
+    }
+    changeColorState(event){
+        event.preventDefault();
+        this.setState({ color: event.target.value })
     }
   render() {
     const {habitMain, habitRow, user, loadRows, colors, addHabitMain} = this.props
@@ -175,6 +188,17 @@ class HabitTracker extends Component {
                 </label>
                 <input type="submit" value="Add New Habit Tracker" />
             </form> 
+
+              {colors.map((cat, idx) => (
+                    (
+                        <label key={idx} className='color'>
+                            <button className="button" id={cat.id} onClick={this.changeColorState} value={cat.hex} > <span style={{ color: `${cat.hex}` }}> &#x25CF;</span></button>
+
+                            {/*
+                            <button id={cat.id} onClick={this.handleClick}>delete</button>
+                            */}
+                        </label>
+                    )))}
             </div>
             <div>
              {habitRow.map((row) => {
@@ -193,8 +217,8 @@ class HabitTracker extends Component {
                          var cx = circleFunc(bCirR, svgCenterX, svgCenterY, numDaysR , day)[0];
                          var cy = circleFunc(bCirR, svgCenterX, svgCenterY, numDaysR , day)[1];
                     return (<g key={Math.random()}>
-                    <circle key={ind} cx={cx} cy={cy} r={cirR} stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr])}} />
-                    <text textAnchor="middle" x={cx} y={cy} onClick={() => {this.clicker(row.id, colStr, row[colStr])}}>{day}</text>
+                    <circle key={ind} cx={cx} cy={cy} r={cirR} stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}} />
+                    <text textAnchor="middle" x={cx} y={cy} onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}}>{day}</text>
                     </g>)
                 
                     })}
