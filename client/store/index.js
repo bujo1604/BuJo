@@ -18,6 +18,7 @@ import habitMain from './habitMain'
 import habitRow from './habitRow'
 
 
+
 const reducer = combineReducers({user, categories, tasks, events, notes, colors, month, day, week, future, year, completeTasks, insightsView, habitMain, habitRow})
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 const store = createStore(reducer, middleware)

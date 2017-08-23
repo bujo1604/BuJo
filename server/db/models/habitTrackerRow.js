@@ -7,6 +7,9 @@ const HabitTrackerRow = db.define('habitTrackerRow', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    month: {
+        type: Sequelize.STRING
+    },
     c1: {
         type: Sequelize.STRING
     },
