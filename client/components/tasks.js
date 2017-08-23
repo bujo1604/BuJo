@@ -71,39 +71,26 @@ class Tasks extends Component {
                         }
                         {(this.state.edit) ?
                             (
-
-                                <span className='event-bool'> {task.name}  </span>
-
+                                <span className='event-bool'>
+                                <RIEInput
+                                    id={task.id}
+                                    value={task.name}
+                                    change={this.dataChanged}
+                                    propName={task.id.toString()}
+                                />
+                            </span>
+                               
                             ) :
                             (
                              
-                                    
-                                    <span className='event-bool'>
-                                        <RIEInput
-                                            id={task.id}
-                                            value={task.name}
-                                            change={this.dataChanged}
-                                            propName={task.id.toString()}
-                                        />
-                                    </span>
-                              
+                                <span className='event-bool'> {task.name} 
+                                <a onClick={this.handleClick(user, task)} className="delete is-small"/>
+                                </span>
 
                             )
 
                         }
                         
-                            <IconMenu
-                                iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
-                                onChange={this.handleChangeSingle}
-                                value={this.state.valueSingle}
-                            >
-                                <MenuItem onClick={changeStatus(user, task)} value="1" primaryText='Change Status' />
-                                <MenuItem onClick={changeStatus(user, task)} value="2" primaryText='Migrate Task' />
-                                <MenuItem value="2" primaryText="Edit Task" />
-                                <MenuItem onClick={this.handleClick(user, task)} value="3" primaryText="Delete Task" />
-
-                            </IconMenu>
-        
                     </div>
                 ))}
             </div>
@@ -161,3 +148,15 @@ const mapDispatch = (dispatch) => {
 export default connect(mapState, mapDispatch)(Tasks)
 
 
+
+// <IconMenu
+// iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
+// onChange={this.handleChangeSingle}
+// value={this.state.valueSingle}
+// >
+// <MenuItem onClick={changeStatus(user, task)} value="1" primaryText='Change Status' />
+// <MenuItem onClick={changeStatus(user, task)} value="2" primaryText='Migrate Task' />
+// <MenuItem value="2" primaryText="Edit Task" />
+// <MenuItem onClick={this.handleClick(user, task)} value="3" primaryText="Delete Task" />
+
+// </IconMenu>
