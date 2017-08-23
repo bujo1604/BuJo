@@ -1,62 +1,109 @@
 import React from 'react';
-// import InlineEdit from 'react-edit-inline'
 import { RIETextArea } from 'riek'
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+
 import { connect } from 'react-redux'
+
 import { fetchNotes, deleteNote,  changeNote } from '../store'
+
+
 
 
 class Notes extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            text : 'demo-edit'
+            valueSingle: '',
+            edit: 'true'
         }
         this.dataChanged = this.dataChanged.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleChangeSingle = this.handleChangeSingle.bind(this);
+       
 
     }
 
-    handleClick(user) {
+    handleClick(user, note) {
+        // console.log('in handle click')
         const userId = user.id
-        return ((event) => {
-            const noteId = event.target.id
-            event.preventDefault()
-            this.props.removeNote(noteId, userId)
         
+        return ((event) => {
+            console.log(note.id);
+            const noteId = note.id
+
+            event.preventDefault();
+            this.props.removeNote(noteId, userId)
         })
     }
+
+    handleChangeSingle(event, value) {
+        return (
+            this.setState(
+                {valueSingle: value,
+                edit: false }
+            )
+        )
+      }
     
+   
+
     dataChanged(data){
         const note = Object.keys(data);
         const noteId = note[0]
         const editNote = {
             text: data[note]
         }
-
         this.props.editNote(noteId, editNote)
     }
     
 
+
     render(){
         const { notes, user } = this.props;
+    
+        
         return (
             <div>
             <h3 className="singleName-headings">Notes</h3>
-            {notes.map((note, idx) => (
 
+            {notes.map((note, idx) => (
+                
                     <div key={idx}>
-                        <span className='event'> &#x25AC;</span>
-                        <span className='event'>
-                        <RIETextArea
-                        id={note.id}
-                        value={note.text}
-                        change={this.dataChanged}
-                        propName={note.id.toString()}
-                        />
-                        </span>
-                        <span className='event'>
-                        <button id={note.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
-                        </span>
+                   { (this.state.edit) ?
+                        (
+                           
+                            <span className='event'> &#x25AC;  {note.text}  </span>
+                           
+                            
+                     ) :
+                              (
+                               
+                                 <span className='event'> &#x25AC;
+                                    
+                                     <RIETextArea
+                                     id={note.id}
+                                     value={note.text}
+                                     change={this.dataChanged}
+                                     propName={note.id.toString()}
+                                     />
+                                 </span>
+                             
+                                 
+                         )
+                        
+                        }
+                            <IconMenu
+                                iconButtonElement={<IconButton ><MoreVertIcon /></IconButton>}
+                                onChange={this.handleChangeSingle}
+                                value={this.state.valueSingle}
+                            >
+                                <MenuItem  value="1" primaryText="Edit Note" />
+                                <MenuItem onClick={this.handleClick(user, note)} value="2" primaryText="Delete Note" />
+
+                            </IconMenu>
                     </div>
                 ))}
             
@@ -69,42 +116,7 @@ class Notes extends React.Component {
 
 
 
-// <InlineEdit
-// activeClassName="editing"
-// text={note.text}
-// id={note.id}
-// paramName="text"
-// change={this.dataChanged}
-// style={{
-//   backgroundColor: 'light blue',
-//   minWidth: 150,
-//   display: 'inline-block',
-//   margin: 5,
-//   padding: 0,
-//   fontSize: 15,
-//   outline: 0,
-//   border: 0
-// }}
-// />
 
-
-
-
-// const Notes = (props) => {
-//     const { notes, user, handleClick } = props;
-//     return (
-//         <div>
-//            
-//             {notes.map((note, idx) => (
-//                 <div key={idx}>
-//                     <span> &#x25AC;</span>
-//                     <span> {note.text} </span>
-//                     <button id={note.id}  onClick={  handleClick(user) } type='submit' >DELETE</button>
-//                 </div>
-//             ))}
-//         </div>
-//     )
-// }
 
 
 const mapState = (state) => ({

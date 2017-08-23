@@ -1,85 +1,111 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RIEInput } from 'riek'
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { removeTask, fetchTasks, changeTask } from '../store';
 
 
 class Tasks extends Component {
 
-  constructor(props) {
-    super(props);
-     this.state = {
-           completed: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            completed: false,
+            edit: 'true'
         }
 
         this.dataChanged = this.dataChanged.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleChangeSingle = this.handleChangeSingle.bind(this);
 
-  }
-  handleClick(user) {
-    const userId = user.id
-    return ((event) => {
-        const taskId = event.target.id
-        event.preventDefault()
-        this.props.removeTask(taskId, userId)
+    }
+    handleClick(user, task) {
+        const userId = user.id
+        return ((event) => {
+            const taskId = task.id
+            event.preventDefault()
+            this.props.removeTask(taskId, userId)
 
-    })
-}
-
-dataChanged(data){
-    console.log(data)
-    const task = Object.keys(data);
-    const taskId = task[0]
-    const editTask = {
-        name: data[task]
+        })
     }
 
-    this.props.editTask(taskId, editTask)
-}
+    dataChanged(data) {
+        console.log(data)
+        const task = Object.keys(data);
+        const taskId = task[0]
+        const editTask = {
+            name: data[task]
+        }
 
-  render() {
-    const { tasks, user, changeStatus } = this.props;
-    return (
-        <div>
-            <h3 className="singleName-headings">Tasks</h3>
-            {tasks.map((task, idx) => (
-                <div key={idx}>
-                    {task.status === 'complete' ?
-                        <div>
+        this.props.editTask(taskId, editTask)
+    }
 
-                    <span className='event' style={{ color: `${task.category.color.hex}` }}> &#x2613;</span>
-                        <span className='event'>     
-                        <RIEInput
-                            id={task.id}
-                            value={task.name}
-                            change={this.dataChanged}
-                            propName={task.id.toString()}
-                            />
-                        </span>
+    handleChangeSingle(event, value) {
+        // console.log('in chnage')
+        return (
+            this.setState(
+                {
+                    valueSingle: value,
+                    edit: false
+                }
+            )
+        )
+    }
 
-                        </div> :
-                        <div >
-                            <span className='event' id={task.id} onClick={changeStatus(user)} style={{ color: `${task.category.color.hex}` }}> &#x25CF;</span>
-                            <span className='event'>
-                            <RIEInput
-                            id={task.id}
-                            value={task.name}
-                            change={this.dataChanged}
-                            propName={task.id.toString()}
-                            />
-                            </span>
-                            <span className='event'>
-                            <button id={task.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
-                            </span>
-                        </div>
-                    }
+    render() {
+        const { tasks, user, changeStatus } = this.props;
+        return (
+            <div>
+                <h3 className="singleName-headings">Tasks</h3>
+                {tasks.map((task, idx) => (
+                    <div key={idx}>
+                        {task.status === 'complete' ?
+                            <span className='event' style={{ color: `${task.category.color.hex}` }}> &#x2613; </span>
+                            :
+                            <span className='event' id={task.id} onClick={changeStatus(user)} style={{ color: `${task.category.color.hex}` }}> &#x25CF; </span>
+                        }
+                        {(this.state.edit) ?
+                            (
 
-                </div>
-            ))}
-        </div>
-    )
+                                <span className='event'> {task.name}  </span>
 
-}
+                            ) :
+                            (
+                             
+                                    
+                                    <span className='event'>
+                                        <RIEInput
+                                            id={task.id}
+                                            value={task.name}
+                                            change={this.dataChanged}
+                                            propName={task.id.toString()}
+                                        />
+                                    </span>
+                              
+
+                            )
+
+                        }
+                        
+                            <IconMenu
+                                iconButtonElement={<IconButton ><MoreVertIcon /></IconButton>}
+                                onChange={this.handleChangeSingle}
+                                value={this.state.valueSingle}
+                            >
+                                <MenuItem onClick={changeStatus(user, task)} value="1" primaryText='Change Status' />
+                                <MenuItem value="2" primaryText="Edit Task" />
+                                <MenuItem onClick={this.handleClick(user, task)} value="3" primaryText="Delete Task" />
+
+                            </IconMenu>
+        
+                    </div>
+                ))}
+            </div>
+        )
+    }
 
 }
 
@@ -90,27 +116,34 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => {
     return {
-        editTask(taskId, editTask, userId ){
+        editTask(taskId, editTask, userId) {
             dispatch(changeTask(taskId, editTask))
             dispatch(fetchTasks(userId))
 
-            },
-        removeTask(taskId, userId){
-             dispatch(removeTask(taskId))
-             dispatch(fetchTasks(userId))
+        },
+        removeTask(taskId, userId) {
+            dispatch(removeTask(taskId))
+            dispatch(fetchTasks(userId))
         },
 
-        changeStatus(user) {
+        changeStatus(user, task) {
+            let updatedTask = {};
             //add possiblity of changing from complete to incomplete
-
-            const updatedTask = {
-                status: 'complete',
-            }
-
+            
             return (
+                
                 (event) => {
-                   // alert('are you sure?'); // if yes then change task
-                    const taskId = event.target.id
+                    task.status === 'incomplete' ?
+                        updatedTask = {
+                            status: 'complete',
+                        }
+                        :
+                        updatedTask = {
+                            status: 'incomplete',
+                        }
+   
+                    // console.log(updatedTask);
+                    const taskId = task.id
                     event.preventDefault()
                     dispatch(changeTask(taskId, updatedTask, user.id))
                     //dispatch(fetchTasks(user.id)) // needs to adjust the props recieve. componentWillRecieveProps
@@ -123,3 +156,5 @@ const mapDispatch = (dispatch) => {
 }
 
 export default connect(mapState, mapDispatch)(Tasks)
+
+
