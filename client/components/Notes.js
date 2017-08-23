@@ -89,10 +89,10 @@ class Notes extends React.Component {
                                 )
                             }
                             <IconMenu
-                                iconButtonElement={<IconButton ><MoreVertIcon /></IconButton>}
+                                iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
                                 onChange={this.handleChangeSingle}
                                 value={this.state.valueSingle}
-                                className="del"
+                                
                             >
                                 <MenuItem value="1" primaryText="Edit Note" />
                                 <MenuItem onClick={this.handleClick(user, note)} value="2" primaryText="Delete Note" />

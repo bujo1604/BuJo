@@ -251,7 +251,12 @@ text-align:left;
   .parent-center{
    grid-area: center;
 justify-content: center;
- margin-left: 250px;
+ margin-left: 350px;
+
+  }
+
+  .rotate{
+    transform:rotate(90deg)
   }
 // .flexbox-container {
 //   display: -ms-flex;

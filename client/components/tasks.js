@@ -58,8 +58,10 @@ class Tasks extends Component {
     render() {
         const { tasks, user, changeStatus } = this.props;
         return (
-            <div>
-                <h3 className="singleName-headings">Tasks</h3>
+            <div className='parent-center'>
+            <div className='align-left'>
+
+                
                 {tasks.map((task, idx) => (
                     <div key={idx}>
                         {task.status === 'complete' ?
@@ -70,13 +72,13 @@ class Tasks extends Component {
                         {(this.state.edit) ?
                             (
 
-                                <span className='event'> {task.name}  </span>
+                                <span className='event-bool'> {task.name}  </span>
 
                             ) :
                             (
                              
                                     
-                                    <span className='event'>
+                                    <span className='event-bool'>
                                         <RIEInput
                                             id={task.id}
                                             value={task.name}
@@ -91,7 +93,7 @@ class Tasks extends Component {
                         }
                         
                             <IconMenu
-                                iconButtonElement={<IconButton ><MoreVertIcon /></IconButton>}
+                                iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
                                 onChange={this.handleChangeSingle}
                                 value={this.state.valueSingle}
                             >
@@ -104,6 +106,7 @@ class Tasks extends Component {
                     </div>
                 ))}
             </div>
+        </div>
         )
     }
 

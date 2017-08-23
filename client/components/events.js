@@ -66,7 +66,7 @@ class Events extends React.Component {
                                 {(this.state.edit) ?
                                     (
 
-                                        <span className='event'> &#x25AC; {event.name}  {event.time}  </span>
+                                        <span className='event'>  {event.name}  {event.time}  </span>
 
 
                                     ) :
@@ -100,9 +100,9 @@ class Events extends React.Component {
 
                                 }
 
-                                <span className='del'>
+                                
                                     <IconMenu
-                                        iconButtonElement={<IconButton ><MoreVertIcon /></IconButton>}
+                                        iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
                                         onChange={this.handleChangeSingle}
                                         value={this.state.valueSingle}
                                     >
@@ -111,7 +111,7 @@ class Events extends React.Component {
 
                                     </IconMenu>
 
-                                </span>
+                                
                             </div>
                         )
                     })}
