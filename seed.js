@@ -485,10 +485,19 @@ const tasks = [
   { name: 'Plan 2020 Tour', status: 'complete', date: '20170816', userId: 5, categoryId: 15, value:1, assigned: 'assigned'},
   { name: 'Plan trip w/ Jay', status: 'complete', date: '20170817', userId: 5, categoryId: 15, value:1, assigned: 'assigned', FutureMonth: '20170801'},
   { name: 'Dress for Met Gala', status: 'complete', date: 'notYetAssigned',userId: 5, categoryId: 16 , value:1, assigned: 'unassigned', FutureMonth: '20170901'},
-  { name: 'Go on Cruise', status: 'complete', date: 'notYetAssigned', userId: 5, categoryId: 16 , value:1, assigned: 'unassigned', FutureMonth: '20170901'},
+  { name: 'Go on Cruise', status: 'incomplete', date: 'notYetAssigned', userId: 5, categoryId: 15 , value:1, assigned: 'unassigned', FutureMonth: '20171201'},
   { name: 'Make a movie', status: 'complete', date: '20170816', userId: 5, categoryId: 15, value:1, assigned: 'assigned'},
   { name: 'Lunch date with Solange', status: 'complete', date: '20170817', userId: 5, categoryId: 15, value:1, assigned: 'assigned', FutureMonth: '20170801'},
+  { name: 'Suprise Release New Album', status: 'incomplete', date: 'noDateYet', userId: 5, categoryId: 16, value:1, assigned: 'unassigned', FutureMonth: '20170801'},
+  { name: 'Book a Spa Week', status: 'incomplete', date: 'notYetAssigned',userId: 5, categoryId: 21 , value:1, assigned: 'unassigned', FutureMonth: '20171001'},
+  { name: 'Lose My Breath', status: 'incomplete', date: 'notYetAssigned', userId: 5, categoryId: 20 , value:1, assigned: 'unassigned', FutureMonth: '20171101'},
+  { name: 'Host Winter Party', status: 'incomplete', date: 'notYetAssigned', userId: 5, categoryId: 25 , value:1, assigned: 'unassigned', FutureMonth: '20171201'},
+  { name: 'Find the perfect shoe', status: 'incomplete', date: 'noDateYet', userId: 5, categoryId: 19, value:1, assigned: 'unassigned', FutureMonth: '20180101'},
+  { name: 'Start the new year off right!', status: 'incomplete', date: 'notYetAssigned',userId: 5, categoryId: 25 , value:1, assigned: 'unassigned', FutureMonth: '20180101'},
+  { name: 'Secret Brooklyn Experience for the kids', status: 'incomplete', date: 'notYetAssigned', userId: 5, categoryId: 15 , value:1, assigned: 'unassigned', FutureMonth: '20180201'},
+  { name: 'Write a song in a new style', status: 'incomplete', date: 'notYetAssigned', userId: 5, categoryId: 16 , value:1, assigned: 'unassigned', FutureMonth: '20180301'},
 ];
+
 
 const notes = [
   { text: 'life is good', date: '20170815', userId: 1},
@@ -555,7 +564,9 @@ const habitRow = [
 {habit: "drink enough water2b", c1:"blue", c2:"blue",c3:"blue", userId: 2, habitTrackerMainId: 5},
 {habit: "drink enough water3", c1:"blue", c2:"blue",c3:"blue", userId: 3, habitTrackerMainId: 7},
 {habit: "drink enough water4", c1:"blue", c2:"blue",c3:"blue", userId: 4, habitTrackerMainId: 10},
-{habit: "drink enough water5", c1:"blue", c2:"blue",c3:"blue", userId: 5, habitTrackerMainId: 13},
+{habit: "Make Lemonade", month: "20170901", color: '#FF9800', userId: 5, habitTrackerMainId: 13},
+{habit: "Make Lemonade", month: "20170701", color: '#FF9800', userId: 5, c1:'#FF9800', c2:'#FF9800',c3:'#FF9800',c8:'#FF9800', c11:'#FF9800', c13:'#FF9800', c16:'#FF9800', c17:'#FF9800', c25:'#FF9800',c27:'#FF9800', c29:'#FF9800',c18:'#FF9800'},
+{habit: "Make Lemonade", month: "20170801", color: '#FF9800', userId: 5, c1: '#FF9800', c3:'#FF9800', c4: '#FF9800', c6:'#FF9800', c9:'#FF9800',c7:'#FF9800',c11:'#FF9800', c15:'#FF9800', c16: '#FF9800', c21:'#FF9800', c23:'#FF9800'},
 ];
 
 
