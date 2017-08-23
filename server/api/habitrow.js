@@ -5,7 +5,19 @@ const {HabitTrackerMain, HabitTrackerRow} = require('../db/models');
 
 module.exports = router;
 
+router.get('/:userId', function (req, res, next) {
+    if (!req.query.startdate || !req.query.enddate) return next()
+    HabitTrackerRow.findAll({
+        where: {
+            userId: req.params.userId,
+            month: { $between: [req.query.startdate, req.query.enddate]}
+        }
+        
+    })
+    .then(habitm => res.json(habitm))
+    .catch(next);
 
+});
 
 //retreive all tasks for user
 //add .category and .color property to task

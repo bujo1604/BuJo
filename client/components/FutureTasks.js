@@ -8,6 +8,7 @@ import { makeArrMonthsInYear } from './dateFunctions'
 import { gotNextYear, gotPreviousYear, updatedYear , postNewFutureTask, fetchCategories} from '../store'
 import TaskWords from './TaskWords'
 
+
 class FutureTasks extends React.Component {
     constructor(props) {
         super(props)
@@ -102,6 +103,7 @@ class FutureTasks extends React.Component {
                 )
             })}
             </div>
+          
             </div>
 
         )
