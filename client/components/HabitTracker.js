@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 const moment = require('moment')
 import { connect } from 'react-redux';
 //import {Link} from 'react-router-dom';
-import { fetchHabitMains, fetchRows, updateRowThunk, fetchColors, postHabitMain, gotNextMonth, gotPreviousMonth, updatedMonth } from '../store';
+import { fetchHabitMains, postRow, fetchRows, updateRowThunk, fetchColors, postHabitMain, gotNextMonth, gotPreviousMonth, updatedMonth } from '../store';
 //import {Tasks, Events, Notes} from './';
 import HabitRow from './HabitRow'
 
@@ -52,10 +52,10 @@ class HabitTracker extends Component {
   handleSubmit(event){
    
     event.preventDefault();
-    var month = moment(new Date()).startOf("month").format("YYYYMMDD");
+    var month = moment(this.props.month).startOf("month").format("YYYYMMDD");
 
-    var obj = {month: month, title: this.state.value, userId: this.props.user.id}
-    this.props.addHabitMain(obj);
+    var obj = {month: month, habit: this.state.value, userId: this.props.user.id}
+    this.props.addHabitRow(obj);
 }
   colorSwap(color){
 
@@ -124,7 +124,7 @@ class HabitTracker extends Component {
         }
         return 0;
     }
-
+/*
     orderedHabit.sort(compareFunc);
 
     var arrMains =[];
@@ -146,7 +146,7 @@ class HabitTracker extends Component {
 
     })
 
-  
+  */
     
     /*
     function thirty1 () {
@@ -170,7 +170,7 @@ class HabitTracker extends Component {
        <div>
        <form onSubmit={this.handleSubmit}>
                 <label>
-                    Name:
+                    Habit:
                 <input type="text" value={this.state.value} onChange={this.handleChange} />
                 </label>
                 <input type="submit" value="Add New Habit Tracker" />
@@ -250,6 +250,9 @@ const mapDispatch = (dispatch) => {
         },
         updateMonth(month){
             dispatch(updatedMonth(month))
+        },
+         addHabitRow(newRow){
+            dispatch(postRow(newRow));
         }
   };
 }
