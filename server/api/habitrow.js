@@ -23,6 +23,14 @@ router.get('/:userId', function (req, res, next) {
 
 });
 
+router.post('/', function (req, res, next) {
+    HabitTrackerRow.create(req.body)
+    .then(function(newRow){
+        res.status(201).json(newRow);
+    })
+    .catch(next);
+});
+
 router.put('/:rowId', function (req, res, next) {
   const rowId = req.params.rowId;
 

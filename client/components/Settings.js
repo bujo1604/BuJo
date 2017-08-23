@@ -20,8 +20,6 @@ class Settings extends Component {
                             */}
                         </label>
                     )))}
-
-
             </div>
         )
     }

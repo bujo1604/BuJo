@@ -1,16 +1,9 @@
-import React, { Component } from "react";
-const moment = require("moment");
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import {
-  fetchTasks,
-  fetchEvents,
-  fetchNotes,
-  gotNextDay,
-  gotPreviousDay,
-  updatedDay
-} from "../store";
-import { Tasks, Events, Notes } from "./";
+import React, { Component } from 'react';
+const moment = require('moment')
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchTasks, fetchEvents, fetchNotes, gotNextDay, gotPreviousDay, updatedDay } from '../store';
+import { Tasks, Events, Notes, Sidebar } from './';
 
 class SingleDay extends Component {
   constructor(props) {
@@ -38,22 +31,23 @@ class SingleDay extends Component {
     });
 
     return (
-      <div>
-        <div className="singlePage-container">
+      <div className="content-container">
+
+        <div className="content-main">
+
+          <div className="content-title">
           <a href="#" className="previous round" onClick={previousDay}>
             &#8249;
           </a>
-          <h2 className="singlePage-title">
-            {moment(day).format("ddd D")}
-          </h2>
-          <h2>
-            {moment(day).format("MMMM YYYY")}
-          </h2>
+          <h2>{moment(day).format("ddd D")}</h2>
+          <h2>{moment(day).format("MMMM YYYY")}</h2>
           <a href="#" className="next round" onClick={nextDay}>
             &#8250;
           </a>
         </div>
+
         <hr />
+
         <div className="space">
           <button
             className="button is-primary"
@@ -64,9 +58,7 @@ class SingleDay extends Component {
         </div>
 
         <Events events={eventsOnDay} />
-
         <Tasks tasks={tasksOnDay} />
-
         <Notes notes={notesOnDay} />
         <div>
           <Link to={"/addnote"}>
@@ -94,6 +86,10 @@ class SingleDay extends Component {
             </button>
           </Link>
         </div>
+        </div>
+         <div className="content-sidebar" >
+          <Sidebar />
+        </div>
       </div>
     );
   }
@@ -115,13 +111,13 @@ const mapDispatch = dispatch => {
       dispatch(fetchNotes(userId));
     },
     nextDay() {
-      dispatch(gotNextDay());
+      dispatch(gotNextDay())
     },
     previousDay() {
-      dispatch(gotPreviousDay());
+      dispatch(gotPreviousDay())
     },
     updateDay(day) {
-      dispatch(updatedDay(day));
+      dispatch(updatedDay(day))
     }
   };
 };
