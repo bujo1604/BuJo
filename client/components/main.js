@@ -18,7 +18,7 @@ const Main = (props) => {
   return (
 
     <div className='page'>
-      <h1 className='page-header' >BUJO</h1>
+      <h1 className='page-header' >B U J O</h1>
       <div className='page-container'>
         <aside className='page-sidebar'>
           {
@@ -28,7 +28,7 @@ const Main = (props) => {
 
                 <ul className="menu-list">
                   <li className="is-active"> <Link to='/home'>Home</Link> </li>
-                  <Link to='/settings'>Settings</Link>
+                  <Link to='/settings'>Categories</Link>
                   <Link to='/insights'>Insights</Link>
                   <Link to='/day'>Day</Link>
                   <Link to='/calendar'>Calendar</Link>

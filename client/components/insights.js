@@ -15,8 +15,8 @@ export class Insights extends Component {
     const { insightsView, changeViewWeek, changeViewMonth } = this.props
     return (
       <div>
-        <button onClick={() => changeViewWeek('week')}> Week </button>
-        <button onClick={() => changeViewMonth('month')}> Month </button>
+        <button  className="button is-primary" onClick={() => changeViewWeek('week')}> Week </button>
+        <button  className="button is-primary" onClick={() => changeViewMonth('month')}> Month </button>
         {insightsView === 'week' && <InsightsByWeek />}
         {insightsView === 'month' && <InsightsByMonth />}
       </div>)

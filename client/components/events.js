@@ -43,11 +43,12 @@ class Events extends React.Component {
     render(){
         const { events, user } = this.props;
         return (
-            <div>
+            <div className="parent-center">
+           <div className='align-left'>
             {events.map((event, idx) => {
                 return (
-                    <div key={idx}>
-                <span className='event'>&#x25CB;</span>
+                    <div className='lin' key={idx}>
+                <span className='event-bool'>&#x25CB;</span>
                     <span className='event'>
                         <RIEInput
                         id={event.id}
@@ -70,17 +71,17 @@ class Events extends React.Component {
                         }
                         />
                     </span>
-                    
-                       
-                        
-                        <span className='event'>
+
+
+                         <div className='del'>
+                        <span >
                         <button id={event.id} onClick={this.handleClick(user)} type="submit" >DELETE</button>
-                       
                         </span>
+                        </div>
                     </div>
                 )})}
 
-
+       </div>
         </div>
         )
     }

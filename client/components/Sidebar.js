@@ -7,7 +7,7 @@ const Sidebar = (props) => {
     return (
         <div className='sideBar'>
             <Legend />
-            <Categories/>
+            <Categories />
         </div>
 
     )

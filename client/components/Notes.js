@@ -22,10 +22,10 @@ class Notes extends React.Component {
             const noteId = event.target.id
             event.preventDefault()
             this.props.removeNote(noteId, userId)
-        
+
         })
     }
-    
+
     dataChanged(data){
         const note = Object.keys(data);
         const noteId = note[0]
@@ -35,17 +35,18 @@ class Notes extends React.Component {
 
         this.props.editNote(noteId, editNote)
     }
-    
+
 
     render(){
         const { notes, user } = this.props;
         return (
-            <div>
-            <h3 className="singleName-headings">Notes</h3>
+            <div className="parent-center">
+            <div className='align-left'>
+
             {notes.map((note, idx) => (
 
-                    <div key={idx}>
-                        <span className='event'> &#x25AC;</span>
+                    <div className='lin' key={idx}>
+                        <span className='event-bool'> &#x25AC;</span>
                         <span className='event'>
                         <RIETextArea
                         id={note.id}
@@ -54,13 +55,15 @@ class Notes extends React.Component {
                         propName={note.id.toString()}
                         />
                         </span>
-                        <span className='event'>
+                        <div className='del'>
+                        <span >
                         <button id={note.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
                         </span>
+                        </div>
                     </div>
                 ))}
-            
-           
+
+  </div>
         </div>
         )
     }
@@ -94,7 +97,7 @@ class Notes extends React.Component {
 //     const { notes, user, handleClick } = props;
 //     return (
 //         <div>
-//            
+//
 //             {notes.map((note, idx) => (
 //                 <div key={idx}>
 //                     <span> &#x25AC;</span>
@@ -108,10 +111,10 @@ class Notes extends React.Component {
 
 
 const mapState = (state) => ({
-      user: state.user, 
+      user: state.user,
       day: state.day
     })
-    
+
     const mapDispatch = (dispatch) => {
         return {
             editNote(noteId, editNote, userId ){
@@ -126,6 +129,6 @@ const mapState = (state) => ({
 
             }
         }
-    
-    
+
+
     export default connect(mapState, mapDispatch)(Notes)
