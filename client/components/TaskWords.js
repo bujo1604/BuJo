@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 /*
 const TaskWords = (props) => {
     const { tasks } = props;
-    
+
     return (
         <div>
             {tasks.map((task, idx) => (
@@ -33,7 +33,7 @@ class TaskWords extends Component {
   }
 
 componentDidMount(){
-  
+
 }
 
 
@@ -44,21 +44,23 @@ componentDidMount(){
     for(let i = 0; i<categories.length; i++){
         colors[categories[i].id] = categories[i].color.hex
     }
-    
+
     return (
         <div>
+        <div className='line-tasks'>
             {tasks.map((task, idx) => (
                     <div display="inline" key={idx}>
                             <Link to={'/updateTask'}>
-                            <span key={idx}  display="inline" style={{ color: `${colors[task.categoryId]}` }}>{task.name}</span>
+                            <td key={idx}  display="inline" style={{ color: `${colors[task.categoryId]}` }}>{task.name}</td>
                             </Link>
                             </div>
             ))}
+                        </div>
         </div>
     )
 }
 
-    
+
 
 }
 
@@ -75,7 +77,7 @@ const mapDispatch = (dispatch) => {
 
 
         }, */
-  
+
   };
 }
 

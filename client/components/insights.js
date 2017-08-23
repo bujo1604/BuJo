@@ -15,10 +15,16 @@ export class Insights extends Component {
     const { insightsView, changeViewWeek, changeViewMonth } = this.props
     return (
       <div>
-        <button  className="button is-primary" onClick={() => changeViewWeek('week')}> Week </button>
-        <button  className="button is-primary" onClick={() => changeViewMonth('month')}> Month </button>
+      <div className='space-around-buttons'>
+      <h2 className="content-title">Insights</h2>
+
+        <button  className="button is-primary" onClick={() => changeViewWeek('week')}> Weekly Insights </button>
+        <button  className="button is-primary" onClick={() => changeViewMonth('month')}> Monthly Insights </button>
+        </div>
+
         {insightsView === 'week' && <InsightsByWeek />}
         {insightsView === 'month' && <InsightsByMonth />}
+
       </div>)
   }
 }

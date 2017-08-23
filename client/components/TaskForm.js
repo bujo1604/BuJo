@@ -52,9 +52,9 @@ class TaskForm extends Component {
 
 
         return (
-            <div>
-                Here is form!
-            <br />
+             <div className="space-around-buttons">
+
+
                 <form onSubmit={this.handleSubmit}>
                     <input className="input" name='name' type="text" placeholder="input task here" />
                     <button
@@ -66,6 +66,7 @@ class TaskForm extends Component {
                   <span>Add</span>
                 </button>
                 </form>
+                <div className="space-around-buttons">Select category:</div>
                 {categories.map((cat, idx) => (
                     (
                         <label key={idx} className='color'>

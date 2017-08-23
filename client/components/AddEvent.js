@@ -13,10 +13,7 @@ class AddEvent extends Component {
         const { handleSubmit, handleCancel, user, day } = this.props;
 
         return (
-            <div>
-            <div  className="space" >
-                Event
-                </div>
+            <div className="space-around-buttons">
                 <form onSubmit={evt => handleSubmit(user, evt, day)}>
                     Name:<input  className="input"
                         name="name"

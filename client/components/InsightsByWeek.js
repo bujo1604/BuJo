@@ -30,14 +30,17 @@ export class InsightsByWeek extends Component {
     return (
       <div>
       <div className="singlePage-container">
-
+          <div className="content-title">
         <a href="#" className="previous round" onClick={previousWeek}> &#8249;
           </a>
-          <h1>{moment(week).format('MMMM D')} - {moment(weekEndDate(week)).format('MMMM D YYYY')}</h1>
+          <h1 >{moment(week).format('MMMM D')} - {moment(weekEndDate(week)).format('MMMM D YYYY')}</h1>
         {week < moment(new Date()).format('YYYYMMDD') && <a href="#" className="next round"  onClick={nextWeek}> &#8250;
-          </a>}
+          </a>  }
+
           </div>
-          <hr />
+
+          </div>
+
         {!completeTasks.length ? <p>no tasks </p> :
           <div className="flexbox-container">
             <Pie tasks={completeTasks} />
