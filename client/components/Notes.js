@@ -27,16 +27,14 @@ class Notes extends React.Component {
     }
 
     handleClick(user, note) {
-        
+        // console.log('in handle click')
         const userId = user.id
 
         return ((event) => {
-            
+            console.log(note.id);
             const noteId = note.id
 
             event.preventDefault();
-
-            this.setState({valueSingle: ''})
             this.props.removeNote(noteId, userId)
         })
     }
@@ -45,7 +43,8 @@ class Notes extends React.Component {
         return (
             this.setState(
                 {
-                    valueSingle: value
+                    valueSingle: value,
+                    edit: false
                 }
             )
         )
@@ -59,7 +58,6 @@ class Notes extends React.Component {
         const editNote = {
             text: data[note]
         }
-        this.setState({valueSingle: ''})
         this.props.editNote(noteId, editNote)
     }
 
@@ -67,46 +65,38 @@ class Notes extends React.Component {
 
     render() {
         const { notes, user } = this.props;
-        console.log('STATE', this.state)
+
 
         return (
             <div className="parent-center">
                 <div className="align-left" >
 
                     {notes.map((note, idx) => (
-                        
                         <div className='lin' key={idx}>
-                            {(this.state.valueSingle === "1") ?
+                            {(this.state.edit) ?
                                 (
-                                    <span className='event'> &#x25AC;
-
-                                    <RIETextArea
-                                           id={note.id}
-                                           value={note.text}
-                                           change={this.dataChanged}
-                                           propName={note.id.toString()}
-                                           editProps={
-                                            { style: { backgroundColor: 'lightyellow', 
-                                        border: 10, 
-                                    textColor: 'blue'} }
-                                        }
-                                       />
-        
-                                   </span>
+                                    <span className='event-bool'> &#x25AC;  {note.text}  </span>
                                 ) :
                                 (
-                                    
-                                    <span className='event-bool'>
-                                     &#x25AC;  {note.text} 
-
-                                    
-                                    <a onClick={this.handleClick(user, note)} className="delete is-small"/>
-                                    
-                                   </span>
-                                    
+                                    <span className='event'> &#x25AC;
+                                     <RIETextArea
+                                            id={note.id}
+                                            value={note.text}
+                                            change={this.dataChanged}
+                                            propName={note.id.toString()}
+                                        />
+                                    </span>
                                 )
                             }
-                            
+                            <IconMenu
+                                iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
+                                onChange={this.handleChangeSingle}
+                                value={this.state.valueSingle}
+                                
+                            >
+                                <MenuItem value="1" primaryText="Edit Note" />
+                                <MenuItem onClick={this.handleClick(user, note)} value="2" primaryText="Delete Note" />
+                            </IconMenu>
                         </div>
                     ))}
 
@@ -143,14 +133,3 @@ const mapDispatch = (dispatch) => {
 
 
 export default connect(mapState, mapDispatch)(Notes)
-
-
-// <IconMenu
-// iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
-// onChange={this.handleChangeSingle}
-// value={this.state.valueSingle}
-
-// >
-// <MenuItem value="1" primaryText="Edit Note" />
-// <MenuItem onClick={this.handleClick(user, note)} value="2" primaryText="Delete Note" />
-// </IconMenu>
