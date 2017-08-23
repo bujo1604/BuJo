@@ -58,19 +58,21 @@ class BujoAnimate extends Component {
         return (
 
             <div>
-                <TextLoop>
-                    {categories.map((category, i) => {
-                        return (
-                            <div key={i}>
-                                <span> i </span>
-                                <span
-                                    style={{ color: `${category.color.hex}` }} display="inline"> &#x2665;
+                <div className="bujo-title">
+                    <TextLoop>
+                        {categories.map((category, i) => {
+                            return (
+                                <div key={i}>
+                                    <span> i </span>
+                                    <span
+                                        style={{ color: `${category.color.hex}` }} display="inline"> &#x2665;
                                 </span>
-                                <span> {category.name} </span>
-                            </div>
-                        )
-                    })}
-                </TextLoop>
+                                    <span> {category.name} </span>
+                                </div>
+                            )
+                        })}
+                    </TextLoop>
+                </div>
                 <BujoSVG color={Color} c1={c1} c2={c2} c3={c3} />
 
             </div>

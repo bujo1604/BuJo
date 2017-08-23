@@ -1,5 +1,11 @@
-import React from 'react';
 
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchCategories } from '../store';
+import { Link } from 'react-router-dom';
+
+
+/*
 const TaskWords = (props) => {
     const { tasks } = props;
     
@@ -7,8 +13,8 @@ const TaskWords = (props) => {
         <div>
             {tasks.map((task, idx) => (
                     <div display="inline" key={idx}>
-                        
-                            <div key={idx} style={{ color: `${task.category.color.hex}`}} display="inline">{task.name}</div>
+                            <button>update</button>
+                            <div key={idx} style={{ color: `${task.category.color.hex}` }} display="inline">{task.name}</div>
                 </div>
             ))}
         </div>
@@ -16,3 +22,62 @@ const TaskWords = (props) => {
 }
 
 export default TaskWords;
+
+*/
+
+
+class TaskWords extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+componentDidMount(){
+  
+}
+
+
+  render() {
+    const { tasks, categories } = this.props;
+
+    var colors = {};
+    for(let i = 0; i<categories.length; i++){
+        colors[categories[i].id] = categories[i].color.hex
+    }
+    
+    return (
+        <div>
+            {tasks.map((task, idx) => (
+                    <div display="inline" key={idx}>
+                            <Link to={'/updateTask'}>
+                            <span key={idx}  display="inline" style={{ color: `${colors[task.categoryId]}` }}>{task.name}</span>
+                            </Link>
+                            </div>
+            ))}
+        </div>
+    )
+}
+
+    
+
+}
+
+const mapState = (state) => ({
+ categories: state.categories,
+ user: state.user,
+});
+
+const mapDispatch = (dispatch) => {
+  return {
+      /*
+        loadCategories(userId) {
+            dispatch(fetchCategories(userId));
+
+
+        }, */
+  
+  };
+}
+
+export default connect(mapState, mapDispatch)(TaskWords);
+

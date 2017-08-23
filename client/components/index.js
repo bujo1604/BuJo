@@ -33,4 +33,4 @@ export {default as HabitTracker} from './HabitTracker';
 export {default as EventsDumbComponent} from './EventsDumbComponent';
 export {default as Help} from './Help';
 export {default as HabitTrackerMonth} from './HabitTrackerMonth';
-
+export {default as UpdateTask} from './UpdateTask'

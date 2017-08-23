@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
-import {logout} from '../store'
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
+import { logout } from '../store'
 import SVGformat from './SVGformat'
 import Sidebar from './'
 
@@ -13,20 +13,21 @@ import Sidebar from './'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  const {children, handleClick, isLoggedIn} = props
+  const { children, handleClick, isLoggedIn } = props
 
   return (
 
     <div className='page'>
       <h1 className='page-header' >BUJO</h1>
+      <div className='page-container'>
         <aside className='page-sidebar'>
           {
             isLoggedIn
               ? <div>
                 {/* The navbar will show these links after you log in */}
-                
+
                 <ul className="menu-list">
-                <li className="is-active"> <Link to='/home'>Home</Link> </li>
+                  <li className="is-active"> <Link to='/home'>Home</Link> </li>
                   <Link to='/settings'>Settings</Link>
                   <Link to='/insights'>Insights</Link>
                   <Link to='/day'>Day</Link>
@@ -35,9 +36,9 @@ const Main = (props) => {
                   <Link to='/reflections'>Reflections</Link>
                   <Link to='/habitTracker'>Habit Tracker</Link>
                   <Link to='/help'>Help</Link>
-                
+
                   <a href='#' onClick={handleClick}>Logout</a>
-                  </ul>
+                </ul>
               </div>
               : <div>
                 {/* The navbar will show these links before you log in */}
@@ -51,28 +52,11 @@ const Main = (props) => {
 
           }
         </aside>
-      
-      
-      <div className="page-content">
-      {children}
-      </div>
-      <div className='page-legend' >
-        <div className='sideBar-container'>
-          <h2 className='sideBar-legend'> LEGEND </h2>
-          <hr />
-          <p className='sideBar-titles'>   &#x25CB; Event  </p>
-          <p className='sideBar-titles'>   &#x2613; To Do </p>
-          <p className='sideBar-titles'> &#x25CF; Completed </p>
-          <p className='sideBar-titles'>  &#x25AC;  Note  </p>
-        
-          <hr />
-        <h2 className='sideBar-legend'> Values </h2>
-        <p className='sideBar-titles'>  &#x25AC; Some random value  </p>
+        <div className="page-content">
+          {children}
         </div>
-     
-        <hr />
-
       </div>
+
     </div>
   )
 }
@@ -88,7 +72,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleClick () {
+    handleClick() {
       dispatch(logout())
     }
   }
