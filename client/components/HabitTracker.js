@@ -10,7 +10,7 @@ import HabitRow from './HabitRow'
 function circleFunc(r, cx, cy, TotNum, order) {
     
     var angle = ((order - Math.ceil(TotNum/4) - 1)/ TotNum )*2*Math.PI;
-    console.log(angle, "angle")
+
     var x = Math.floor(Math.cos(angle)*r + cx)
     var y = Math.floor(Math.sin(angle)*r + cy);
     var coord = [x,y]; // x,y
@@ -95,7 +95,7 @@ class HabitTracker extends Component {
         var arrDays = [];
         var numDays = Number(moment(this.props.month).endOf("month").format('DD'));
      
-        console.log(numDays, "numDays in HabitTracker")
+        
         for(var j = 1; j <= numDays; j++ ){
             arrDays.push(j);
         }
@@ -103,7 +103,7 @@ class HabitTracker extends Component {
     }
   render() {
     const {habitMain, habitRow, user, loadRows, colors, addHabitMain} = this.props
-    console.log(this.props.month, "this.props.month in HabitTracker")
+    
     var svgWidth = 400;
     var svgHeight = svgWidth;
     var cirR = svgWidth/20; 
