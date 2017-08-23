@@ -213,23 +213,26 @@ class HabitTracker extends Component {
                      
                     <svg width={svgWidth} height={svgHeight} key={Math.random()}>
                     
-                    <text textAnchor="middle" x={svgCenterX} y={svgCenterY} >{row.habit}</text> 
+                     
                     {thirty1Days.map((day, ind)=>{
                         var colNumb = ind + 1;
                         var colStr = 'c' + colNumb;
                         var angle = circleFunc(bCirR, svgCenterX, svgCenterY, numDaysR , day)[2];
                          var cx = circleFunc(bCirR, svgCenterX, svgCenterY, numDaysR , day)[0];
                          var cy = circleFunc(bCirR, svgCenterX, svgCenterY, numDaysR , day)[1];
-                        var rotate = angle.toString() + " " + cx + " " + cy;
+                        var tcx = circleFunc(bCirR + 50, svgCenterX, svgCenterY, numDaysR , day)[0];
+                        var tcy = circleFunc(bCirR + 50, svgCenterX, svgCenterY, numDaysR , day)[1];
+                         var rotate = angle.toString() + " " + cx + " " + cy;
                         var transf = "rotate(" + rotate + ")" 
                         return (<g key={Math.random()}>
                     <ellipse key={ind} cx={cx} cy={cy} rx="30" ry="100" transform={transf} stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}} />
-                    <text textAnchor="middle" x={cx} y={cy} onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}}>{day}</text>
+                    <text textAnchor="middle" x={tcx} y={tcy} onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}}>{day}</text>
                     </g>)
                 
                     })}
-                    <circle cx={svgCenterX} cy={svgCenterY} r="125" fill="yellow"/>
-                   </svg>
+                    <circle cx={svgCenterX} cy={svgCenterY} r="125" fill="lightyellow" stroke="black"/>
+                    <text textAnchor="middle" x={svgCenterX} y={svgCenterY} >{row.habit}</text>
+                    </svg>
                     
                     </div>
                     </div>
