@@ -13,7 +13,9 @@ function circleFunc(r, cx, cy, TotNum, order) {
 
     var x = Math.floor(Math.cos(angle)*r + cx)
     var y = Math.floor(Math.sin(angle)*r + cy);
-    var coord = [x,y]; // x,y
+    var rad = Math.floor(order * 360 / TotNum);
+    
+    var coord = [x,y, rad]; // x,y
     return coord;
 }
 class HabitTracker extends Component {
@@ -117,12 +119,12 @@ class HabitTracker extends Component {
   render() {
     const {habitMain, habitRow, user, loadRows, colors, addHabitMain} = this.props
     
-    var svgWidth = 400;
+    var svgWidth = 600;
     var svgHeight = svgWidth;
-    var cirR = svgWidth/20; 
+    var cirR = svgWidth/60; 
     var svgCenterX = svgWidth / 2;
     var svgCenterY = svgHeight / 2;
-    var bCirR = (svgWidth * 0.9) /2
+    var bCirR = (svgWidth * 0.6) /2
     var orderedHabit = habitMain.slice();
     var numDaysR = Number(moment(this.props.month).endOf("month").format('DD'));
 
@@ -210,18 +212,23 @@ class HabitTracker extends Component {
                        
                      
                     <svg width={svgWidth} height={svgHeight} key={Math.random()}>
+                    
                     <text textAnchor="middle" x={svgCenterX} y={svgCenterY} >{row.habit}</text> 
                     {thirty1Days.map((day, ind)=>{
                         var colNumb = ind + 1;
                         var colStr = 'c' + colNumb;
+                        var angle = circleFunc(bCirR, svgCenterX, svgCenterY, numDaysR , day)[2];
                          var cx = circleFunc(bCirR, svgCenterX, svgCenterY, numDaysR , day)[0];
                          var cy = circleFunc(bCirR, svgCenterX, svgCenterY, numDaysR , day)[1];
-                    return (<g key={Math.random()}>
-                    <circle key={ind} cx={cx} cy={cy} r={cirR} stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}} />
+                        var rotate = angle.toString() + " " + cx + " " + cy;
+                        var transf = "rotate(" + rotate + ")" 
+                        return (<g key={Math.random()}>
+                    <ellipse key={ind} cx={cx} cy={cy} rx="30" ry="100" transform={transf} stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}} />
                     <text textAnchor="middle" x={cx} y={cy} onClick={() => {this.clicker(row.id, colStr, row[colStr], row.color)}}>{day}</text>
                     </g>)
                 
                     })}
+                    <circle cx={svgCenterX} cy={svgCenterY} r="125" fill="yellow"/>
                    </svg>
                     
                     </div>
