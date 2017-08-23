@@ -1,70 +1,107 @@
 import React from 'react';
-// import InlineEdit from 'react-edit-inline'
 import { RIETextArea } from 'riek'
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+
 import { connect } from 'react-redux'
-import { fetchNotes, deleteNote,  changeNote } from '../store'
+
+import { fetchNotes, deleteNote, changeNote } from '../store'
+
+
 
 
 class Notes extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            text : 'demo-edit'
+            valueSingle: '',
+            edit: 'true'
         }
         this.dataChanged = this.dataChanged.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleChangeSingle = this.handleChangeSingle.bind(this);
+
 
     }
 
-    handleClick(user) {
+    handleClick(user, note) {
+        // console.log('in handle click')
         const userId = user.id
-        return ((event) => {
-            const noteId = event.target.id
-            event.preventDefault()
-            this.props.removeNote(noteId, userId)
 
+        return ((event) => {
+            console.log(note.id);
+            const noteId = note.id
+
+            event.preventDefault();
+            this.props.removeNote(noteId, userId)
         })
     }
 
-    dataChanged(data){
+    handleChangeSingle(event, value) {
+        return (
+            this.setState(
+                {
+                    valueSingle: value,
+                    edit: false
+                }
+            )
+        )
+    }
+
+
+
+    dataChanged(data) {
         const note = Object.keys(data);
         const noteId = note[0]
         const editNote = {
             text: data[note]
         }
-
         this.props.editNote(noteId, editNote)
     }
 
 
-    render(){
+
+    render() {
         const { notes, user } = this.props;
+
+
         return (
             <div className="parent-center">
-            <div className='align-left'>
+                <div className="align-left" >
 
-            {notes.map((note, idx) => (
-
-                    <div className='lin' key={idx}>
-                        <span className='event-bool'> &#x25AC;</span>
-                        <span className='event'>
-                        <RIETextArea
-                        id={note.id}
-                        value={note.text}
-                        change={this.dataChanged}
-                        propName={note.id.toString()}
-                        />
-                        </span>
-                        <div className='del'>
-                        <span >
-                        <button id={note.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
-                        </span>
+                    {notes.map((note, idx) => (
+                        <div className='lin' key={idx}>
+                            {(this.state.edit) ?
+                                (
+                                    <span className='event-bool'> &#x25AC;  {note.text}  </span>
+                                ) :
+                                (
+                                    <span className='event'> &#x25AC;
+                                     <RIETextArea
+                                            id={note.id}
+                                            value={note.text}
+                                            change={this.dataChanged}
+                                            propName={note.id.toString()}
+                                        />
+                                    </span>
+                                )
+                            }
+                            <IconMenu
+                                iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
+                                onChange={this.handleChangeSingle}
+                                value={this.state.valueSingle}
+                                
+                            >
+                                <MenuItem value="1" primaryText="Edit Note" />
+                                <MenuItem onClick={this.handleClick(user, note)} value="2" primaryText="Delete Note" />
+                            </IconMenu>
                         </div>
-                    </div>
-                ))}
+                    ))}
 
-  </div>
-        </div>
+                </div>
+            </div>
         )
     }
 
@@ -72,63 +109,27 @@ class Notes extends React.Component {
 
 
 
-// <InlineEdit
-// activeClassName="editing"
-// text={note.text}
-// id={note.id}
-// paramName="text"
-// change={this.dataChanged}
-// style={{
-//   backgroundColor: 'light blue',
-//   minWidth: 150,
-//   display: 'inline-block',
-//   margin: 5,
-//   padding: 0,
-//   fontSize: 15,
-//   outline: 0,
-//   border: 0
-// }}
-// />
-
-
-
-
-// const Notes = (props) => {
-//     const { notes, user, handleClick } = props;
-//     return (
-//         <div>
-//
-//             {notes.map((note, idx) => (
-//                 <div key={idx}>
-//                     <span> &#x25AC;</span>
-//                     <span> {note.text} </span>
-//                     <button id={note.id}  onClick={  handleClick(user) } type='submit' >DELETE</button>
-//                 </div>
-//             ))}
-//         </div>
-//     )
-// }
 
 
 const mapState = (state) => ({
-      user: state.user,
-      day: state.day
-    })
+    user: state.user,
+    day: state.day
+})
 
-    const mapDispatch = (dispatch) => {
-        return {
-            editNote(noteId, editNote, userId ){
-                dispatch(changeNote(noteId, editNote))
-                dispatch(fetchNotes(userId))
+const mapDispatch = (dispatch) => {
+    return {
+        editNote(noteId, editNote, userId) {
+            dispatch(changeNote(noteId, editNote))
+            dispatch(fetchNotes(userId))
 
-                },
-            removeNote(noteId, userId){
-                 dispatch(deleteNote(noteId))
-                 dispatch(fetchNotes(userId))
-            }
-
-            }
+        },
+        removeNote(noteId, userId) {
+            dispatch(deleteNote(noteId))
+            dispatch(fetchNotes(userId))
         }
 
+    }
+}
 
-    export default connect(mapState, mapDispatch)(Notes)
+
+export default connect(mapState, mapDispatch)(Notes)
