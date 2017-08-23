@@ -40,22 +40,30 @@ class Reflections extends React.Component {
         const { notes, user } = this.props;
         sortTasksByDate(notes)
         return (
-            <div>
+             <div className="parent-center">
+            <div className='align-left'>
                 <h3 className="singleName-headings">Reflections</h3>
                 {notes.map((note, idx) => (
 
                     <div key={idx}>
-                        <span> &#x25AC;</span>
+                        <span className='event'> &#x25AC;</span>
+                        <span className='event'>
                         <RIETextArea
                             id={note.id}
                             value={note.text}
                             change={this.dataChanged}
                             propName={note.id.toString()}
                         />
-                        <span>{moment(note.date).format("MM.D.YY")}</span>
+                        </span>
+                        <span className='event'>{moment(note.date).format("MM.D.YY")}</span>
+                       <div className='del'>
+                        <span >
                         <button id={note.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
+                        </span>
+                        </div>
                     </div>
                 ))}
+            </div>
             </div>
         )
     }

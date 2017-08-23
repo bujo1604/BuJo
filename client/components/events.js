@@ -46,7 +46,7 @@ class Events extends React.Component {
     }
 
 
-dataChanged(data) {
+    dataChanged(data) {
         // console.log(data);
         this.props.editEvent(eventId, data)
     }
@@ -55,66 +55,67 @@ dataChanged(data) {
     render() {
         const { events, user } = this.props;
         return (
-            <div>
-                {events.map((event, idx) => {
-                    return (
-                        <div key={idx}>
+            <div className='parent-center'>
+                <div className='align-left'>
+                    {events.map((event, idx) => {
+                        return (
+                            <div key={idx}>
 
-                            <span className='event'>&#x25CB;</span>
+                                <span className='event-bool'> &#x25CB; </span>
 
-                            {(this.state.edit) ?
-                                (
+                                {(this.state.edit) ?
+                                    (
 
-                                    <span className='event'> &#x25AC; {event.name}  {event.time}  </span>
-
-
-                                ) :
-                                (
-
-                                    <span className='event'>
-                                        <RIEInput
-                                            id={event.id}
-                                            value={event.name}
-                                            change={this.dataChanged}
-                                            propName="name"
-                                        />
+                                        <span className='event'> &#x25AC; {event.name}  {event.time}  </span>
 
 
-                                        <RIEInput
-                                            id={event.id}
-                                            value={event.time}
-                                            change={this.dataChanged}
-                                            propName="time"
-                                            defaultValue={
-                                                { id: event.id }
-                                            }
-                                            editProps={
-                                                { style: { minWidth: 120 } }
-                                            }
-                                        />
-                                    </span>
+                                    ) :
+                                    (
+
+                                        <span className='event'>
+                                            <RIEInput
+                                                id={event.id}
+                                                value={event.name}
+                                                change={this.dataChanged}
+                                                propName="name"
+                                            />
 
 
-                                )
+                                            <RIEInput
+                                                id={event.id}
+                                                value={event.time}
+                                                change={this.dataChanged}
+                                                propName="time"
+                                                defaultValue={
+                                                    { id: event.id }
+                                                }
+                                                editProps={
+                                                    { style: { minWidth: 120 } }
+                                                }
+                                            />
+                                        </span>
 
-                            }
 
-                            <span className='event'>
-                                <IconMenu
-                                    iconButtonElement={<IconButton ><MoreVertIcon /></IconButton>}
-                                    onChange={this.handleChangeSingle}
-                                    value={this.state.valueSingle}
-                                >
-                                    <MenuItem value="1" primaryText="Edit Note" />
-                                    <MenuItem onClick={this.handleClick(user, event)} value="2" primaryText="Delete Note" />
+                                    )
 
-                                </IconMenu>
+                                }
 
-                            </span>
-                        </div>
-                    )
-                })}
+                                <span className='del'>
+                                    <IconMenu
+                                        iconButtonElement={<IconButton ><MoreVertIcon /></IconButton>}
+                                        onChange={this.handleChangeSingle}
+                                        value={this.state.valueSingle}
+                                    >
+                                        <MenuItem value="1" primaryText="Edit Note" />
+                                        <MenuItem onClick={this.handleClick(user, event)} value="2" primaryText="Delete Note" />
 
+                                    </IconMenu>
+
+                                </span>
+                            </div>
+                        )
+                    })}
+                </div>
 
             </div>
         )

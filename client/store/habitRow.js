@@ -16,9 +16,10 @@ const updateRow = (row) => ({type: UPDATE_ROW, row});
 
 //THUNK CREATORS
 
-export function fetchRows (userId) {
+export function fetchRows (userId, startDate, endDate) {
     return function thunk (dispatch){
-        return axios.get(`/api/habitrow/${userId}`)
+        return axios.get(`/api/habitrow/${userId}/?startdate=${startDate}&enddate=${endDate}&`)
+        //return axios.get(`api/habitrow/${userId}`)
         .then(res => dispatch(gotRows(res.data)))
         .catch(error => { console.log(error) });
     };

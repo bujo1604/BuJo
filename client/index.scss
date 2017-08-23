@@ -1,7 +1,7 @@
 @import './animation.scss';
 
 body {
-  font-family: sans-serif;
+  font-family: 'ABeeZee', sans-serif;
 
   a {
     text-decoration: none;
@@ -23,79 +23,287 @@ body {
 
 }
 
-.page {
-  display: grid;
-  grid-template-areas : "header header header" "nav content side" "footer footer footer";
-  grid-template-columns: 200px 1fr 200px;
-  grid-template-rows: auto 1fr auto;
-  grid-gap: 10px;
-  height: 100vh;
 
-  
-
+.day-position{
+  justify-content: flex-start;
 }
 
+//header only
 .page-header {
-  grid-area: header;
-  background-color: lightpink; 
+ background-color:#329e8d;
   display: flex;
   text-align:center;
   flex-direction: column;
   align-content: space-around;
-  font-family: 'Rock Salt', cursive;
+  font-family: 'ABeeZee', sans-serif;
   height:100px;
   justify-content: space-around;
-  font-size: x-large;
+  font-size: 400%;
+  color: white;
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.55);
+border-radius: 5px;
+
 }
 
+//everything not in header
+.page-container{
+  display: flex;
+  flex-direction: row;
+  height: -webkit-fill-available;
+}
+
+//navbar-left
 .page-sidebar {
-  grid-area: nav;
-  background-color: lightgreen;
-   
+   background-color:#d7e7e8;
+  flex: 1 0;
+  height: -webkit-fill-available;
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.55);
+border-radius: 5px;
 }
 
+//middle stuff
 .page-content {
-  grid-area: content;
   // background-color: lightblue;
   display: flex;
   flex-direction: column;
   align-content: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
+  flex: 4 0;
+  height: -webkit-fill-available;
+
 }
 
 .page-legend {
-  grid-area: side;
   background-color: lightgreen;
-   
+}
+//container for when there is a main & sidebar
+.content-container{
+  display: flex;
+  flex-direction: row;
+  // background-color: blue
 }
 
-
-.sideBar-container{
-  text-align: center
-
+//main stuff
+.content-main{
+  display:block;
+  // background-color: lightcoral;
+  flex: 4 0
 }
-.singlePage-title {
-    font-family: 'Rock Salt', cursive;
-  }
 
-  .singlePage-container {
+//right sidebar
+.content-sidebar{
+  display: block;
+  // background-color: lightsalmon;
+  flex: 1 0;
+  align-content: center;
+  text-align: left;
+  margin: 20px;
+  height: -webkit-fill-available;
+}
+
+.content-title-left {
+    font-family: 'ABeeZee', sans-serif;
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
   }
 
-.monthTable {
-  margin: 0 auto;
-}
+
+.content-title {
+    font-family: 'ABeeZee', sans-serif;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center
+  }
+
+.bujo-title {
+    font-family: 'ABeeZee', sans-serif;
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+    font-size: 200%
+  }
+
 
 li :hover {
   background-color: #555;
   color: white;
-
-
 }
+.text{
+      width: 600px !important;
+      height: 200px !important;
+  align-items: center;
+  justify-content: center;
+text-align: center;
+margin-bottom: 3px;
+margin-right: 5px;
+padding-left: 200px;
+}
+.input{
+    width: 200px !important;
+  align-items: center;
+  justify-content: space-between;
+text-align: center;
+margin-bottom: 3px;
+margin-right: 5px;
+}
+
+.button {
+  width: 130px !important;
+  align-items: center;
+  justify-content: space-between;
+text-align: center;
+margin-bottom: 3px;
+margin-left: 6px;
+}
+
+.picker{
+
+  align-items: center;
+  margin-bottom: 3px;
+  align-items: center;
+  justify-content: center;
+text-align: center;
+}
+
+.space {
+  margin-bottom: 20px;
+}
+.position{
+  display: flex;
+  flex-direction: row;
+justify-content: space-between;
+}
+// .sideBar-container{
+//   text-align: center
+
+// }
+
+
+//   .singlePage-container {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     justify-content: center;
+//   }
+
+// .monthTable {
+//   margin: 0 auto;
+// }
+
+// li :hover {
+//   background-color: #555;
+//   color: white;
+
+
+// }
+// a {
+//   text-decoration: none;
+//   display: inline-block;
+//   padding: 8px 16px;
+// }
+
+th {
+  vertical-align: top;
+  padding-left: 10px;
+    padding-right: 10px;
+  }
+  td {
+    vertical-align: top;
+    text-align:left;
+    padding-left: 10px;
+    padding-right: 10px;
+
+  }
+  .day{
+    vertical-align: top;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 30px;
+  }
+
+  .table{
+    margin:0px;
+  }
+
+
+  .event{
+    padding-left: 10px;
+
+  }
+
+.align-left{
+justify-content: center;
+text-align:left;
+ align-items: center;
+  padding-right: 250px;
+
+  }
+.del{
+  margin-left: 300px;
+  padding-right:0;
+}
+.lin{
+  align-items: baseline;
+}
+  .parent-center{
+   grid-area: center;
+justify-content: center;
+ margin-left: 250px;
+  }
+// .flexbox-container {
+//   display: -ms-flex;
+//   display: -webkit-flex;
+//   display: flex;
+// }
+
+// .navItem {
+// flex-direction: column
+// }
+
+// th {
+//   vertical-align: top;
+//   padding-left: 10px;
+//     padding-right: 10px;
+//   }
+//   td {
+//     vertical-align: top;
+//     text-align:left;
+//     padding-left: 10px;
+//     padding-right: 10px;
+
+//   }
+//   .day{
+//     vertical-align: top;
+//     padding-left: 10px;
+//     padding-right: 10px;
+//     padding-bottom: 30px;
+//   }
+
+//   .table{
+//     margin:0px;
+//   }
+
+
+//   .event{
+//     padding-left: 10px;
+//   }
+
+
+// // .flexbox-container {
+// //   display: -ms-flex;
+// //   display: -webkit-flex;
+// //   display: flex;
+// // }
+
+// // .tooltip {
+// //   opacity: 0;
+// // }
+// // .tooltip:hover {
+// //   opacity: 1;
+// //   }
 a {
   text-decoration: none;
   display: inline-block;
@@ -116,65 +324,7 @@ a:hover {
   background-color: #f1f1f1 ;
   color: black;
 }
-.content{
 
-grid-area: content;
-justify-content: space-between;
-text-align: center;
-padding: 20px;
-padding-left: 200px;
-margin: 0 auto;
-
-}
 .month{
  margin: 0 auto;
 }
-
-.navItem {
-flex-direction: column
-}
-
-th {
-  vertical-align: top;
-  padding-left: 10px;
-    padding-right: 10px;
-  }
-  td {
-    vertical-align: top;
-    text-align:left;
-    padding-left: 10px;
-    padding-right: 10px;
-  
-  }
-  .day{
-    vertical-align: top;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 30px;
-  }
-  
-  .table{
-    margin:0px;
-  }
-  
-
-  .event{
-    padding-left: 10px;
-  }
-
-
-// .flexbox-container {
-//   display: -ms-flex;
-//   display: -webkit-flex;
-//   display: flex;
-// }
-
-// .tooltip {
-//   opacity: 0;
-// }
-// .tooltip:hover {
-//   opacity: 1;
-//   }
-
-
-
