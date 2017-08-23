@@ -14,7 +14,7 @@ class Tasks extends Component {
         super(props);
         this.state = {
             completed: false,
-            edit: false
+            edit: 'true'
         }
 
         this.dataChanged = this.dataChanged.bind(this);
@@ -28,6 +28,7 @@ class Tasks extends Component {
             const taskId = task.id
             event.preventDefault()
             this.props.removeTask(taskId, userId)
+
         })
     }
 
@@ -40,7 +41,6 @@ class Tasks extends Component {
         }
 
         this.props.editTask(taskId, editTask)
-        this.setState({edit: false})
     }
 
     handleChangeSingle(event, value) {
@@ -49,7 +49,7 @@ class Tasks extends Component {
             this.setState(
                 {
                     valueSingle: value,
-                    edit: "true"
+                    edit: false
                 }
             )
         )
@@ -71,26 +71,38 @@ class Tasks extends Component {
                         }
                         {(this.state.edit) ?
                             (
-                                <span className='event-bool'>
-                                <RIEInput
-                                    id={task.id}
-                                    value={task.name}
-                                    change={this.dataChanged}
-                                    propName={task.id.toString()}
-                                />
-                            </span>
-                               
+
+                                <span className='event-bool'> {task.name}  </span>
+
                             ) :
                             (
                              
-                                <span className='event-bool'> {task.name} 
-                                <a onClick={this.handleClick(user, task)} className="delete is-small"/>
-                                </span>
+                                    
+                                    <span className='event-bool'>
+                                        <RIEInput
+                                            id={task.id}
+                                            value={task.name}
+                                            change={this.dataChanged}
+                                            propName={task.id.toString()}
+                                        />
+                                    </span>
+                              
 
                             )
 
                         }
                         
+                            <IconMenu
+                                iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
+                                onChange={this.handleChangeSingle}
+                                value={this.state.valueSingle}
+                            >
+                                <MenuItem onClick={changeStatus(user, task)} value="1" primaryText='Change Status' />
+                                <MenuItem value="2" primaryText="Edit Task" />
+                                <MenuItem onClick={this.handleClick(user, task)} value="3" primaryText="Delete Task" />
+
+                            </IconMenu>
+        
                     </div>
                 ))}
             </div>
@@ -120,6 +132,7 @@ const mapDispatch = (dispatch) => {
         changeStatus(user, task) {
             let updatedTask = {};
             //add possiblity of changing from complete to incomplete
+            
             return (
                 
                 (event) => {
@@ -148,15 +161,3 @@ const mapDispatch = (dispatch) => {
 export default connect(mapState, mapDispatch)(Tasks)
 
 
-
-// <IconMenu
-// iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
-// onChange={this.handleChangeSingle}
-// value={this.state.valueSingle}
-// >
-// <MenuItem onClick={changeStatus(user, task)} value="1" primaryText='Change Status' />
-// <MenuItem onClick={changeStatus(user, task)} value="2" primaryText='Migrate Task' />
-// <MenuItem value="2" primaryText="Edit Task" />
-// <MenuItem onClick={this.handleClick(user, task)} value="3" primaryText="Delete Task" />
-
-// </IconMenu>

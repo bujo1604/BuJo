@@ -66,9 +66,7 @@ class Events extends React.Component {
                                 {(this.state.edit) ?
                                     (
 
-                                        <span className='event'>  {event.name}  {event.time}
-                                        <a onClick={this.handleClick(user, event)} className="delete is-small"/> 
-                                        </span>
+                                        <span className='event'>  {event.name}  {event.time}  </span>
 
 
                                     ) :
@@ -102,6 +100,18 @@ class Events extends React.Component {
 
                                 }
 
+                                
+                                    <IconMenu
+                                        iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
+                                        onChange={this.handleChangeSingle}
+                                        value={this.state.valueSingle}
+                                    >
+                                        <MenuItem value="1" primaryText="Edit Note" />
+                                        <MenuItem onClick={this.handleClick(user, event)} value="2" primaryText="Delete Note" />
+
+                                    </IconMenu>
+
+                                
                             </div>
                         )
                     })}
@@ -136,14 +146,3 @@ const mapDispatch = (dispatch) => {
 export default connect(mapState, mapDispatch)(Events)
 
 
-
-
-// <IconMenu
-// iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
-// onChange={this.handleChangeSingle}
-// value={this.state.valueSingle}
-// >
-// <MenuItem value="1" primaryText="Edit Note" />
-// <MenuItem onClick={this.handleClick(user, event)} value="2" primaryText="Delete Note" />
-
-// </IconMenu>
