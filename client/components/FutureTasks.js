@@ -7,7 +7,7 @@ import {  fetchFutureTasks, fetchFutureTasksRange } from '../store'
 import { makeArrMonthsInYear } from './dateFunctions'
 import { gotNextYear, gotPreviousYear, updatedYear , postNewFutureTask, fetchCategories} from '../store'
 import TaskWords from './TaskWords'
-
+import MigrateForm from './MigrateForm';
 
 class FutureTasks extends React.Component {
     constructor(props) {
@@ -22,6 +22,7 @@ class FutureTasks extends React.Component {
         this.handleMonthChange = this.handleMonthChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.selectedCategory = this.selectedCategory.bind(this);
+       // this.migrateLogic = this.migrateLogic.bind(this);
     }
 
     componentDidMount() {
@@ -30,6 +31,18 @@ class FutureTasks extends React.Component {
         this.props.loadCategories(this.props.user.id);
     }
 
+    
+    componentWillReceiveProps(nextProps) {
+    
+    if (this.props.tasks !== nextProps.tasks) {
+      
+      //recreate X scale with domain min and max as the new start and end dates
+      this.props.loadDataFuture(this.props.user.id, this.props.year, moment(this.props.year).endOf("year").format("YYYYMMDD"));
+    }
+  }
+
+
+    
     handleChange(event){
        this.setState({value: event.target.value});
     }
@@ -86,7 +99,7 @@ class FutureTasks extends React.Component {
                     (
                         <label key={idx} className='color'>
                             <button className="button" id={cat.id} onClick={this.selectedCategory} value={cat.name} > {cat.name} <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span></button>
-
+                            {/* <button className="button" onClick={this.migrateLogic} >Migrate!</button> */}
                             {/*
                             <button id={cat.id} onClick={this.handleClick}>delete</button>
                             */}
@@ -103,6 +116,7 @@ class FutureTasks extends React.Component {
                 )
             })}
             </div>
+            <MigrateForm />
           
             </div>
 
@@ -115,7 +129,8 @@ const mapState = (state) => ({
     future: state.future,
     month: state.month,
     categories: state.categories,
-    year: state.year
+    year: state.year,
+    tasks: state.tasks
 });
 
 const mapDispatch = (dispatch) => {
