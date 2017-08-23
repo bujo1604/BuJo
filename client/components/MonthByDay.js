@@ -15,12 +15,19 @@ const MonthByDay = (props) => {
         <div>
 
         <div className='singlePage-container'>
+
+           <div className='space-around-buttons'>
+
+            {/*<button className="button is-primary" onClick={()=> updateMonth(moment(new Date()).format("MMMM YYYY"))}>Current Month</button>*/}
+    </div>
+           <div className="content-title">
             <a href='#' className='previous round' onClick={previousMonth}>&#8249;</a>
             <h2 className='singlePage-title'> {month} </h2>
             <a href='#' className='next round' onClick={nextMonth}> &#8250; </a>
         </div>
-        <hr />
-            <button className="button is-primary" onClick={()=> updateMonth(moment(new Date()).format("MMMM YYYY"))}>Current Month</button>
+       </div>
+
+
             <MonthDumbComp daysInMonth={daysInMonth} month={month} />
         </div>
     )

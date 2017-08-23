@@ -42,7 +42,9 @@ class Reflections extends React.Component {
         return (
              <div className="parent-center">
             <div className='align-left'>
-                <h3 className="singleName-headings">Reflections</h3>
+
+                <div className='space-around-buttons'>
+                <h2 className="content-title">Reflections</h2>
                 {notes.map((note, idx) => (
 
                     <div key={idx}>
@@ -57,12 +59,12 @@ class Reflections extends React.Component {
                         </span>
                         <span className='event'>{moment(note.date).format("MM.D.YY")}</span>
                        <div className='del'>
-                        <span >
-                        <button id={note.id} onClick={this.handleClick(user)} type='submit' >DELETE</button>
-                        </span>
+
                         </div>
                     </div>
+
                 ))}
+                </div>
             </div>
             </div>
         )

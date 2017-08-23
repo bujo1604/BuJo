@@ -1,12 +1,15 @@
 import React from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux';
+
+import { Link } from 'react-router-dom';
 import { makeArrOfDaysInMonthSunToSat } from './dateFunctions'
 import MonthDumbComp from './MonthDumbComp';
 import {  fetchFutureTasks, fetchFutureTasksRange } from '../store'
 import { makeArrMonthsInYear } from './dateFunctions'
 import { gotNextYear, gotPreviousYear, updatedYear , postNewFutureTask, fetchCategories} from '../store'
 import TaskWords from './TaskWords'
+import NewFutureTask from './NewFutureTask'
 
 
 class FutureTasks extends React.Component {
@@ -71,39 +74,47 @@ class FutureTasks extends React.Component {
 
         return (
             <div>
-            <button onClick={previousYear}>Previous Year</button>
+            <div className='space-around-buttons'>
+            <div className="content-title">
+            <a href="#" className="previous round" onClick={previousYear}>
+            &#8249;
+          </a>
             <h1>{moment(year).format("YYYY")}</h1>
-            <button onClick={nextYear}>Next Year</button>
-                <form onSubmit={this.handleSubmit}>
-                 New Future Task:
-                <input className="input" type="text" value={this.state.value} onChange={this.handleChange} />
+            <a href="#" className="next round" onClick={nextYear}>
+            &#8250;
+          </a>
+          </div>
+          </div>
 
-                Month:
-                <input className="input" type="text" value={this.state.monthInput} onChange={this.handleMonthChange} />
 
-                <input type="submit" value="Add Future Task" />
-                  {this.props.categories.map((cat, idx) => (
-                    (
-                        <label key={idx} className='color'>
-                            <button className="button" id={cat.id} onClick={this.selectedCategory} value={cat.name} > {cat.name} <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span></button>
 
-                            {/*
-                            <button id={cat.id} onClick={this.handleClick}>delete</button>
-                            */}
-                        </label>
-                    )))}
-                </form>
-            <div>
+
+           <table className='month'>
+           <tr key="1">
+            <th>Month</th>
+            <th>Future Tasks</th>
+
+          </tr>
             {monthsInYear.map((monthInArr, ind)=>{
 
-                return (<div key={Math.random()}><h3>{moment(monthInArr).format("MMMM")}</h3>
+                return (
+                    <tr key={Math.random()}>
+                    <td>{moment(monthInArr).format("MMMM")}</td>
                     <TaskWords tasks={filterF[ind]} />
-
-                    </div>
+    <p className='future'></p>
+                    </tr>
                 )
             })}
-            </div>
-          
+
+</table>
+            <Link to={"/addfuturetask"}>
+  <button className="button is-success">
+              <span className="icon is-small">
+                <i className="fa fa-check" />
+              </span>
+              <span>Add Future Task</span>
+            </button>
+    </Link>
             </div>
 
         )

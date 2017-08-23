@@ -59,7 +59,7 @@ class BujoAnimate extends Component {
 
             <div>
                 <div className="bujo-title">
-                    <TextLoop>
+                    <TextLoop speed={1500}>
                         {categories.map((category, i) => {
                             return (
                                 <div key={i}>

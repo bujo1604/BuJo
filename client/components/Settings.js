@@ -9,7 +9,8 @@ class Settings extends Component {
         const categories = this.props.categories;
         return (
             <div>
-            <CategoryForm />
+  <h2 className="content-title">Categories</h2>
+
                 {categories.map((cat, idx) => (
                     (
                         <label key={idx} className='color'>
@@ -20,6 +21,7 @@ class Settings extends Component {
                             */}
                         </label>
                     )))}
+<CategoryForm />
             </div>
         )
     }

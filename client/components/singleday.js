@@ -34,8 +34,9 @@ class SingleDay extends Component {
       <div className="content-container">
 
         <div className="content-main">
+ <div className='space-around-buttons'>
 
-          <div className="content-title">
+           <div className="content-title">
           <a href="#" className="previous round" onClick={previousDay}>
             &#8249;
           </a>
@@ -44,18 +45,15 @@ class SingleDay extends Component {
           <a href="#" className="next round" onClick={nextDay}>
             &#8250;
           </a>
+          </div>
         </div>
 
-        <hr />
-
-        <div className="space">
-          <button
+  {/*<button
             className="button is-primary"
             onClick={() => updateDay(moment(new Date()).format("YYYYMMDD"))}
           >
             Current Day
-          </button>
-        </div>
+          </button>*/}
 
         <Events events={eventsOnDay} />
         <Tasks tasks={tasksOnDay} />

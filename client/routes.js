@@ -4,7 +4,7 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, Insights, SingleDay, MonthByDay, TaskForm, AddNote, AddEvent, FutureTasks, Settings, Reflections, Help, HabitTracker, UpdateTask, HabitTrackerMonth } from './components';
+import { Main, Login, Signup, UserHome, Insights, SingleDay, MonthByDay, TaskForm, AddNote, AddEvent, FutureTasks, Settings, Reflections, Help, HabitTracker, UpdateTask, HabitTrackerMonth, NewFutureTask } from './components';
 import { me, fetchTasks, fetchEvents, fetchNotes, fetchCategories} from './store'
 
 
@@ -50,6 +50,7 @@ class Routes extends Component {
                 <Route path='/reflections' component={Reflections} />
                 <Route path='/habitTracker' component={HabitTrackerMonth} />
                 <Route path='/updateTask' component={UpdateTask} />
+                 <Route path='/addFutureTask' component={NewFutureTask} />
               </Switch>
             }
             {/* Displays our Login component as a fallback */}

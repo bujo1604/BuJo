@@ -30,14 +30,25 @@ export class InsightsByMonth extends Component {
     addDayCountToTasks(completeTasks)
     return (
       <div>
-        <h1>{month}</h1>
-        <button onClick={previousMonth}>Prev Month</button>
-        { monthEndDate(month) < moment(new Date()).format('YYYYMMDD') && <button onClick={nextMonth}>Next Month</button>}
+
+            <div className="content-title">
+          <a href="#" className="previous round"  onClick={previousMonth}>
+            &#8249;
+          </a>
+        {month}
+
+        { monthEndDate(month) < moment(new Date()).format('YYYYMMDD') && <a href="#" className="next round" onClick={nextMonth}>
+            &#8250;
+          </a>}
+          </div>
+
         {!completeTasks.length ? <p>no tasks </p> :
           <div className="flexbox-container">
             <Pie tasks={completeTasks} />
             <Scatter tasks={completeTasks} startDate = {monthStartDate(month)} endDate ={weekStartDate(monthEndDate(month))} tickNum = {5} tickFormat = {d3.timeFormat('%b %d')}/>
           </div>}
+
+
       </div>)
   }
 }

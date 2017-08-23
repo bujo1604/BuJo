@@ -52,6 +52,11 @@ border-radius: 5px;
   height: -webkit-fill-available;
 }
 
+
+.future-log{
+   display: flex;
+  flex-direction: row;
+}
 //navbar-left
 .page-sidebar {
    background-color:#d7e7e8;
@@ -83,14 +88,29 @@ border-radius: 5px;
   flex-direction: row;
   // background-color: blue
 }
-
+.help{
+   text-align: left;
+   padding-left: 200px;
+   padding-right: 200px;
+}
+  .help-heading{
+    font-size: 150%;
+    padding-top:10px;
+    padding-bottom: 10px;
+  }
+// .insights-container{
+//   display: flex;
+//   flex-direction: row;
+// }
 //main stuff
 .content-main{
   display:block;
   // background-color: lightcoral;
   flex: 4 0
 }
-
+.line-tasks{
+  text-align: left;
+}
 //right sidebar
 .content-sidebar{
   display: block;
@@ -132,14 +152,14 @@ li :hover {
   color: white;
 }
 .text{
-      width: 600px !important;
+      width: 700px !important;
       height: 200px !important;
   align-items: center;
   justify-content: center;
 text-align: center;
 margin-bottom: 3px;
 margin-right: 5px;
-padding-left: 200px;
+padding-left: 300px;
 }
 .input{
     width: 200px !important;
@@ -151,7 +171,7 @@ margin-right: 5px;
 }
 
 .button {
-  width: 130px !important;
+  width: 150px !important;
   align-items: center;
   justify-content: space-between;
 text-align: center;
@@ -170,6 +190,11 @@ text-align: center;
 
 .space {
   margin-bottom: 20px;
+}
+
+.space-form{
+
+ align-items: center;
 }
 .position{
   display: flex;
@@ -233,7 +258,14 @@ th {
     padding-left: 10px;
 
   }
+.space-around-buttons{
+  padding-top:40px;
+  padding-bottom:10px;
+}
 
+.underline{
+text-decoration: underline;
+}
 .align-left{
 justify-content: center;
 text-align:left;
@@ -303,18 +335,20 @@ justify-content: center;
 // //   display: flex;
 // // }
 
-// // .tooltip {
-// //   opacity: 0;
-// // }
-// // .tooltip:hover {
-// //   opacity: 1;
-// //   }
+.tooltip {
+  opacity: 0;
+}
+.tooltip:hover {
+  opacity: 1;
+  }
 a {
   text-decoration: none;
   display: inline-block;
   padding: 8px 16px;
 }
-
+// .future{
+//   padding-bottom: 20px;
+// }
 a:hover {
   background-color: #ddd;
   color: black;

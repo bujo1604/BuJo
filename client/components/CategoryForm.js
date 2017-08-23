@@ -54,9 +54,11 @@ class CategoryForm extends Component {
 
     return (
       <div className='space'>
+      <div className='space-around-buttons'>
         {!this.state.newCategory && <a className="button is-primary" onClick={this.renderForm}>
           Add Category
         </a>}
+        </div>
         <br />
         {this.state.newCategory
           ? <div className='space'>
