@@ -89,5 +89,22 @@ function makeArrMonthsInYear(date) {
 
 }
 
-export {makeArrOfDaysInMonthSunToSat, makeArrOfDaysInCalendarMonth, makeArrDaysInWeek, monthStartDate, monthEndDate, weekEndDate, weekStartDate, makeArrMonthsInYear}
+function dateToYYYYMM01(date) {
+    return moment(date).startOf("month").format("YYYYMMDD");
+}
+
+function formM_Y() {
+    return moment(new Date()).format("MMMM YYYY")
+}
+
+function arrOfMonthNumbers (month) {
+        var arrDays = [];
+        var numDays = Number(moment(month).endOf("month").format('DD'));
+        for(var j = 1; j <= numDays; j++ ){
+            arrDays.push(j);
+        }
+        return arrDays
+} 
+
+export {arrOfMonthNumbers, formM_Y, dateToYYYYMM01, makeArrOfDaysInMonthSunToSat, makeArrOfDaysInCalendarMonth, makeArrDaysInWeek, monthStartDate, monthEndDate, weekEndDate, weekStartDate, makeArrMonthsInYear}
 
