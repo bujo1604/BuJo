@@ -17,15 +17,9 @@ const HabitTrackerMonth = (props) => {
             <h2 className='singlePage-title'> {month} </h2>
             <a href='#' className='next round' onClick={nextMonth}> &#8250; </a>
         </div>
-<<<<<<< HEAD
-
-            {/*<button onClick={()=> updateMonth(moment(new Date()).format("MMMM YYYY"))}>Current Month</button>*/}
-            <HabitTracker  /> {/*moment(this.props.month).startOf("month").format("YYYYMMDD") */}
-=======
         <hr />
             <button onClick={()=> updateMonth(formM_Y())}>Current Month</button>
             <HabitTracker  /> 
->>>>>>> origin
         </div>
     )
 }
