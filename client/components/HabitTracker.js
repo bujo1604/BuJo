@@ -181,10 +181,10 @@ class HabitTracker extends Component {
       <div className="singlePage-container">
 
 
-            <div>
+            <div  >
              {habitRow.map((row) => {
                 return (
-                    <div key={Math.random()}>
+                    <div  key={Math.random()}>
                     <div  >
 
 
