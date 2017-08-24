@@ -1,16 +1,14 @@
 import React from 'react'
-import moment from 'moment'
 import { connect } from 'react-redux';
-import { makeArrOfDaysInMonthSunToSat } from '../utils/dateUtils'
-import MonthDumbComp from './MonthDumbComp';
-import { gotNextMonth, gotPreviousMonth, updatedMonth, fetchRows } from '../store'
+import { makeArrOfDaysInMonthSunToSat, formM_Y} from '../utils/dateUtils'
+import { gotNextMonth, gotPreviousMonth, updatedMonth} from '../store'
 import HabitTracker from './HabitTracker';
 
 const HabitTrackerMonth = (props) => {
 
     const { previousMonth, nextMonth, month, updateMonth } = props
-    //daysInMonth includes Sun-Sat view
     const daysInMonth = makeArrOfDaysInMonthSunToSat(month)
+
     return (
          <div className='space-around-buttons'>
         <h2 className="content-title">Habit Tracker</h2>
@@ -19,9 +17,15 @@ const HabitTrackerMonth = (props) => {
             <h2 className='singlePage-title'> {month} </h2>
             <a href='#' className='next round' onClick={nextMonth}> &#8250; </a>
         </div>
+<<<<<<< HEAD
 
             {/*<button onClick={()=> updateMonth(moment(new Date()).format("MMMM YYYY"))}>Current Month</button>*/}
             <HabitTracker  /> {/*moment(this.props.month).startOf("month").format("YYYYMMDD") */}
+=======
+        <hr />
+            <button onClick={()=> updateMonth(formM_Y())}>Current Month</button>
+            <HabitTracker  /> 
+>>>>>>> origin
         </div>
     )
 }
@@ -33,16 +37,13 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => {
     return {
         nextMonth() {
-            dispatch(gotNextMonth());  // to be used in on click
-            //dispatch(fetchRows(userId, startdate,enddate))
+            dispatch(gotNextMonth());
         },
         previousMonth() {
-            dispatch(gotPreviousMonth()) // to be used in on click
-           // dispatch(fetchRows(userId, startdate,enddate))
+            dispatch(gotPreviousMonth());
         },
         updateMonth(month){
-            dispatch(updatedMonth(month))
-            //dispatch(fetchRows(userId, startdate,enddate))
+            dispatch(updatedMonth(month));
         },
 
     };
