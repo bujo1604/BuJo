@@ -185,12 +185,12 @@ class HabitTracker extends Component {
              {habitRow.map((row) => {
                 return (
                     <div key={Math.random()}>
-                    <div >
+                    <div  >
 
 
 
 
-                    <svg width={svgWidth} height={svgHeight} key={Math.random()}>
+                    <svg  className='inline' width={svgWidth} height={svgHeight} key={Math.random()}>
 
 
                     {thirty1Days.map((day, ind)=>{

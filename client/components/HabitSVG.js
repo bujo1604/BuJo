@@ -18,14 +18,14 @@ class HabitSVG extends Component {
 
   render() {
    const { habitRows} = this.props
-    
+
 console.log(habitRows, "habitRows in HabitSVG")
     return (
 
       <div className="singlePage-container">
-      
 
-       <h1>Habit svg</h1> 
+
+       <h1>Habit svg</h1>
        { habitRows.map((row, ind)=>{
            console.log(row.c4, "row.c4")
             console.log(row.c1, "row.c1")
@@ -33,7 +33,7 @@ console.log(habitRows, "habitRows in HabitSVG")
                <div>
                <h3>{row.habit}</h3>
                <h3>{row.habitTrackerMainId}</h3>
-            <svg width="10000" height="30">
+            <svg className='inline' width="10000" height="30">
             <rect key={ind} x="0" y="0" width="30" height="30" stroke="black" fill={row.c1} />
             <rect key={ind+100} x="30" y="0" width="30" height="30" stroke="black" fill={row.c4} />
             </svg>
@@ -42,8 +42,8 @@ console.log(habitRows, "habitRows in HabitSVG")
        })
 
        }
-    
-    
+
+
       </div>
     )
   }

@@ -10,25 +10,20 @@ class Categories extends Component {
     render() {
         const categories = this.props.categories;
         return (
-            <div>
-                <h2 className="content-title">Categories</h2>
+            <div className='space-around-buttons'>
+  <h2 className="content-title">Categories</h2>
+
                 {categories.map((cat, idx) => (
-                    <label key={idx} className='color'>
-                        <button
-                            className="button"
-                            id={cat.id}
-                            onClick={this.selectedCategory}
-                            value={cat.name} > {cat.name}
-                            <span
-                                style={{ color: `${cat.color.hex}` }}> &#x25CF;
-                            </span>
-                        </button>
-                        {/*
+                    (
+                        <label key={idx} className='color'>
+                            <p  className="button"  id={cat.id} onClick={this.selectedCategory}  value={cat.name} > {cat.name} <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span></p>
+
+                            {/*
                             <button id={cat.id} onClick={this.handleClick}>delete</button>
                             */}
-                    </label>
-                ))}
-                <AddCategory />
+                        </label>
+                    )))}
+<AddCategory />
             </div>
         )
     }

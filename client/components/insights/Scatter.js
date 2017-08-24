@@ -45,7 +45,7 @@ export class ScatterWeek extends Component {
   render() {
     const { tasks } = this.props
     return (
-      <div>
+      <div className='inline'>
         <svg width={this.width} height={this.height}>
           {tasks.map((task, i) => {
             return (
