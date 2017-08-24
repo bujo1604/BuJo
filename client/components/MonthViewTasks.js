@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TaskBullets = (props) => {
+const MonthViewTasks = (props) => {
     const { tasks, day } = props;
     return (
         <div>
@@ -18,4 +18,4 @@ const TaskBullets = (props) => {
     )
 }
 
-export default TaskBullets;
+export default MonthViewTasks;

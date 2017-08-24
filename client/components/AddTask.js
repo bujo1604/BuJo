@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchCategories, removeCategory, fetchColors, createTask, fetchTasks } from '../store';
 
 
-class TaskForm extends Component {
+class AddTask extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -106,5 +106,5 @@ const mapDispatch = (dispatch, ownProps) => {
 
     };
 }
-export default connect(mapState, mapDispatch)(TaskForm);
+export default connect(mapState, mapDispatch)(AddTask);
 

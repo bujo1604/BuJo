@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchTasks, fetchEvents, fetchNotes, updatedDay } from "../store";
-import { TaskBullets, EventsDumbComponent } from "./";
+import { MonthViewTasks, MonthViewEvents } from "./";
 
 class MonthDumbComp extends Component {
   constructor(props) {
@@ -55,12 +55,12 @@ class MonthDumbComp extends Component {
                   </td>
 
                   <td className="day">
-                    <EventsDumbComponent
+                    <MonthViewEvents
                       events={filteredEvents[daysInMonth.indexOf(day)]}
                     />
                   </td>
                   <td>
-                    <TaskBullets
+                    <MonthViewTasks
                       tasks={filteredTasks[daysInMonth.indexOf(day)]}
                     />
                   </td>
@@ -75,12 +75,12 @@ class MonthDumbComp extends Component {
                     </Link>
                   </td>
                   <td className="day">
-                    <EventsDumbComponent
+                    <MonthViewEvents
                       events={filteredEvents[daysInMonth.indexOf(day)]}
                     />
                   </td>
                   <td>
-                    <TaskBullets
+                    <MonthViewTasks
                       tasks={filteredTasks[daysInMonth.indexOf(day)]}
                     />
                   </td>

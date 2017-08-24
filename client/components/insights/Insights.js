@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import { InsightsByMonth, InsightsByWeek } from './';
-import { updateView, updatedMonth, updatedWeek } from '../store';
+import { InsightsByMonth, InsightsByWeek } from '../';
+import { updateView, updatedMonth, updatedWeek } from '../../store';
 
 //COMPONENT
 

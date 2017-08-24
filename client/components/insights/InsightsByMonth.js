@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Pie, Scatter } from './'
+import { Pie, Scatter } from '../'
 import moment from 'moment'
-import { fetchCompleteTasksByDate, gotNextMonth, gotPreviousMonth } from '../store';
-import {addDayCountToTasks} from '../store/taskUtils'
-import {monthStartDate, monthEndDate, weekStartDate} from './dateFunctions'
+import { fetchCompleteTasksByDate, gotNextMonth, gotPreviousMonth } from '../../store';
+import {addDayCountToTasks} from '../../utils/taskUtils'
+import {monthStartDate, monthEndDate, weekStartDate} from '../../utils/dateUtils'
 import * as d3 from 'd3';
 
 //COMPONENT

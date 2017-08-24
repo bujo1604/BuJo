@@ -4,7 +4,7 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, Insights, SingleDay, MonthByDay, TaskForm, AddNote, AddEvent, FutureTasks, Settings, Reflections, Help, HabitTracker, UpdateTask, HabitTrackerMonth, NewFutureTask } from './components';
+import { Main, Login, Signup, UserHome, Insights, SingleDay, MonthByDay, AddTask, AddNote, AddEvent, FutureTasks, Categories, Reflections, Help, HabitTracker, UpdateTask, HabitTrackerMonth, AddFutureTask } from './components';
 import { me, fetchTasks, fetchEvents, fetchNotes, fetchCategories} from './store'
 
 
@@ -39,18 +39,18 @@ class Routes extends Component {
                 {/* Routes placed here are only available after logging in */}
                 <Route exact path='/' component={UserHome} />
                 <Route path='/home' component={UserHome} />
-                <Route path='/settings' component={Settings} />
+                <Route path='/categories' component={Categories} />
                 <Route path='/insights' component={Insights} />
                 <Route path='/day' component={SingleDay} />
                 <Route exact path='/calendar' component={MonthByDay} />
-                <Route path='/addtask' component={TaskForm} />
+                <Route path='/addtask' component={AddTask} />
                 <Route path='/addnote' component={AddNote} />
                 <Route path='/addevent' component={AddEvent} />
-                <Route path='/futureLog' component={FutureTasks} />
+                <Route path='/futurelog' component={FutureTasks} />
                 <Route path='/reflections' component={Reflections} />
-                <Route path='/habitTracker' component={HabitTrackerMonth} />
-                <Route path='/updateTask' component={UpdateTask} />
-                 <Route path='/addFutureTask' component={NewFutureTask} />
+                <Route path='/habittracker' component={HabitTrackerMonth} />
+                <Route path='/updatetask' component={UpdateTask} />
+                 <Route path='/addfuturetask' component={AddFutureTask} />
               </Switch>
             }
             {/* Displays our Login component as a fallback */}
