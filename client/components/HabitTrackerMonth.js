@@ -10,9 +10,9 @@ const HabitTrackerMonth = (props) => {
     const daysInMonth = makeArrOfDaysInMonthSunToSat(month)
 
     return (
-        <div>
-        Habit Tracker <br/>
-        <div className='singlePage-container'>
+         <div className='space-around-buttons'>
+        <h2 className="content-title">Habit Tracker</h2>
+        <div className="content-title">
             <a href='#' className='previous round' onClick={previousMonth}>&#8249;</a>
             <h2 className='singlePage-title'> {month} </h2>
             <a href='#' className='next round' onClick={nextMonth}> &#8250; </a>

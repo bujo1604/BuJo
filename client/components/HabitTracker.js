@@ -12,13 +12,15 @@ class HabitTracker extends Component {
     this.state = {
         value: '',
         color: 'blue'
+
+
     }
-    
+
     this.clicker = this.clicker.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeColorState = this.changeColorState.bind(this);
- 
+
   }
 
   componentDidMount(){
@@ -32,7 +34,7 @@ class HabitTracker extends Component {
     }
   }
   handleSubmit(event){
-   
+
     event.preventDefault();
     var month = dateToYYYYMM01(this.props.month);
     var obj = {month: month, habit: this.state.value, userId: this.props.user.id, color:this.state.color}
@@ -48,7 +50,7 @@ class HabitTracker extends Component {
 
   handleChange(event){
       this.setState({value: event.target.value});
-    
+
   }
     changeColorState(event){
         event.preventDefault();
@@ -64,7 +66,6 @@ class HabitTracker extends Component {
     return (
 
       <div className="singlePage-container">
-      
 
        <h1>Habit Tracker</h1>
        <div>
@@ -103,20 +104,43 @@ class HabitTracker extends Component {
                     <text textAnchor="middle" x={coord.tcx} y={coord.tcy} fontFamily="ABeeZee" onClick={() => {this.clicker(row.id, coord.colStr, row[coord.colStr], row.color)}}>{day}</text>
                     <text textAnchor="middle" x={coord.dcx} y={coord.dcy} fontFamily="ABeeZee" fontSize="10" onClick={() => {this.clicker(row.id, coord.colStr, row[coord.colStr], row.color)}}>{letter}</text>
                     </g>)
-                
+
                     })}
                     <circle cx={HTPropor.svgCenterX} cy={HTPropor.svgCenterY} r={HTPropor.bCirR*0.650} fill="#d7e7e8" stroke="black"/>
                     <text textAnchor="middle" x={HTPropor.svgCenterX} y={HTPropor.svgCenterY} fontFamily="ABeeZee">{row.habit}</text>
                     </svg>
-                    
+
                     </div>
                     </div>
                 )
             })}
             </div>
-            <div>
-     
-    </div>
+
+
+       <div>
+       <form onSubmit={this.handleSubmit}>
+                <label>
+                    Habit:
+                <input className="input" type="text" value={this.state.value} onChange={this.handleChange} />
+                </label>
+                <input  className="button is-success" type="submit" value="Add New Tracker" />
+            </form>
+ <div className="color">
+                  <div>Select color:</div>
+              {colors.map(color =>
+                    <button
+                      className='button'
+                      onClick={this.handleColorChange}
+                      key={color.id}
+                      value={color.id}
+                      style={{ color: `${color.hex}` }}
+                    >
+                      {" "}&#x25CF;
+                    </button>
+                  )}
+                    </div>
+
+            </div>
       </div>
     )
   }

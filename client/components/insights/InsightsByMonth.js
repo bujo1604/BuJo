@@ -44,9 +44,12 @@ export class InsightsByMonth extends Component {
 
         {!completeTasks.length ? <p>no tasks </p> :
           <div className="flexbox-container">
+          <div className='inline'>
             <Pie tasks={completeTasks} />
             <Scatter tasks={completeTasks} startDate = {monthStartDate(month)} endDate ={weekStartDate(monthEndDate(month))} tickNum = {5} tickFormat = {d3.timeFormat('%b %d')}/>
+             </div>
           </div>}
+
 
 
       </div>)

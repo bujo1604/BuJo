@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
+
 import { connect } from 'react-redux';
+import { fetchCategories, removeCategory} from '../store';
+import CategoryForm from './CategoryForm';
 import Link from 'react-router-dom';
-import { fetchCategories, removeCategory } from '../store';
-//for some reason AddCategory can't be imported from index
-import AddCategory from './AddCategory';
-
-
-class Categories extends Component {
+class Settings extends Component {
     render() {
         const categories = this.props.categories;
         return (
@@ -23,12 +21,11 @@ class Categories extends Component {
                             */}
                         </label>
                     )))}
-<AddCategory />
+<CategoryForm />
             </div>
         )
     }
 }
-
 const mapState = (state) => ({
     user: state.user,
     categories: state.categories,
@@ -47,4 +44,4 @@ const mapDispatch = (dispatch) => {
         }
     };
 }
-export default connect(mapState, mapDispatch)(Categories);
+export default connect(mapState, mapDispatch)(Settings);

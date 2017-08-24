@@ -22,7 +22,7 @@ export class Pie extends Component {
 
     let pie = this.pie(countedCategories)
     return (
-      <div>
+      <div className='inline'>
       <svg width={this.width} height={this.height}>
         <g transform={`translate(${this.width / 2}, ${this.height / 2})`}>
           <text textAnchor="middle" x="0" y="0">You have completed {tasks.length} tasks</text>

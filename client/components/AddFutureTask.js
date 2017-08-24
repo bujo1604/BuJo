@@ -107,7 +107,7 @@ class AddFutureTask extends React.Component {
             <input className="button is-success" type="submit" value="Add Future Task" />
             {this.props.categories.map((cat, idx) =>
               <label key={idx} className="color">
-                <button
+                <p
                   className="button"
                   id={cat.id}
                   onClick={this.selectedCategory}
@@ -115,7 +115,7 @@ class AddFutureTask extends React.Component {
                 >
                   {" "}{cat.name}{" "}
                   <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span>
-                </button>
+                </p>
 
                 {/*
                             <button id={cat.id} onClick={this.handleClick}>delete</button>

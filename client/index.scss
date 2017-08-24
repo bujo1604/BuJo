@@ -71,6 +71,7 @@ border-radius: 5px;
   // background-color: lightblue;
   display: flex;
   flex-direction: column;
+
   align-content: center;
   justify-content: flex-start;
   text-align: center;
@@ -132,10 +133,15 @@ border-radius: 5px;
 
 .content-title {
     font-family: 'ABeeZee', sans-serif;
-    padding-top: 20px;
+ font-size: 150%;
     padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     display: flex;
-    justify-content: center
+    justify-content: center;
+align-items:baseline;
+
+
   }
 
 .bujo-title {
@@ -159,7 +165,7 @@ li :hover {
 text-align: center;
 margin-bottom: 3px;
 margin-right: 5px;
-padding-left: 300px;
+padding-left: 200px;
 }
 .input{
     width: 200px !important;
@@ -171,12 +177,24 @@ margin-right: 5px;
 }
 
 .button {
-  width: 150px !important;
+  // width: 150px !important;
   align-items: center;
   justify-content: space-between;
 text-align: center;
 margin-bottom: 3px;
 margin-left: 6px;
+}
+p{
+  width: 150px !important;
+}
+
+#button1 {
+  width: 150px !important;
+//   align-items: center;
+//   justify-content: space-between;
+// text-align: center;
+// margin-bottom: 3px;
+// margin-left: 6px;
 }
 
 .picker{
@@ -267,10 +285,11 @@ th {
 text-decoration: underline;
 }
 .align-left{
-justify-content: center;
+// justify-content: center;
 text-align:left;
- align-items: center;
-  padding-right: 250px;
+//  align-items: center;
+   padding-right: 150px;
+  //  padding-left: 150px;
 
   }
 .del{
@@ -283,7 +302,7 @@ text-align:left;
   .parent-center{
    grid-area: center;
 justify-content: center;
- margin-left: 350px;
+ margin-left: 250px;
 
   }
 
@@ -342,28 +361,39 @@ justify-content: center;
   opacity: 1;
   }
 a {
-  text-decoration: none;
+  text-decoration: none !important ;
   display: inline-block;
   padding: 8px 16px;
+ margin: 20px;
 }
 // .future{
 //   padding-bottom: 20px;
 // }
 a:hover {
-  background-color: #ddd;
+  background-color:#ddd;
   color: black;
 }
 
 .previous {
-  background-color: #f1f1f1 ;
+  background-color: #d7e7e8 ;
   color: black;
 }
 
 .next {
-  background-color: #f1f1f1 ;
+  background-color: #d7e7e8 ;
   color: black;
 }
 
 .month{
  margin: 0 auto;
+}
+
+
+.inline{
+   display: inline-block;
+}
+
+.habbit{
+    display: flex;
+
 }
