@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux';
 
-class EventsDumbComponent extends Component {
+class MonthViewEvents extends Component {
     constructor(props) {
         super(props);
     }
@@ -10,7 +10,6 @@ class EventsDumbComponent extends Component {
 
         return (
             <div>
-           
                 {events.map((event, idx) => {
                     return (
                         <div key={idx}>
@@ -20,14 +19,10 @@ class EventsDumbComponent extends Component {
                             </span>
                             <span className='event'>
                                 {event.time}
-                                
-                    </span>
-                         
+                            </span>
                         </div>
                     )
                 })}
-
-
             </div>
         )
     }
@@ -39,6 +34,5 @@ const mapState = (state) => ({
     day: state.day
 })
 
-// export default EventsDumbComponent;
 
-export default connect(mapState)(EventsDumbComponent);
+export default connect(mapState)(MonthViewEvents);

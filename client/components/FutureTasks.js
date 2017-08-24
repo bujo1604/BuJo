@@ -1,15 +1,12 @@
 import React from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux';
-
 import { Link } from 'react-router-dom';
-import { makeArrOfDaysInMonthSunToSat } from './dateFunctions'
+import { makeArrOfDaysInMonthSunToSat, makeArrMonthsInYear } from '../utils/dateUtils'
 import MonthDumbComp from './MonthDumbComp';
-import {  fetchFutureTasks, fetchFutureTasksRange } from '../store'
-import { makeArrMonthsInYear } from './dateFunctions'
-import { gotNextYear, gotPreviousYear, updatedYear , postNewFutureTask, fetchCategories} from '../store'
+import { gotNextYear, gotPreviousYear, updatedYear , postNewFutureTask, fetchCategories, fetchFutureTasks, fetchFutureTasksRange} from '../store'
 import TaskWords from './TaskWords'
-import NewFutureTask from './NewFutureTask'
+import AddFutureTask from './AddFutureTask'
 
 
 class FutureTasks extends React.Component {

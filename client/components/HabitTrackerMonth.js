@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux';
-import { makeArrOfDaysInMonthSunToSat } from './dateFunctions'
+import { makeArrOfDaysInMonthSunToSat } from '../utils/dateUtils'
 import MonthDumbComp from './MonthDumbComp';
 import { gotNextMonth, gotPreviousMonth, updatedMonth, fetchRows } from '../store'
 import HabitTracker from './HabitTracker';
@@ -44,7 +44,7 @@ const mapDispatch = (dispatch) => {
             dispatch(updatedMonth(month))
             //dispatch(fetchRows(userId, startdate,enddate))
         },
-     
+
     };
 }
 

@@ -1,20 +1,12 @@
 import React from "react";
 import moment from "moment";
 import { connect } from "react-redux";
-import { makeArrOfDaysInMonthSunToSat } from "./dateFunctions";
+import { makeArrOfDaysInMonthSunToSat, makeArrMonthsInYear } from '../utils/dateUtils';
 import MonthDumbComp from "./MonthDumbComp";
-import { fetchFutureTasks, fetchFutureTasksRange } from "../store";
-import { makeArrMonthsInYear } from "./dateFunctions";
-import {
-  gotNextYear,
-  gotPreviousYear,
-  updatedYear,
-  postNewFutureTask,
-  fetchCategories
-} from "../store";
+import { fetchFutureTasks, fetchFutureTasksRange, gotNextYear, gotPreviousYear, updatedYear, postNewFutureTask,fetchCategories } from "../store";
 import TaskWords from "./TaskWords";
 
-class NewFutureTask extends React.Component {
+class AddFutureTask extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -170,4 +162,4 @@ const mapDispatch = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(NewFutureTask);
+export default connect(mapState, mapDispatch)(AddFutureTask);

@@ -1,31 +1,55 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Link from 'react-router-dom';
+import { fetchCategories, removeCategory } from '../store';
+//for some reason AddCategory can't be imported from index
+import AddCategory from './AddCategory';
 
-const Categories = (props) => {
-    const { categories } = props
-    return (
-        <div>
-        <div className='content-title-left'> Values </div>
-            <div >
-                {categories.map((category, i) => {
-                    return (
-                        <div key={i}>
+
+class Categories extends Component {
+    render() {
+        const categories = this.props.categories;
+        return (
+            <div>
+                <h2 className="content-title">Categories</h2>
+                {categories.map((cat, idx) => (
+                    <label key={idx} className='color'>
+                        <button
+                            className="button"
+                            id={cat.id}
+                            onClick={this.selectedCategory}
+                            value={cat.name} > {cat.name}
                             <span
-                                style={{ color: `${category.color.hex}` }} display="inline"> &#x25CF;
-                                </span>
-                            <span> {category.name} </span>
-                        </div>
-                    )
-                })}
+                                style={{ color: `${cat.color.hex}` }}> &#x25CF;
+                            </span>
+                        </button>
+                        {/*
+                            <button id={cat.id} onClick={this.handleClick}>delete</button>
+                            */}
+                    </label>
+                ))}
+                <AddCategory />
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 const mapState = (state) => ({
+    user: state.user,
     categories: state.categories,
+
 });
 
-export default connect(mapState)(Categories);
+const mapDispatch = (dispatch) => {
+    return {
+        loadCategories(userId) {
+            dispatch(fetchCategories(userId));
 
 
+        },
+        removeCategory(categoryId) {
+            dispatch(removeCategory(categoryId));
+        }
+    };
+}
+export default connect(mapState, mapDispatch)(Categories);

@@ -14,27 +14,23 @@ class Events extends React.Component {
         super(props);
         this.state = {
             text: 'demo-edit',
-            edit: 'true' // for setState issue change to slectec value thing 
+            edit: 'true' // for setState issue change to slectec value thing
         }
         this.dataChanged = this.dataChanged.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleChangeSingle = this.handleChangeSingle.bind(this);
-
     }
 
     handleClick(user, evt) {
         const userId = user.id
         return ((event) => {
-            console.log(evt);
             const eventId = evt.id
             event.preventDefault()
             this.props.removeEvent(eventId, userId)
-
         })
     }
 
     handleChangeSingle(event, value) {
-        // console.log('in chnage')
         return (
             this.setState(
                 {
@@ -45,12 +41,9 @@ class Events extends React.Component {
         )
     }
 
-
     dataChanged(data) {
-        // console.log(data);
         this.props.editEvent(eventId, data)
     }
-
 
     render() {
         const { events, user } = this.props;
@@ -60,58 +53,39 @@ class Events extends React.Component {
                     {events.map((event, idx) => {
                         return (
                             <div key={idx}>
-
                                 <span className='event-bool'> &#x25CB; </span>
-
                                 {(this.state.edit) ?
-                                    (
-
-                                        <span className='event'>  {event.name}  {event.time}  </span>
-
-
-                                    ) :
-                                    (
-
-                                        <span className='event'>
-                                            <RIEInput
-                                                id={event.id}
-                                                value={event.name}
-                                                change={this.dataChanged}
-                                                propName="name"
-                                            />
-
-
-                                            <RIEInput
-                                                id={event.id}
-                                                value={event.time}
-                                                change={this.dataChanged}
-                                                propName="time"
-                                                defaultValue={
-                                                    { id: event.id }
-                                                }
-                                                editProps={
-                                                    { style: { minWidth: 120 } }
-                                                }
-                                            />
-                                        </span>
-
-
-                                    )
-
+                                    <span className='event'>  {event.name}  {event.time}  </span>
+                                    :
+                                    <span className='event'>
+                                        <RIEInput
+                                            id={event.id}
+                                            value={event.name}
+                                            change={this.dataChanged}
+                                            propName="name"
+                                        />
+                                        <RIEInput
+                                            id={event.id}
+                                            value={event.time}
+                                            change={this.dataChanged}
+                                            propName="time"
+                                            defaultValue={
+                                                { id: event.id }
+                                            }
+                                            editProps={
+                                                { style: { minWidth: 120 } }
+                                            }
+                                        />
+                                    </span>
                                 }
-
-                                
-                                    <IconMenu
-                                        iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
-                                        onChange={this.handleChangeSingle}
-                                        value={this.state.valueSingle}
-                                    >
-                                        <MenuItem value="1" primaryText="Edit Note" />
-                                        <MenuItem onClick={this.handleClick(user, event)} value="2" primaryText="Delete Note" />
-
-                                    </IconMenu>
-
-                                
+                                <IconMenu
+                                    iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
+                                    onChange={this.handleChangeSingle}
+                                    value={this.state.valueSingle}
+                                >
+                                    <MenuItem value="1" primaryText="Edit Note" />
+                                    <MenuItem onClick={this.handleClick(user, event)} value="2" primaryText="Delete Note" />
+                                </IconMenu>
                             </div>
                         )
                     })}

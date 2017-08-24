@@ -4,7 +4,7 @@ import { RIETextArea } from 'riek'
 import { connect } from 'react-redux'
 import { fetchNotes, deleteNote, changeNote } from '../store'
 import moment from 'moment'
-import {sortTasksByDate} from '../store/taskUtils'
+import {sortTasksByDate} from '../utils/taskUtils'
 
 
 class Reflections extends React.Component {
