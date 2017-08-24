@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux';
-import { makeArrOfDaysInMonthSunToSat } from './dateFunctions'
+import { makeArrOfDaysInMonthSunToSat } from '../utils/dateUtils'
 import MonthDumbComp from './MonthDumbComp';
 import { gotNextMonth, gotPreviousMonth, updatedMonth } from '../store'
 

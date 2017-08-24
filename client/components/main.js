@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
-import SVGformat from './SVGformat'
 import Sidebar from './'
 
 /**
@@ -28,13 +27,13 @@ const Main = (props) => {
 
                 <ul className="menu-list">
                   <li className="is-active"> <Link to='/home'>Home</Link> </li>
-                  <Link to='/settings'>Categories</Link>
-                  <Link to='/insights'>Insights</Link>
+                  <Link to='/categories'>Categories</Link>
                   <Link to='/day'>Day</Link>
                   <Link to='/calendar'>Calendar</Link>
                   <Link to='/futureLog'>Future-Log</Link>
                   <Link to='/reflections'>Reflections</Link>
                   <Link to='/habitTracker'>Habit Tracker</Link>
+                  <Link to='/insights'>Insights</Link>
                   <Link to='/help'>Help</Link>
 
                   <a href='#' onClick={handleClick}>Logout</a>
