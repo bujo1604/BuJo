@@ -71,6 +71,7 @@ border-radius: 5px;
   // background-color: lightblue;
   display: flex;
   flex-direction: column;
+
   align-content: center;
   justify-content: flex-start;
   text-align: center;
@@ -132,10 +133,15 @@ border-radius: 5px;
 
 .content-title {
     font-family: 'ABeeZee', sans-serif;
-    padding-top: 20px;
+ font-size: 150%;
     padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     display: flex;
-    justify-content: center
+    justify-content: center;
+align-items:baseline;
+
+
   }
 
 .bujo-title {
@@ -159,7 +165,7 @@ li :hover {
 text-align: center;
 margin-bottom: 3px;
 margin-right: 5px;
-padding-left: 300px;
+padding-left: 200px;
 }
 .input{
     width: 200px !important;
@@ -171,12 +177,24 @@ margin-right: 5px;
 }
 
 .button {
-  width: 150px !important;
+  // width: 150px !important;
   align-items: center;
   justify-content: space-between;
 text-align: center;
 margin-bottom: 3px;
 margin-left: 6px;
+}
+p{
+  width: 150px !important;
+}
+
+#button1 {
+  width: 150px !important;
+//   align-items: center;
+//   justify-content: space-between;
+// text-align: center;
+// margin-bottom: 3px;
+// margin-left: 6px;
 }
 
 .picker{
@@ -343,9 +361,10 @@ justify-content: center;
   opacity: 1;
   }
 a {
-  text-decoration: none;
+  text-decoration: none !important ;
   display: inline-block;
   padding: 8px 16px;
+ margin: 20px;
 }
 // .future{
 //   padding-bottom: 20px;
@@ -368,14 +387,8 @@ a:hover {
 .month{
  margin: 0 auto;
 }
-<<<<<<< HEAD
 
 
-// .event-bool:hover{
-//   .delete-btn:hoover {
-//     display: inline;
-//   }
-
-// }
-=======
->>>>>>> 45d137ef6f34ba410f1697a2fdb9852bfd62f42c
+.inline{
+   display: inline-block;
+}

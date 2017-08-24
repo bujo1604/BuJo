@@ -36,7 +36,7 @@ class MonthDumbComp extends Component {
     }
     return (
       <span>
-      <div className="content-title">
+      <div >
         <table className="month">
           <tr key="1">
             <th>Date</th>

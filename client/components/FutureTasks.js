@@ -109,9 +109,7 @@ class FutureTasks extends React.Component {
 </table>
             <Link to={"/addfuturetask"}>
   <button className="button is-success">
-              <span className="icon is-small">
-                <i className="fa fa-check" />
-              </span>
+
               <span>Add Future Task</span>
             </button>
     </Link>

@@ -16,7 +16,7 @@ export class Insights extends Component {
     return (
       <div>
       <div className='space-around-buttons'>
-      <h2 className="content-title">Insights</h2>
+      <h2 className="content-title" >Insights</h2>
 
         <button  className="button is-primary" onClick={() => changeViewWeek('week')}> Weekly Insights </button>
         <button  className="button is-primary" onClick={() => changeViewMonth('month')}> Monthly Insights </button>

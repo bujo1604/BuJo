@@ -181,27 +181,6 @@ class HabitTracker extends Component {
       <div className="singlePage-container">
 
 
-
-       <div>
-       <form onSubmit={this.handleSubmit}>
-                <label>
-                    Habit:
-                <input className="input" type="text" value={this.state.value} onChange={this.handleChange} />
-                </label>
-                <input  className="button is-success" type="submit" value="Add New Tracker" />
-            </form>
-
-              {colors.map((cat, idx) => (
-                    (
-                        <label key={idx} className='color'>
-                            <button className="button" id={cat.id} onClick={this.changeColorState} value={cat.hex} > <span style={{ color: `${cat.hex}` }}> &#x25CF;</span></button>
-
-                            {/*
-                            <button id={cat.id} onClick={this.handleClick}>delete</button>
-                            */}
-                        </label>
-                    )))}
-            </div>
             <div>
              {habitRow.map((row) => {
                 return (
@@ -243,9 +222,32 @@ class HabitTracker extends Component {
                 )
             })}
             </div>
-            <div>
 
-    </div>
+
+       <div>
+       <form onSubmit={this.handleSubmit}>
+                <label>
+                    Habit:
+                <input className="input" type="text" value={this.state.value} onChange={this.handleChange} />
+                </label>
+                <input  className="button is-success" type="submit" value="Add New Tracker" />
+            </form>
+ <div className="color">
+                  <div>Select color:</div>
+              {colors.map(color =>
+                    <button
+                      className='button'
+                      onClick={this.handleColorChange}
+                      key={color.id}
+                      value={color.id}
+                      style={{ color: `${color.hex}` }}
+                    >
+                      {" "}&#x25CF;
+                    </button>
+                  )}
+                    </div>
+
+            </div>
       </div>
     )
   }

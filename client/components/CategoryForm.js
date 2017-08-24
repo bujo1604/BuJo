@@ -72,8 +72,9 @@ class CategoryForm extends Component {
                 <div className="color">
                   <div>Select color:</div>
                   {colors.map(color =>
+
                     <button
-                      className="icon is-small"
+                      className='button'
                       onClick={this.handleColorChange}
                       key={color.id}
                       value={color.id}
@@ -81,6 +82,7 @@ class CategoryForm extends Component {
                     >
                       {" "}&#x25CF;
                     </button>
+
                   )}
                 <div className='space'>
                 </div>
@@ -91,9 +93,7 @@ class CategoryForm extends Component {
                   className="button is-success"
                   onClick={this.handleSubmit}
                 >
-                 <span className="icon is-small">
-                    <i className="fa fa-check" />
-                  </span>
+
                   <span>Add</span>
                 </button>
                 <div className='space'>

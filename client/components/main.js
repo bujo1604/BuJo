@@ -18,7 +18,7 @@ const Main = (props) => {
   return (
 
     <div className='page'>
-      <h1 className='page-header' >B U J O</h1>
+      <h1 className='page-header' >B U J O </h1>
       <div className='page-container'>
         <aside className='page-sidebar'>
           {

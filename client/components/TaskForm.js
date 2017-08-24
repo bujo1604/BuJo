@@ -60,9 +60,7 @@ class TaskForm extends Component {
                     <button
                   className="button is-success"
                 >
-                 <span className="icon is-small">
-                    <i className="fa fa-check" />
-                  </span>
+
                   <span>Add</span>
                 </button>
                 </form>
@@ -70,7 +68,7 @@ class TaskForm extends Component {
                 {categories.map((cat, idx) => (
                     (
                         <label key={idx} className='color'>
-                            <button className="button" id={cat.id} onClick={this.selectedCategory} value={cat.name} > {cat.name} <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span></button>
+                            <p className="button" id={cat.id} onClick={this.selectedCategory} value={cat.name} > {cat.name} <span style={{ color: `${cat.color.hex}` }}> &#x25CF;</span></p>
 
                             {/*
                             <button id={cat.id} onClick={this.handleClick}>delete</button>

@@ -14,7 +14,7 @@ class Events extends React.Component {
         super(props);
         this.state = {
             text: 'demo-edit',
-            edit: 'true' // for setState issue change to slectec value thing 
+            edit: 'true' // for setState issue change to slectec value thing
         }
         this.dataChanged = this.dataChanged.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -100,18 +100,18 @@ class Events extends React.Component {
 
                                 }
 
-                                
+
                                     <IconMenu
                                         iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
                                         onChange={this.handleChangeSingle}
                                         value={this.state.valueSingle}
                                     >
-                                        <MenuItem value="1" primaryText="Edit Note" />
-                                        <MenuItem onClick={this.handleClick(user, event)} value="2" primaryText="Delete Note" />
+                                        <MenuItem value="1" primaryText="Edit Event" />
+                                        <MenuItem onClick={this.handleClick(user, event)} value="2" primaryText="Delete Event" />
 
                                     </IconMenu>
 
-                                
+
                             </div>
                         )
                     })}

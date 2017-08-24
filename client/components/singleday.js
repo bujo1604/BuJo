@@ -61,25 +61,19 @@ class SingleDay extends Component {
         <div>
           <Link to={"/addnote"}>
             <button className="button is-success" onClick={this.handleSubmit}>
-              <span className="icon is-small">
-                <i className="fa fa-check" />
-              </span>
+
               <span>Add Note</span>
             </button>
           </Link>
           <Link to={"/addtask"}>
             <button className="button is-success" onClick={this.handleSubmit}>
-              <span className="icon is-small">
-                <i className="fa fa-check" />
-              </span>
+
               <span>Add Task</span>
             </button>
           </Link>
           <Link to={"/addevent"}>
             <button className="button is-success" onClick={this.handleSubmit}>
-              <span className="icon is-small">
-                <i className="fa fa-check" />
-              </span>
+
               <span>Add Event</span>
             </button>
           </Link>
