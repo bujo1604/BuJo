@@ -127,20 +127,17 @@ class HabitTracker extends Component {
             </form>
  <div className="color">
                   <div>Select color:</div>
-               {colors.map((cat, idx) => (
-                  
-                    (
-                        <label key={idx} className='color'>
-                            <button
-                            className="button"
-                            id={cat.id} 
-                            onClick={this.changeColorState} 
-                            value={cat.hex} > 
-                            <span style={{ color: `${cat.hex}` }}> &#x25CF;</span>
-                            </button>
-
-                        </label>
-                    )))}
+              {colors.map(color =>
+                    <button
+                      className='button'
+                      onClick={this.handleColorChange}
+                      key={color.id}
+                      value={color.id}
+                      style={{ color: `${color.hex}` }}
+                    >
+                      {" "}&#x25CF;
+                    </button>
+                  )}
                     </div>
 
             </div>
