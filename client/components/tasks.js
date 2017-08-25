@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RIEInput } from 'riek'
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import FontIcon from 'material-ui/FontIcon';
+import {greenA200} from 'material-ui/styles/colors';
+
 import { removeTask, fetchTasks, changeTask } from '../store';
 
 
@@ -65,44 +64,21 @@ class Tasks extends Component {
                 {tasks.map((task, idx) => (
                     <div key={idx}>
                         {task.status === 'complete' ?
-                            <span className='event' style={{ color: `${task.category.color.hex}` }}> &#x2613; </span>
+                        <div>
+                            <span className='event-bool' style={{ color: `${task.category.color.hex}` }}> &#x2613;   </span>
+                            <span> {task.name} </span>
+                        </div>
                             :
-                            <span className='event' id={task.id} onClick={changeStatus(user)} style={{ color: `${task.category.color.hex}` }}> &#x25CF; </span>
+                            <div>
+                            <span className='event-bool' style={{ color: `${task.category.color.hex}` }}> &#x25CF; </span> 
+                            <span>{task.name} </span> 
+                            <IconButton onClick={changeStatus(user, task)} tooltip="Complete"> <FontIcon className="material-icons md-10" hoverColor={greenA200} > done </FontIcon> </IconButton> 
+                            </div>
                         }
-                        {(this.state.edit) ?
-                            (
+                                <IconButton> <FontIcon className="material-icons md-10" hoverColor={greenA200} > mode_edit </FontIcon> </IconButton>
+                                <IconButton tooltip='Migrate'> <FontIcon className="material-icons md-18" hoverColor={greenA200} > compare_arrows </FontIcon> </IconButton>
+                                <IconButton onClick={this.handleClick(user, task)} > <FontIcon className="material-icons md-18" hoverColor={greenA200} > delete </FontIcon> </IconButton>
 
-                                <span className='event-bool'> {task.name}  </span>
-
-                            ) :
-                            (
-                             
-                                    
-                                    <span className='event-bool'>
-                                        <RIEInput
-                                            id={task.id}
-                                            value={task.name}
-                                            change={this.dataChanged}
-                                            propName={task.id.toString()}
-                                        />
-                                    </span>
-                              
-
-                            )
-
-                        }
-                        
-                            <IconMenu
-                                iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
-                                onChange={this.handleChangeSingle}
-                                value={this.state.valueSingle}
-                            >
-                                <MenuItem onClick={changeStatus(user, task)} value="1" primaryText='Change Status' />
-                                <MenuItem value="2" primaryText="Edit Task" />
-                                <MenuItem onClick={this.handleClick(user, task)} value="3" primaryText="Delete Task" />
-
-                            </IconMenu>
-        
                     </div>
                 ))}
             </div>
@@ -131,10 +107,7 @@ const mapDispatch = (dispatch) => {
 
         changeStatus(user, task) {
             let updatedTask = {};
-            //add possiblity of changing from complete to incomplete
-            
             return (
-                
                 (event) => {
                     task.status === 'incomplete' ?
                         updatedTask = {
@@ -144,12 +117,10 @@ const mapDispatch = (dispatch) => {
                         updatedTask = {
                             status: 'incomplete',
                         }
-   
-                    // console.log(updatedTask);
+
                     const taskId = task.id
                     event.preventDefault()
                     dispatch(changeTask(taskId, updatedTask, user.id))
-                    //dispatch(fetchTasks(user.id)) // needs to adjust the props recieve. componentWillRecieveProps
 
                 })
 
@@ -161,3 +132,14 @@ const mapDispatch = (dispatch) => {
 export default connect(mapState, mapDispatch)(Tasks)
 
 
+
+// <IconMenu
+// iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
+// onChange={this.handleChangeSingle}
+// value={this.state.valueSingle}
+// >
+// <MenuItem onClick={changeStatus(user, task)} value="1" primaryText='Change Status' />
+// <MenuItem value="2" primaryText="Edit Task" />
+// <MenuItem onClick={this.handleClick(user, task)} value="3" primaryText="Delete Task" />
+
+// </IconMenu>

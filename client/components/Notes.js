@@ -1,15 +1,12 @@
 import React from 'react';
-import { RIETextArea } from 'riek'
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import FontIcon from 'material-ui/FontIcon';
+import {greenA200} from 'material-ui/styles/colors';
+
 
 import { connect } from 'react-redux'
 
 import { fetchNotes, deleteNote, changeNote } from '../store'
-
-
 
 
 class Notes extends React.Component {
@@ -51,7 +48,6 @@ class Notes extends React.Component {
     }
 
 
-
     dataChanged(data) {
         const note = Object.keys(data);
         const noteId = note[0]
@@ -60,7 +56,6 @@ class Notes extends React.Component {
         }
         this.props.editNote(noteId, editNote)
     }
-
 
 
     render() {
@@ -72,31 +67,10 @@ class Notes extends React.Component {
                 <div className="align-left" >
 
                     {notes.map((note, idx) => (
-                        <div className='lin' key={idx}>
-                            {(this.state.edit) ?
-                                (
-                                    <span className='event-bool'> &#x25AC;  {note.text}  </span>
-                                ) :
-                                (
-                                    <span className='event'> &#x25AC;
-                                     <RIETextArea
-                                            id={note.id}
-                                            value={note.text}
-                                            change={this.dataChanged}
-                                            propName={note.id.toString()}
-                                        />
-                                    </span>
-                                )
-                            }
-                            <IconMenu
-                                iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
-                                onChange={this.handleChangeSingle}
-                                value={this.state.valueSingle}
-                                
-                            >
-                                <MenuItem value="1" primaryText="Edit Note" />
-                                <MenuItem onClick={this.handleClick(user, note)} value="2" primaryText="Delete Note" />
-                            </IconMenu>
+                        <div className="lin" key={idx}>
+                                    <span className="event-bool"> &#x25AC;  {note.text}  </span>
+                                    <IconButton> <FontIcon className="material-icons md-10" hoverColor={greenA200} > mode_edit </FontIcon> </IconButton>
+                                    <IconButton onClick={this.handleClick(user, note)} > <FontIcon className="material-icons md-18" hoverColor={greenA200} > delete </FontIcon> </IconButton>
                         </div>
                     ))}
 
@@ -106,9 +80,6 @@ class Notes extends React.Component {
     }
 
 }
-
-
-
 
 
 const mapState = (state) => ({
@@ -133,3 +104,14 @@ const mapDispatch = (dispatch) => {
 
 
 export default connect(mapState, mapDispatch)(Notes)
+
+
+// <IconMenu
+// iconButtonElement={<IconButton ><MoreVertIcon className='rotate' /></IconButton>}
+// onChange={this.handleChangeSingle}
+// value={this.state.valueSingle}
+
+// >
+// <MenuItem value="1" primaryText="Edit Note" />
+// <MenuItem onClick={this.handleClick(user, note)} value="2" primaryText="Delete Note" />
+// </IconMenu>
