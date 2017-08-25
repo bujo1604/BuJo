@@ -66,21 +66,39 @@ class HabitTracker extends Component {
     return (
 
       <div className="singlePage-container">
+
+       <h1>Habit Tracker</h1>
+       <div>
+       <form onSubmit={this.handleSubmit}>
+                <label>
+                    Habit:
+                <input type="text" value={this.state.value} onChange={this.handleChange} />
+                </label>
+                <input type="submit" value="Add New Habit Tracker" />
+            </form> 
+
+              {colors.map((cat, idx) => (
+                    (
+                        <label key={idx} className='color'>
+                            <button className="button" id={cat.id} onClick={this.changeColorState} value={cat.hex} > <span style={{ color: `${cat.hex}` }}> &#x25CF;</span></button>
+                        </label>
+                    )))}
+            </div>
             <div>
              {habitRow.map((row) => {
                 return (
                     <div key={Math.random()}>
                     <div >
-
+   
                     <svg width={HTPropor.svgWidth} height={HTPropor.svgHeight} key={Math.random()}>
-
-
+                    
+                     
                     {thirty1Days.map((day, ind)=>{
-
+      
                        var coord = ellipseCoord(HTPropor, day, ind, numDaysR);
                         var letter = moment((this.props.month)).add(day-1, "day").format("dd")
-                        var transf = "rotate(" + coord.rotate + ")"
-
+                        var transf = "rotate(" + coord.rotate + ")" 
+                      
                         return (<g key={Math.random()}>
                     <ellipse key={ind} cx={coord.cx} cy={coord.cy} rx={HTPropor.cirR*2} ry={HTPropor.cirR*10} transform={transf} stroke="black" fill={row['c' + day]} onClick={() => {this.clicker(row.id, coord.colStr, row[coord.colStr], row.color)}} />
                     <text textAnchor="middle" x={coord.tcx} y={coord.tcy} fontFamily="ABeeZee" onClick={() => {this.clicker(row.id, coord.colStr, row[coord.colStr], row.color)}}>{day}</text>
