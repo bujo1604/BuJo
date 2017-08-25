@@ -12,15 +12,13 @@ class HabitTracker extends Component {
     this.state = {
         value: '',
         color: 'blue'
-
-
     }
-
+    
     this.clicker = this.clicker.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeColorState = this.changeColorState.bind(this);
-
+ 
   }
 
   componentDidMount(){
@@ -30,14 +28,15 @@ class HabitTracker extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.month !== nextProps.month) {
-      this.props.loadRows(this.props.user.id, dateToYYYYMM01(this.props.month), moment(nextProps.month).endOf("month").format("YYYYMMDD"));
+      this.props.loadRows(this.props.user.id, dateToYYYYMM01(nextProps.month), moment(nextProps.month).endOf("month").format("YYYYMMDD"));
     }
   }
   handleSubmit(event){
-
+   
     event.preventDefault();
     var month = dateToYYYYMM01(this.props.month);
     var obj = {month: month, habit: this.state.value, userId: this.props.user.id, color:this.state.color}
+    this.setState({value: ''})
     this.props.addHabitRow(obj);
 }
 
@@ -50,7 +49,7 @@ class HabitTracker extends Component {
 
   handleChange(event){
       this.setState({value: event.target.value});
-
+    
   }
     changeColorState(event){
         event.preventDefault();
@@ -67,23 +66,7 @@ class HabitTracker extends Component {
 
       <div className="singlePage-container">
 
-       <h1>Habit Tracker</h1>
-       <div>
-       <form onSubmit={this.handleSubmit}>
-                <label>
-                    Habit:
-                <input type="text" value={this.state.value} onChange={this.handleChange} />
-                </label>
-                <input type="submit" value="Add New Habit Tracker" />
-            </form> 
-
-              {colors.map((cat, idx) => (
-                    (
-                        <label key={idx} className='color'>
-                            <button className="button" id={cat.id} onClick={this.changeColorState} value={cat.hex} > <span style={{ color: `${cat.hex}` }}> &#x25CF;</span></button>
-                        </label>
-                    )))}
-            </div>
+       
             <div>
              {habitRow.map((row) => {
                 return (
@@ -104,43 +87,40 @@ class HabitTracker extends Component {
                     <text textAnchor="middle" x={coord.tcx} y={coord.tcy} fontFamily="ABeeZee" onClick={() => {this.clicker(row.id, coord.colStr, row[coord.colStr], row.color)}}>{day}</text>
                     <text textAnchor="middle" x={coord.dcx} y={coord.dcy} fontFamily="ABeeZee" fontSize="10" onClick={() => {this.clicker(row.id, coord.colStr, row[coord.colStr], row.color)}}>{letter}</text>
                     </g>)
-
+                
                     })}
                     <circle cx={HTPropor.svgCenterX} cy={HTPropor.svgCenterY} r={HTPropor.bCirR*0.650} fill="#d7e7e8" stroke="black"/>
                     <text textAnchor="middle" x={HTPropor.svgCenterX} y={HTPropor.svgCenterY} fontFamily="ABeeZee">{row.habit}</text>
                     </svg>
-
+                    
                     </div>
                     </div>
                 )
             })}
             </div>
-
-
-       <div>
-       <form onSubmit={this.handleSubmit}>
-                <label>
-                    Habit:
-                <input className="input" type="text" value={this.state.value} onChange={this.handleChange} />
-                </label>
-                <input  className="button is-success" type="submit" value="Add New Tracker" />
-            </form>
- <div className="color">
-                  <div>Select color:</div>
-              {colors.map(color =>
-                    <button
-                      className='button'
-                      onClick={this.handleColorChange}
-                      key={color.id}
-                      value={color.id}
-                      style={{ color: `${color.hex}` }}
-                    >
-                      {" "}&#x25CF;
-                    </button>
-                  )}
-                    </div>
-
-            </div>
+            <div>
+            <div>
+            <form onSubmit={this.handleSubmit}>
+                     <label>
+                         Habit:
+                     <input className='input' type="text" value={this.state.value} onChange={this.handleChange} />
+                     </label>
+                     <button className='button is-success' type="submit"> Add New</button>
+                 </form> 
+                 <div className='color'>
+                  <div> Select Color: </div>
+                   {colors.map((cat, idx) => (
+                         (
+                             <label key={idx} className='color'>
+                                 <button className="button" id={cat.id} onClick={this.changeColorState} value={cat.hex}
+                                 style={{ color: `${cat.hex}`}} >
+                                 &#x25CF;
+                                 </button>
+                             </label>
+                         )))}
+                    </div> 
+                 </div>
+          </div>
       </div>
     )
   }

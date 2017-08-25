@@ -17,8 +17,6 @@ const HabitTrackerMonth = (props) => {
             <h2 className='singlePage-title'> {month} </h2>
             <a href='#' className='next round' onClick={nextMonth}> &#8250; </a>
         </div>
-        <hr />
-            <button onClick={()=> updateMonth(formM_Y())}>Current Month</button>
             <HabitTracker  /> 
         </div>
     )
