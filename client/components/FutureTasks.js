@@ -82,10 +82,6 @@ class FutureTasks extends React.Component {
           </a>
           </div>
           </div>
-
-
-
-
            <table className='month'>
            <tr key="1">
             <th>Month</th>
@@ -98,7 +94,7 @@ class FutureTasks extends React.Component {
                     <tr key={Math.random()}>
                     <td>{moment(monthInArr).format("MMMM")}</td>
                     <TaskWords tasks={filterF[ind]} />
-    <p className='future'></p>
+
                     </tr>
                 )
             })}

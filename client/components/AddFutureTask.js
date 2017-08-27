@@ -104,7 +104,9 @@ class AddFutureTask extends React.Component {
               value={this.state.monthInput}
               onChange={this.handleMonthChange}
             />
+
             <input className="button is-success" type="submit" value="Add Future Task" />
+            <div>
             {this.props.categories.map((cat, idx) =>
               <label key={idx} className="color">
                 <p
@@ -122,6 +124,7 @@ class AddFutureTask extends React.Component {
                             */}
               </label>
             )}
+            </div>
           </form>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Categories from './Categories'
+import LegendCategories from './LegendCategories'
 import Legend from './Legend'
 
 
@@ -7,7 +7,7 @@ const Sidebar = (props) => {
     return (
         <div className='sideBar'>
             <Legend />
-            <Categories />
+            <LegendCategories />
         </div>
 
     )

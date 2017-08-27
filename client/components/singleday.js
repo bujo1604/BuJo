@@ -40,8 +40,7 @@ class SingleDay extends Component {
           <a href="#" className="previous round" onClick={previousDay}>
             &#8249;
           </a>
-          <h2>{moment(day).format("ddd D")}</h2>
-          <h2>{moment(day).format("MMMM YYYY")}</h2>
+          <h2>{moment(day).format("ddd D MMMM YYYY")}</h2>
           <a href="#" className="next round" onClick={nextDay}>
             &#8250;
           </a>

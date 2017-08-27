@@ -47,15 +47,15 @@ componentDidMount(){
 
     return (
         <div>
-        <div className='line-tasks'>
+
             {tasks.map((task, idx) => (
                     <div display="inline" key={idx}>
-                            <Link to={'/updateTask'}>
-                            <td key={idx}  display="inline" style={{ color: `${colors[task.categoryId]}` }}>{task.name}</td>
-                            </Link>
+
+
+ <td className='event' id={task.id} > <span style={{ color: `${task.category.color.hex}` }} >&#x25CF;</span>  {task.name}</td>
                             </div>
             ))}
-                        </div>
+
         </div>
     )
 }
