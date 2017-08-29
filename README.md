@@ -1,6 +1,6 @@
-# BuJo - A Productivity Tool Based on the Bullet Journal
+# BuJo
 
-*Good things come in pairs*
+*A Productivity Tool Based on the Bullet Journal*
 
 ![This is my image](./public/bujoavatar.gif)
 
