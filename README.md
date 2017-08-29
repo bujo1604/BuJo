@@ -1,6 +1,8 @@
-# Boilermaker
+# BuJo - A Productivity Tool Based on the Bullet Journal
 
 *Good things come in pairs*
+
+![This is my image](./public/bujoavatar.gif)
 
 Looking to mix up a backend with express/sequelize and a frontend with react/redux? That's `boilermaker`!
 
